@@ -1,0 +1,424 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1F2CCA8517FCE3D700A382AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8417FCE3D700A382AB /* Foundation.framework */; };
+		1F2CCA8A17FCE3D700A382AB /* JKValue.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1F2CCA8917FCE3D700A382AB /* JKValue.h */; };
+		1F2CCA8C17FCE3D700A382AB /* JKValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCA8B17FCE3D700A382AB /* JKValue.m */; };
+		1F2CCA9317FCE3D700A382AB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA9217FCE3D700A382AB /* XCTest.framework */; };
+		1F2CCA9417FCE3D700A382AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8417FCE3D700A382AB /* Foundation.framework */; };
+		1F2CCA9617FCE3D700A382AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA9517FCE3D700A382AB /* UIKit.framework */; };
+		1F2CCA9917FCE3D700A382AB /* libJKValue.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8117FCE3D700A382AB /* libJKValue.a */; };
+		1F2CCA9F17FCE3D700A382AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F2CCA9D17FCE3D700A382AB /* InfoPlist.strings */; };
+		1F2CCAA117FCE3D700A382AB /* JKValueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAA017FCE3D700A382AB /* JKValueTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1F2CCA9717FCE3D700A382AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F2CCA7917FCE3D700A382AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F2CCA8017FCE3D700A382AB;
+			remoteInfo = JKValue;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1F2CCA7F17FCE3D700A382AB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				1F2CCA8A17FCE3D700A382AB /* JKValue.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1F2CCA8117FCE3D700A382AB /* libJKValue.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJKValue.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F2CCA8417FCE3D700A382AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1F2CCA8817FCE3D700A382AB /* JKValue-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JKValue-Prefix.pch"; sourceTree = "<group>"; };
+		1F2CCA8917FCE3D700A382AB /* JKValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JKValue.h; sourceTree = "<group>"; };
+		1F2CCA8B17FCE3D700A382AB /* JKValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKValue.m; sourceTree = "<group>"; };
+		1F2CCA9117FCE3D700A382AB /* JKValueTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JKValueTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F2CCA9217FCE3D700A382AB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		1F2CCA9517FCE3D700A382AB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		1F2CCA9C17FCE3D700A382AB /* JKValueTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JKValueTests-Info.plist"; sourceTree = "<group>"; };
+		1F2CCA9E17FCE3D700A382AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1F2CCAA017FCE3D700A382AB /* JKValueTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKValueTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1F2CCA7E17FCE3D700A382AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F2CCA8517FCE3D700A382AB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F2CCA8E17FCE3D700A382AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F2CCA9917FCE3D700A382AB /* libJKValue.a in Frameworks */,
+				1F2CCA9317FCE3D700A382AB /* XCTest.framework in Frameworks */,
+				1F2CCA9617FCE3D700A382AB /* UIKit.framework in Frameworks */,
+				1F2CCA9417FCE3D700A382AB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1F2CCA7817FCE3D700A382AB = {
+			isa = PBXGroup;
+			children = (
+				1F2CCA8617FCE3D700A382AB /* JKValue */,
+				1F2CCA9A17FCE3D700A382AB /* JKValueTests */,
+				1F2CCA8317FCE3D700A382AB /* Frameworks */,
+				1F2CCA8217FCE3D700A382AB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1F2CCA8217FCE3D700A382AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1F2CCA8117FCE3D700A382AB /* libJKValue.a */,
+				1F2CCA9117FCE3D700A382AB /* JKValueTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1F2CCA8317FCE3D700A382AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1F2CCA8417FCE3D700A382AB /* Foundation.framework */,
+				1F2CCA9217FCE3D700A382AB /* XCTest.framework */,
+				1F2CCA9517FCE3D700A382AB /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1F2CCA8617FCE3D700A382AB /* JKValue */ = {
+			isa = PBXGroup;
+			children = (
+				1F2CCA8917FCE3D700A382AB /* JKValue.h */,
+				1F2CCA8B17FCE3D700A382AB /* JKValue.m */,
+				1F2CCA8717FCE3D700A382AB /* Supporting Files */,
+			);
+			path = JKValue;
+			sourceTree = "<group>";
+		};
+		1F2CCA8717FCE3D700A382AB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1F2CCA8817FCE3D700A382AB /* JKValue-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1F2CCA9A17FCE3D700A382AB /* JKValueTests */ = {
+			isa = PBXGroup;
+			children = (
+				1F2CCAA017FCE3D700A382AB /* JKValueTests.m */,
+				1F2CCA9B17FCE3D700A382AB /* Supporting Files */,
+			);
+			path = JKValueTests;
+			sourceTree = "<group>";
+		};
+		1F2CCA9B17FCE3D700A382AB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1F2CCA9C17FCE3D700A382AB /* JKValueTests-Info.plist */,
+				1F2CCA9D17FCE3D700A382AB /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1F2CCA8017FCE3D700A382AB /* JKValue */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F2CCAA417FCE3D700A382AB /* Build configuration list for PBXNativeTarget "JKValue" */;
+			buildPhases = (
+				1F2CCA7D17FCE3D700A382AB /* Sources */,
+				1F2CCA7E17FCE3D700A382AB /* Frameworks */,
+				1F2CCA7F17FCE3D700A382AB /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JKValue;
+			productName = JKValue;
+			productReference = 1F2CCA8117FCE3D700A382AB /* libJKValue.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		1F2CCA9017FCE3D700A382AB /* JKValueTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F2CCAA717FCE3D700A382AB /* Build configuration list for PBXNativeTarget "JKValueTests" */;
+			buildPhases = (
+				1F2CCA8D17FCE3D700A382AB /* Sources */,
+				1F2CCA8E17FCE3D700A382AB /* Frameworks */,
+				1F2CCA8F17FCE3D700A382AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1F2CCA9817FCE3D700A382AB /* PBXTargetDependency */,
+			);
+			name = JKValueTests;
+			productName = JKValueTests;
+			productReference = 1F2CCA9117FCE3D700A382AB /* JKValueTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1F2CCA7917FCE3D700A382AB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Jeff Hui";
+			};
+			buildConfigurationList = 1F2CCA7C17FCE3D700A382AB /* Build configuration list for PBXProject "JKValue" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1F2CCA7817FCE3D700A382AB;
+			productRefGroup = 1F2CCA8217FCE3D700A382AB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1F2CCA8017FCE3D700A382AB /* JKValue */,
+				1F2CCA9017FCE3D700A382AB /* JKValueTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1F2CCA8F17FCE3D700A382AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F2CCA9F17FCE3D700A382AB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1F2CCA7D17FCE3D700A382AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F2CCA8C17FCE3D700A382AB /* JKValue.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F2CCA8D17FCE3D700A382AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F2CCAA117FCE3D700A382AB /* JKValueTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1F2CCA9817FCE3D700A382AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1F2CCA8017FCE3D700A382AB /* JKValue */;
+			targetProxy = 1F2CCA9717FCE3D700A382AB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1F2CCA9D17FCE3D700A382AB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F2CCA9E17FCE3D700A382AB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1F2CCAA217FCE3D700A382AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1F2CCAA317FCE3D700A382AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1F2CCAA517FCE3D700A382AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/JKValue.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JKValue/JKValue-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		1F2CCAA617FCE3D700A382AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/JKValue.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JKValue/JKValue-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		1F2CCAA817FCE3D700A382AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JKValue/JKValue-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "JKValueTests/JKValueTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		1F2CCAA917FCE3D700A382AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JKValue/JKValue-Prefix.pch";
+				INFOPLIST_FILE = "JKValueTests/JKValueTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1F2CCA7C17FCE3D700A382AB /* Build configuration list for PBXProject "JKValue" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F2CCAA217FCE3D700A382AB /* Debug */,
+				1F2CCAA317FCE3D700A382AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1F2CCAA417FCE3D700A382AB /* Build configuration list for PBXNativeTarget "JKValue" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F2CCAA517FCE3D700A382AB /* Debug */,
+				1F2CCAA617FCE3D700A382AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1F2CCAA717FCE3D700A382AB /* Build configuration list for PBXNativeTarget "JKValueTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F2CCAA817FCE3D700A382AB /* Debug */,
+				1F2CCAA917FCE3D700A382AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1F2CCA7917FCE3D700A382AB /* Project object */;
+}
