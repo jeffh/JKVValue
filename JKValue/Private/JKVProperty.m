@@ -55,24 +55,40 @@
 - (void)visitEncodingType:(id<JKVPropertyEncodingTypeVisitor>)visitor
 {
     SEL selector;
-    if ([self isEncodingType:@encode(NSInteger)]) {
-        selector = @selector(propertyWasNSInteger:);
+    if ([self isEncodingType:@encode(int64_t)]) {
+        selector = @selector(propertyWasInt64:);
+    } else if ([self isEncodingType:@encode(int32_t)]) {
+        selector = @selector(propertyWasInt32:);
+    } else if ([self isEncodingType:@encode(int16_t)]) {
+        selector = @selector(propertyWasInt16:);
     } else if ([self isEncodingType:@encode(float)]) {
         selector = @selector(propertyWasFloat:);
+    } else if ([self isEncodingType:@encode(double)]) {
+        selector = @selector(propertyWasDouble:);
     } else if ([self isEncodingType:@encode(BOOL)]) {
         selector = @selector(propertyWasBool:);
+    } else if ([self isEncodingType:@encode(CGPoint)]) {
+        selector = @selector(propertyWasCGPoint:);
+    } else if ([self isEncodingType:@encode(CGSize)]) {
+        selector = @selector(propertyWasCGSize:);
+    } else if ([self isEncodingType:@encode(CGRect)]) {
+        selector = @selector(propertyWasCGRect:);
+    } else if ([self isEncodingType:@encode(CGAffineTransform)]) {
+        selector = @selector(propertyWasCGAffineTransform:);
+    } else if ([self isEncodingType:@encode(UIEdgeInsets)]) {
+        selector = @selector(propertyWasUIEdgeInsets:);
+    } else if ([self isEncodingType:@encode(UIOffset)]) {
+        selector = @selector(propertyWasUIOffset:);
     } else if ([self isObjCObjectType]) {
         selector = @selector(propertyWasObjCObject:);
     } else {
         selector = @selector(propertyWasUnknownType:);
     }
 
-    if ([visitor respondsToSelector:selector]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [visitor performSelector:selector withObject:self];
+    [visitor performSelector:selector withObject:self];
 #pragma clang diagnostic pop
-    }
 }
 
 @end

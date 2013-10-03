@@ -183,7 +183,7 @@ describe(@"JKVValue", ^{
             beforeEach(^{
                 NSMutableData *data = [NSMutableData data];
                 NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
-                [person encodeWithCoder:archiver];
+                [box encodeWithCoder:archiver];
                 [archiver finishEncoding];
                 NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
                 deserializedBox = [[[JKVTypeContainer alloc] initWithCoder:unarchiver] autorelease];

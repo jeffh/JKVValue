@@ -3,10 +3,18 @@
 @class JKVProperty;
 
 @protocol JKVPropertyEncodingTypeVisitor <NSObject>
-@optional
-- (void)propertyWasNSInteger:(JKVProperty *)property;
+- (void)propertyWasInt64:(JKVProperty *)property;
+- (void)propertyWasInt32:(JKVProperty *)property;
+- (void)propertyWasInt16:(JKVProperty *)property;
 - (void)propertyWasFloat:(JKVProperty *)property;
+- (void)propertyWasDouble:(JKVProperty *)property;
 - (void)propertyWasBool:(JKVProperty *)property;
+- (void)propertyWasCGPoint:(JKVProperty *)property;
+- (void)propertyWasCGSize:(JKVProperty *)property;
+- (void)propertyWasCGRect:(JKVProperty *)property;
+- (void)propertyWasCGAffineTransform:(JKVProperty *)property;
+- (void)propertyWasUIEdgeInsets:(JKVProperty *)property;
+- (void)propertyWasUIOffset:(JKVProperty *)property;
 - (void)propertyWasObjCObject:(JKVProperty *)property;
 - (void)propertyWasUnknownType:(JKVProperty *)property;
 @end
