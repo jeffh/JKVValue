@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1F2CCA8017FCE3D700A382AB"
                BuildableName = "libJKValue.a"
-               BlueprintName = "JKValue"
-               ReferencedContainer = "container:JKValue.xcodeproj">
+               BlueprintName = "JKVValue"
+               ReferencedContainer = "container:JKVValue.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "1F2CCA9017FCE3D700A382AB"
                BuildableName = "JKValueTests.xctest"
                BlueprintName = "JKValueTests"
-               ReferencedContainer = "container:JKValue.xcodeproj">
+               ReferencedContainer = "container:JKVValue.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

@@ -85,7 +85,7 @@ describe(@"JKVMutableValue", ^{
 
         it(@"should support copying", ^{
             clonedPerson should_not be_same_instance_as(person);
-            clonedPerson should equal(person);
+            clonedPerson should equal((JKVPerson *)person);
         });
 
         void (^itShouldRecursivelyCopy)(NSString *, id (^)(id)) = ^(NSString *name, id (^getter)(id obj)) {

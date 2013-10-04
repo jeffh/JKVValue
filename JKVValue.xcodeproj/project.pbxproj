@@ -62,9 +62,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1F2CCA8117FCE3D700A382AB /* libJKValue.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJKValue.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F2CCA8117FCE3D700A382AB /* libJKVValue.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJKVValue.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F2CCA8417FCE3D700A382AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1F2CCA8817FCE3D700A382AB /* JKValue-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JKValue-Prefix.pch"; sourceTree = "<group>"; };
+		1F2CCA8817FCE3D700A382AB /* JKVValue-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JKVValue-Prefix.pch"; sourceTree = "<group>"; };
 		1F2CCA9217FCE3D700A382AB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		1F2CCA9517FCE3D700A382AB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		1F2CCAAE17FCE48E00A382AB /* Specs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Specs.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,7 +150,7 @@
 		1F2CCA8217FCE3D700A382AB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1F2CCA8117FCE3D700A382AB /* libJKValue.a */,
+				1F2CCA8117FCE3D700A382AB /* libJKVValue.a */,
 				1F2CCAAE17FCE48E00A382AB /* Specs.app */,
 				1F43228F17FE2C94001293C1 /* OSXSpecs */,
 			);
@@ -182,7 +182,7 @@
 		1F2CCA8717FCE3D700A382AB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1F2CCA8817FCE3D700A382AB /* JKValue-Prefix.pch */,
+				1F2CCA8817FCE3D700A382AB /* JKVValue-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -278,9 +278,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1F2CCA8017FCE3D700A382AB /* JKValue */ = {
+		1F2CCA8017FCE3D700A382AB /* JKVValue */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1F2CCAA417FCE3D700A382AB /* Build configuration list for PBXNativeTarget "JKValue" */;
+			buildConfigurationList = 1F2CCAA417FCE3D700A382AB /* Build configuration list for PBXNativeTarget "JKVValue" */;
 			buildPhases = (
 				1F2CCA7D17FCE3D700A382AB /* Sources */,
 				1F2CCA7E17FCE3D700A382AB /* Frameworks */,
@@ -290,9 +290,9 @@
 			);
 			dependencies = (
 			);
-			name = JKValue;
+			name = JKVValue;
 			productName = JKValue;
-			productReference = 1F2CCA8117FCE3D700A382AB /* libJKValue.a */;
+			productReference = 1F2CCA8117FCE3D700A382AB /* libJKVValue.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		1F2CCAAD17FCE48E00A382AB /* Specs */ = {
@@ -338,7 +338,7 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Jeff Hui";
 			};
-			buildConfigurationList = 1F2CCA7C17FCE3D700A382AB /* Build configuration list for PBXProject "JKValue" */;
+			buildConfigurationList = 1F2CCA7C17FCE3D700A382AB /* Build configuration list for PBXProject "JKVValue" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -350,7 +350,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1F2CCA8017FCE3D700A382AB /* JKValue */,
+				1F2CCA8017FCE3D700A382AB /* JKVValue */,
 				1F2CCAAD17FCE48E00A382AB /* Specs */,
 				1F43228E17FE2C94001293C1 /* OSXSpecs */,
 			);
@@ -528,9 +528,9 @@
 			buildSettings = {
 				DSTROOT = /tmp/JKValue.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JKValue/JKValue-Prefix.pch";
+				GCC_PREFIX_HEADER = "JKValue/JKVValue-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = JKVValue;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -540,9 +540,9 @@
 			buildSettings = {
 				DSTROOT = /tmp/JKValue.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JKValue/JKValue-Prefix.pch";
+				GCC_PREFIX_HEADER = "JKValue/JKVValue-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = JKVValue;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -638,7 +638,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1F2CCA7C17FCE3D700A382AB /* Build configuration list for PBXProject "JKValue" */ = {
+		1F2CCA7C17FCE3D700A382AB /* Build configuration list for PBXProject "JKVValue" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1F2CCAA217FCE3D700A382AB /* Debug */,
@@ -647,7 +647,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1F2CCAA417FCE3D700A382AB /* Build configuration list for PBXNativeTarget "JKValue" */ = {
+		1F2CCAA417FCE3D700A382AB /* Build configuration list for PBXNativeTarget "JKVValue" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1F2CCAA517FCE3D700A382AB /* Debug */,
