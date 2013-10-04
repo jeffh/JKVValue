@@ -8,8 +8,6 @@ Value Objects are great for well-designed programs!
 They're great for documenting data from an API or your internal
 application data, but are terrible to maintain.
 
-It's pretty annoying to create and maintain value objects.
-
 When you add (or change) a property, you usually have to do:
 
 - Add the `@property`
@@ -21,9 +19,11 @@ When you add (or change) a property, you usually have to do:
 - Add it to `-[initWithCoder:]` to support deserialization
 - Add it to `-[encodeWithCoder:]` to support serialization (NSCoding)
 
-Forget about doing the right thing, and having both mutable and immutable
+And forget about doing the right thing, and having both mutable and immutable
 versions of value objects like Apple's Foundation data structures...
 until now!
+
+JKVValue simplifies your work to only setting the @property and constructor!
 
 Installation
 ------------
