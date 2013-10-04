@@ -26,8 +26,13 @@
 
 - (void)propertyWasInt32:(JKVProperty *)property
 {
+#if TARGET_OS_IPHONE
     [self.coder encodeInt32:[[self.target valueForKey:property.name] longValue]
                        forKey:property.name];
+#else
+    [self.coder encodeInt32:[[self.target valueForKey:property.name] intValue]
+                     forKey:property.name];
+#endif
 }
 
 - (void)propertyWasInt16:(JKVProperty *)property
@@ -54,41 +59,6 @@
                     forKey:property.name];
 }
 
-- (void)propertyWasCGPoint:(JKVProperty *)property
-{
-    [self.coder encodeCGPoint:[[self.target valueForKey:property.name] CGPointValue]
-                    forKey:property.name];
-}
-- (void)propertyWasCGSize:(JKVProperty *)property
-{
-    [self.coder encodeCGSize:[[self.target valueForKey:property.name] CGSizeValue]
-                      forKey:property.name];
-}
-
-- (void)propertyWasCGRect:(JKVProperty *)property
-{
-    [self.coder encodeCGRect:[[self.target valueForKey:property.name] CGRectValue]
-                       forKey:property.name];
-}
-
-- (void)propertyWasCGAffineTransform:(JKVProperty *)property
-{
-    [self.coder encodeCGAffineTransform:[[self.target valueForKey:property.name] CGAffineTransformValue]
-                       forKey:property.name];
-}
-
-- (void)propertyWasUIEdgeInsets:(JKVProperty *)property
-{
-    [self.coder encodeUIEdgeInsets:[[self.target valueForKey:property.name] UIEdgeInsetsValue]
-                       forKey:property.name];
-}
-
-- (void)propertyWasUIOffset:(JKVProperty *)property
-{
-    [self.coder encodeUIOffset:[[self.target valueForKey:property.name] UIOffsetValue]
-                       forKey:property.name];
-}
-
 - (void)propertyWasObjCObject:(JKVProperty *)property
 {
     [self.coder encodeObject:[self.target valueForKey:property.name]
@@ -99,5 +69,82 @@
 {
     [NSException raise:@"Unknown Encoding Type" format:@"Unknown encoding type: %@ for %@", property.encodingType, property.name];
 }
+
+#pragma mark - OS Specific
+
+#if TARGET_OS_IPHONE
+
+- (void)propertyWasCGPoint:(JKVProperty *)property
+{
+    [self.coder encodeCGPoint:[[self.target valueForKey:property.name] CGPointValue]
+                       forKey:property.name];
+}
+
+- (void)propertyWasCGSize:(JKVProperty *)property
+{
+    [self.coder encodeCGSize:[[self.target valueForKey:property.name] CGSizeValue]
+                      forKey:property.name];
+}
+
+- (void)propertyWasCGRect:(JKVProperty *)property
+{
+    [self.coder encodeCGRect:[[self.target valueForKey:property.name] CGRectValue]
+                      forKey:property.name];
+}
+
+- (void)propertyWasCGAffineTransform:(JKVProperty *)property
+{
+    [self.coder encodeCGAffineTransform:[[self.target valueForKey:property.name] CGAffineTransformValue]
+                                 forKey:property.name];
+}
+
+- (void)propertyWasUIEdgeInsets:(JKVProperty *)property
+{
+    [self.coder encodeUIEdgeInsets:[[self.target valueForKey:property.name] UIEdgeInsetsValue]
+                            forKey:property.name];
+}
+
+- (void)propertyWasUIOffset:(JKVProperty *)property
+{
+    [self.coder encodeUIOffset:[[self.target valueForKey:property.name] UIOffsetValue]
+                        forKey:property.name];
+}
+
+#else
+
+- (void)propertyWasCGPoint:(JKVProperty *)property
+{
+    [self.coder encodePoint:[[self.target valueForKey:property.name] pointValue]
+                      forKey:property.name];
+}
+- (void)propertyWasCGSize:(JKVProperty *)property
+{
+    [self.coder encodeSize:[[self.target valueForKey:property.name] sizeValue]
+                    forKey:property.name];
+}
+
+- (void)propertyWasCGRect:(JKVProperty *)property
+{
+    [self.coder encodeRect:[[self.target valueForKey:property.name] rectValue]
+                    forKey:property.name];
+}
+
+- (void)propertyWasNSPoint:(JKVProperty *)property
+{
+    [self propertyWasCGPoint:property];
+}
+
+- (void)propertyWasNSSize:(JKVProperty *)property
+{
+    [self propertyWasCGSize:property];
+}
+
+- (void)propertyWasNSRect:(JKVProperty *)property
+{
+    [self propertyWasCGRect:property];
+}
+
+
+#endif
 
 @end

@@ -3,6 +3,7 @@
 
 @implementation JKVProperty
 
+
 - (id)initWithName:(NSString *)name attributes:(NSDictionary *)attributes
 {
     if (self = [super init]) {
@@ -14,7 +15,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ name=%@ attributes=%@>", NSStringFromClass([self class]), self.name, self.attributes.description];
+    return [NSString stringWithFormat:@"<%@ name=%@ attributes=%@>", NSStringFromClass([self class]), self.name, self.attributes];
 }
 
 - (NSString *)encodingType
@@ -34,7 +35,7 @@
 
 - (BOOL)isObjCObjectType
 {
-    return [self.encodingType rangeOfString:@"@"].location != NSNotFound;
+    return [self.encodingType characterAtIndex:0] == '@';
 }
 
 - (BOOL)isWeak
@@ -67,28 +68,39 @@
         selector = @selector(propertyWasDouble:);
     } else if ([self isEncodingType:@encode(BOOL)]) {
         selector = @selector(propertyWasBool:);
+#ifdef CGFLOAT_DEFINED
     } else if ([self isEncodingType:@encode(CGPoint)]) {
         selector = @selector(propertyWasCGPoint:);
     } else if ([self isEncodingType:@encode(CGSize)]) {
         selector = @selector(propertyWasCGSize:);
     } else if ([self isEncodingType:@encode(CGRect)]) {
         selector = @selector(propertyWasCGRect:);
-    } else if ([self isEncodingType:@encode(CGAffineTransform)]) {
-        selector = @selector(propertyWasCGAffineTransform:);
+#endif
+#if TARGET_OS_IPHONE
     } else if ([self isEncodingType:@encode(UIEdgeInsets)]) {
         selector = @selector(propertyWasUIEdgeInsets:);
     } else if ([self isEncodingType:@encode(UIOffset)]) {
         selector = @selector(propertyWasUIOffset:);
+#else
+    } else if ([self isEncodingType:@encode(NSPoint)]) {
+        selector = @selector(propertyWasNSPoint:);
+    } else if ([self isEncodingType:@encode(NSSize)]) {
+        selector = @selector(propertyWasNSSize:);
+    } else if ([self isEncodingType:@encode(NSRect)]) {
+        selector = @selector(propertyWasNSRect:);
+#endif
     } else if ([self isObjCObjectType]) {
         selector = @selector(propertyWasObjCObject:);
     } else {
         selector = @selector(propertyWasUnknownType:);
     }
 
+    if ([visitor respondsToSelector:selector]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    [visitor performSelector:selector withObject:self];
+        [visitor performSelector:selector withObject:self];
 #pragma clang diagnostic pop
+    }
 }
 
 @end

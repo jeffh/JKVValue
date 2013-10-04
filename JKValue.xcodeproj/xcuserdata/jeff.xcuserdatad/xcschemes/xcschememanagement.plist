@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>OSXSpecs.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>Specs.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -28,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>1F2CCAAD17FCE48E00A382AB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1F43228E17FE2C94001293C1</key>
 		<dict>
 			<key>primary</key>
 			<true/>

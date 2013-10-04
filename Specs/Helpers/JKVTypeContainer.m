@@ -17,9 +17,14 @@
         self.point = CGPointMake(2, 3);
         self.size = CGSizeMake(3, 4);
         self.rect = CGRectMake(5, 6, 7, 8);
-        self.affineTransform = CGAffineTransformMake(1, 2, 3, 4, 5, 6);
+#if TARGET_OS_IPHONE
         self.edgeInsets = UIEdgeInsetsMake(1, 2, 3, 4);
         self.offset = UIOffsetMake(5, 10);
+#elif TARGET_OS_MAC
+        self.nsPoint = NSMakePoint(2, 3);
+        self.nsSize = NSMakeSize(3, 4);
+        self.nsRect = NSMakeRect(5, 6, 7, 8);
+#endif
     }
     return self;
 }

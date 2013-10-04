@@ -13,10 +13,20 @@
 
 @implementation JKVClassInspector
 
+static NSMutableDictionary *inspectors__;
+
 + (instancetype)inspectorForClass:(Class)aClass
 {
-    // TODO: potentially cache or something
-    return [[self alloc] initWithClass:aClass];
+    NSString *key = NSStringFromClass(aClass);
+    @synchronized (self) {
+        if (!inspectors__) {
+            inspectors__ = [NSMutableDictionary new];
+        }
+        if (!inspectors__[key]) {
+            inspectors__[key] = [[self alloc] initWithClass:aClass];
+        }
+        return inspectors__[key];
+    }
 }
 
 - (id)initWithClass:(Class)aClass
@@ -47,12 +57,12 @@
 {
     if (!_properties){
         NSMutableArray *properties = [NSMutableArray new];
-        NSUInteger numProperties = 0;
+        unsigned int numProperties = 0;
         objc_property_t *objc_properties = class_copyPropertyList(self.aClass, &numProperties);
         for (NSUInteger i=0; i<numProperties; i++) {
             objc_property_t objc_property = objc_properties[i];
 
-            NSUInteger numAttributes = 0;
+            unsigned int numAttributes = 0;
             objc_property_attribute_t *objc_attributes = property_copyAttributeList(objc_property, &numAttributes);
             NSMutableDictionary *attributesDict = [NSMutableDictionary new];
             for (NSUInteger j=0; j<numAttributes; j++) {

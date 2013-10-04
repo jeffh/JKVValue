@@ -2,6 +2,4 @@
 
 @interface JKVMutableValue : JKVValue
 
-- (Class)JKV_immutableClass;
-
 @end

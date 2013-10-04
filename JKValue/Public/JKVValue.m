@@ -44,7 +44,26 @@
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    return self;
+    if (![self JKV_isMutable]) {
+        return self;
+    }
+
+    id clone = [[[self JKV_immutableClass] allocWithZone:zone] init];
+    for (JKVProperty *property in self.JKV_cachedPropertiesForIdentity) {
+        NSString *name = property.name;
+        id value = [self valueForKey:name];
+        if ([value conformsToProtocol:@protocol(NSMutableCopying)]) {
+            [clone setValue:[value mutableCopyWithZone:zone] forKey:name];
+        } else {
+            [clone setValue:value forKey:name];
+        }
+    }
+    for (JKVProperty *property in self.JKV_cachedPropertiesToAssignCopy) {
+        NSString *name = property.name;
+        [clone setValue:[self valueForKey:name] forKey:name];
+    }
+
+    return clone;
 }
 
 
@@ -104,7 +123,17 @@
 
 #pragma mark - Public / Protected
 
+- (BOOL)JKV_isMutable
+{
+    return NO;
+}
+
 - (Class)JKV_mutableClass
+{
+    return [self class];
+}
+
+- (Class)JKV_immutableClass
 {
     return [self class];
 }

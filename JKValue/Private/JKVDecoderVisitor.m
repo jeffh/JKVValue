@@ -54,6 +54,21 @@
                    forKey:property.name];
 }
 
+- (void)propertyWasObjCObject:(JKVProperty *)property
+{
+    [self.target setValue:[self.coder decodeObjectForKey:property.name]
+                   forKey:property.name];
+}
+
+- (void)propertyWasUnknownType:(JKVProperty *)property
+{
+    [NSException raise:@"Unknown Encoding Type" format:@"Unknown encoding type: %@ for %@", property.encodingType, property.name];
+}
+
+#pragma mark - OS Specific
+
+#if TARGET_OS_IPHONE
+
 - (void)propertyWasCGPoint:(JKVProperty *)property
 {
     [self.target setValue:[NSValue valueWithCGPoint:[self.coder decodeCGPointForKey:property.name]]
@@ -89,15 +104,41 @@
                    forKey:property.name];
 }
 
-- (void)propertyWasObjCObject:(JKVProperty *)property
+#else
+
+- (void)propertyWasCGPoint:(JKVProperty *)property
 {
-    [self.target setValue:[self.coder decodeObjectForKey:property.name]
+    [self.target setValue:[NSValue valueWithPoint:[self.coder decodePointForKey:property.name]]
+                   forKey:property.name];
+}
+- (void)propertyWasCGSize:(JKVProperty *)property
+{
+    [self.target setValue:[NSValue valueWithSize:[self.coder decodeSizeForKey:property.name]]
                    forKey:property.name];
 }
 
-- (void)propertyWasUnknownType:(JKVProperty *)property
+- (void)propertyWasCGRect:(JKVProperty *)property
 {
-    [NSException raise:@"Unknown Encoding Type" format:@"Unknown encoding type: %@ for %@", property.encodingType, property.name];
+    [self.target setValue:[NSValue valueWithRect:[self.coder decodeRectForKey:property.name]]
+                   forKey:property.name];
 }
+
+- (void)propertyWasNSPoint:(JKVProperty *)property
+{
+    [self propertyWasCGPoint:property];
+}
+
+- (void)propertyWasNSSize:(JKVProperty *)property
+{
+    [self propertyWasCGSize:property];
+}
+
+- (void)propertyWasNSRect:(JKVProperty *)property
+{
+    [self propertyWasCGRect:property];
+}
+
+#endif
+
 
 @end

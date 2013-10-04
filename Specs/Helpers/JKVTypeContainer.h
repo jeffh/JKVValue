@@ -1,12 +1,13 @@
 #import <Foundation/Foundation.h>
 #import "JKVMutableValue.h"
+#import <TargetConditionals.h>
 
 @interface JKVTypeContainer : JKVMutableValue
 
 @property (nonatomic, strong) NSString *obj;
 @property (nonatomic, assign) NSInteger integer;
 @property (nonatomic, assign, getter=isBoolean) BOOL boolean;
-@property (atomic, assign) CGFloat floatValue;
+@property (atomic, assign) float floatValue;
 @property (nonatomic, assign) double doubleValue;
 @property (nonatomic, assign) int16_t int16Value;
 @property (nonatomic, assign) int32_t int32Value;
@@ -14,8 +15,14 @@
 @property (nonatomic, assign) CGPoint point;
 @property (nonatomic, assign) CGRect rect;
 @property (nonatomic, assign) CGSize size;
-@property (nonatomic, assign) CGAffineTransform affineTransform;
+
+#if TARGET_OS_IPHONE
 @property (nonatomic, assign) UIEdgeInsets edgeInsets;
 @property (nonatomic, assign) UIOffset offset;
+#elif TARGET_OS_MAC
+@property (nonatomic, assign) NSPoint nsPoint;
+@property (nonatomic, assign) NSRect nsRect;
+@property (nonatomic, assign) NSSize nsSize;
+#endif
 
 @end

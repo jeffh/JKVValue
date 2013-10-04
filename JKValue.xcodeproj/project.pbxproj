@@ -31,6 +31,22 @@
 		1F2CCAE817FD11ED00A382AB /* JKVValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE717FD11ED00A382AB /* JKVValue.m */; };
 		1F2CCAE917FD11ED00A382AB /* JKVValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE717FD11ED00A382AB /* JKVValue.m */; };
 		1F2CCAEC17FD180500A382AB /* JKVTypeContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAEB17FD180500A382AB /* JKVTypeContainer.m */; };
+		1F43229017FE2C94001293C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8417FCE3D700A382AB /* Foundation.framework */; };
+		1F43229617FE2C94001293C1 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F43229517FE2C94001293C1 /* Cedar.framework */; };
+		1F43229817FE2C94001293C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F43229717FE2C94001293C1 /* main.m */; };
+		1F43229E17FE2CB4001293C1 /* JKVPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE217FD10F600A382AB /* JKVPerson.m */; };
+		1F43229F17FE2CB6001293C1 /* JKVMutablePerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD317FCFFD900A382AB /* JKVMutablePerson.m */; };
+		1F4322A017FE2CBA001293C1 /* JKVMutableValueSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAC517FCE4D800A382AB /* JKVMutableValueSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1F4322A117FE2CBD001293C1 /* JKVValueSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE417FD112100A382AB /* JKVValueSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1F4322A217FE2DE0001293C1 /* JKVProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCACE17FCFAA700A382AB /* JKVProperty.m */; };
+		1F4322A317FE2DE0001293C1 /* JKVDecoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD617FD080F00A382AB /* JKVDecoderVisitor.m */; };
+		1F4322A417FE2DE0001293C1 /* JKVEncoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADA17FD0A8100A382AB /* JKVEncoderVisitor.m */; };
+		1F4322A517FE2DE0001293C1 /* JKVClassInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADE17FD0C4400A382AB /* JKVClassInspector.m */; };
+		1F4322A617FE2DE0001293C1 /* JKVMutableValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAC917FCE78700A382AB /* JKVMutableValue.m */; };
+		1F4322A717FE2DE0001293C1 /* JKVValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE717FD11ED00A382AB /* JKVValue.m */; };
+		1F4322A917FE2DFD001293C1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4322A817FE2DFD001293C1 /* CoreGraphics.framework */; };
+		1F498DAF17FE3F34000CEA03 /* JKVTypeContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAEB17FD180500A382AB /* JKVTypeContainer.m */; };
+		1F498DB117FE4808000CEA03 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F498DB017FE4808000CEA03 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -79,6 +95,13 @@
 		1F2CCAE717FD11ED00A382AB /* JKVValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVValue.m; sourceTree = "<group>"; };
 		1F2CCAEA17FD180500A382AB /* JKVTypeContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVTypeContainer.h; sourceTree = "<group>"; };
 		1F2CCAEB17FD180500A382AB /* JKVTypeContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVTypeContainer.m; sourceTree = "<group>"; };
+		1F43228F17FE2C94001293C1 /* OSXSpecs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OSXSpecs; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F43229217FE2C94001293C1 /* Rakefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
+		1F43229417FE2C94001293C1 /* OSXSpecs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OSXSpecs-Prefix.pch"; sourceTree = "<group>"; };
+		1F43229517FE2C94001293C1 /* Cedar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cedar.framework; path = Frameworks/Cedar.framework; sourceTree = "<group>"; };
+		1F43229717FE2C94001293C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1F4322A817FE2DFD001293C1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		1F498DB017FE4808000CEA03 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,14 +124,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1F43228D17FE2C94001293C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F4322A917FE2DFD001293C1 /* CoreGraphics.framework in Frameworks */,
+				1F43229617FE2C94001293C1 /* Cedar.framework in Frameworks */,
+				1F43229017FE2C94001293C1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		1F2CCA7817FCE3D700A382AB = {
 			isa = PBXGroup;
 			children = (
+				1F498DB017FE4808000CEA03 /* Default-568h@2x.png */,
 				1F2CCA8617FCE3D700A382AB /* JKValue */,
 				1F2CCAB317FCE48E00A382AB /* Specs */,
+				1F43229117FE2C94001293C1 /* OSXSpecs */,
 				1F2CCA8317FCE3D700A382AB /* Frameworks */,
 				1F2CCA8217FCE3D700A382AB /* Products */,
 			);
@@ -119,6 +154,7 @@
 			children = (
 				1F2CCA8117FCE3D700A382AB /* libJKValue.a */,
 				1F2CCAAE17FCE48E00A382AB /* Specs.app */,
+				1F43228F17FE2C94001293C1 /* OSXSpecs */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,6 +162,7 @@
 		1F2CCA8317FCE3D700A382AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1F4322A817FE2DFD001293C1 /* CoreGraphics.framework */,
 				1F2CCA8417FCE3D700A382AB /* Foundation.framework */,
 				1F2CCA9217FCE3D700A382AB /* XCTest.framework */,
 				1F2CCA9517FCE3D700A382AB /* UIKit.framework */,
@@ -223,6 +260,25 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		1F43229117FE2C94001293C1 /* OSXSpecs */ = {
+			isa = PBXGroup;
+			children = (
+				1F43229217FE2C94001293C1 /* Rakefile */,
+				1F43229517FE2C94001293C1 /* Cedar.framework */,
+				1F43229717FE2C94001293C1 /* main.m */,
+				1F43229317FE2C94001293C1 /* Supporting Files */,
+			);
+			path = OSXSpecs;
+			sourceTree = "<group>";
+		};
+		1F43229317FE2C94001293C1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1F43229417FE2C94001293C1 /* OSXSpecs-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -260,6 +316,23 @@
 			productReference = 1F2CCAAE17FCE48E00A382AB /* Specs.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1F43228E17FE2C94001293C1 /* OSXSpecs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F43229D17FE2C94001293C1 /* Build configuration list for PBXNativeTarget "OSXSpecs" */;
+			buildPhases = (
+				1F43228B17FE2C94001293C1 /* ShellScript */,
+				1F43228C17FE2C94001293C1 /* Sources */,
+				1F43228D17FE2C94001293C1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OSXSpecs;
+			productName = OSXSpecs;
+			productReference = 1F43228F17FE2C94001293C1 /* OSXSpecs */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -283,6 +356,7 @@
 			targets = (
 				1F2CCA8017FCE3D700A382AB /* JKValue */,
 				1F2CCAAD17FCE48E00A382AB /* Specs */,
+				1F43228E17FE2C94001293C1 /* OSXSpecs */,
 			);
 		};
 /* End PBXProject section */
@@ -293,10 +367,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F2CCAB817FCE48E00A382AB /* InfoPlist.strings in Resources */,
+				1F498DB117FE4808000CEA03 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1F43228B17FE2C94001293C1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp -R \"${TARGET_NAME}\"/Frameworks/Cedar.framework \"${BUILT_PRODUCTS_DIR}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1F2CCA7D17FCE3D700A382AB /* Sources */ = {
@@ -328,6 +419,25 @@
 				1F2CCAE317FD10F600A382AB /* JKVPerson.m in Sources */,
 				1F2CCAE917FD11ED00A382AB /* JKVValue.m in Sources */,
 				1F2CCACB17FCE78700A382AB /* JKVMutableValue.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F43228C17FE2C94001293C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F4322A217FE2DE0001293C1 /* JKVProperty.m in Sources */,
+				1F498DAF17FE3F34000CEA03 /* JKVTypeContainer.m in Sources */,
+				1F4322A317FE2DE0001293C1 /* JKVDecoderVisitor.m in Sources */,
+				1F4322A417FE2DE0001293C1 /* JKVEncoderVisitor.m in Sources */,
+				1F4322A517FE2DE0001293C1 /* JKVClassInspector.m in Sources */,
+				1F4322A617FE2DE0001293C1 /* JKVMutableValue.m in Sources */,
+				1F4322A717FE2DE0001293C1 /* JKVValue.m in Sources */,
+				1F43229817FE2C94001293C1 /* main.m in Sources */,
+				1F43229E17FE2CB4001293C1 /* JKVPerson.m in Sources */,
+				1F4322A117FE2CBD001293C1 /* JKVValueSpec.mm in Sources */,
+				1F4322A017FE2CBA001293C1 /* JKVMutableValueSpec.mm in Sources */,
+				1F43229F17FE2CB6001293C1 /* JKVMutablePerson.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +600,43 @@
 			};
 			name = Release;
 		};
+		1F43229B17FE2C94001293C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/jeff/workspace/JKValue/OSXSpecs/Frameworks,
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OSXSpecs/OSXSpecs-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1F43229C17FE2C94001293C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/jeff/workspace/JKValue/OSXSpecs/Frameworks,
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OSXSpecs/OSXSpecs-Prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -509,6 +656,7 @@
 				1F2CCAA617FCE3D700A382AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1F2CCAC117FCE48F00A382AB /* Build configuration list for PBXNativeTarget "Specs" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +665,16 @@
 				1F2CCAC317FCE48F00A382AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1F43229D17FE2C94001293C1 /* Build configuration list for PBXNativeTarget "OSXSpecs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F43229B17FE2C94001293C1 /* Debug */,
+				1F43229C17FE2C94001293C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

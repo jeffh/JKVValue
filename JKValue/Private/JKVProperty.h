@@ -1,22 +1,31 @@
 #import <Foundation/Foundation.h>
+#import <TargetConditionals.h>
 
 @class JKVProperty;
 
 @protocol JKVPropertyEncodingTypeVisitor <NSObject>
+@required
 - (void)propertyWasInt64:(JKVProperty *)property;
 - (void)propertyWasInt32:(JKVProperty *)property;
 - (void)propertyWasInt16:(JKVProperty *)property;
 - (void)propertyWasFloat:(JKVProperty *)property;
 - (void)propertyWasDouble:(JKVProperty *)property;
 - (void)propertyWasBool:(JKVProperty *)property;
+- (void)propertyWasObjCObject:(JKVProperty *)property;
+- (void)propertyWasUnknownType:(JKVProperty *)property;
+
+@optional
+// CoreGraphics
 - (void)propertyWasCGPoint:(JKVProperty *)property;
 - (void)propertyWasCGSize:(JKVProperty *)property;
 - (void)propertyWasCGRect:(JKVProperty *)property;
-- (void)propertyWasCGAffineTransform:(JKVProperty *)property;
+// UIKit - iOS Only
 - (void)propertyWasUIEdgeInsets:(JKVProperty *)property;
 - (void)propertyWasUIOffset:(JKVProperty *)property;
-- (void)propertyWasObjCObject:(JKVProperty *)property;
-- (void)propertyWasUnknownType:(JKVProperty *)property;
+// AppKit - OSX Only
+- (void)propertyWasNSPoint:(JKVProperty *)property;
+- (void)propertyWasNSSize:(JKVProperty *)property;
+- (void)propertyWasNSRect:(JKVProperty *)property;
 @end
 
 @interface JKVProperty : NSObject
