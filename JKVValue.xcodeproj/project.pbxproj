@@ -144,7 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				1F498DB017FE4808000CEA03 /* Default-568h@2x.png */,
-				1F2CCA8617FCE3D700A382AB /* JKValue */,
+				1F2CCA8617FCE3D700A382AB /* JKVValue */,
 				1F2CCAB317FCE48E00A382AB /* Specs */,
 				1F43229117FE2C94001293C1 /* OSXSpecs */,
 				1F2CCA8317FCE3D700A382AB /* Frameworks */,
@@ -175,14 +175,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1F2CCA8617FCE3D700A382AB /* JKValue */ = {
+		1F2CCA8617FCE3D700A382AB /* JKVValue */ = {
 			isa = PBXGroup;
 			children = (
 				1F2CCACC17FCFA8C00A382AB /* Private */,
 				1F2CCAC717FCE76E00A382AB /* Public */,
 				1F2CCA8717FCE3D700A382AB /* Supporting Files */,
 			);
-			path = JKValue;
+			path = JKVValue;
 			sourceTree = "<group>";
 		};
 		1F2CCA8717FCE3D700A382AB /* Supporting Files */ = {
