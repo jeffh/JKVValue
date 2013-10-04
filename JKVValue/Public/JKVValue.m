@@ -75,6 +75,11 @@
 
 - (NSString *)description
 {
+    return [self debugDescription];
+}
+
+- (NSString *)debugDescription
+{
     return [self.JKV_inspector descriptionForObject:self];
 }
 

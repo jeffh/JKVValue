@@ -42,6 +42,10 @@ describe(@"JKVValue", ^{
             it(@"should have the same hash code", ^{
                 person.hash should equal(otherPerson.hash);
             });
+
+            it(@"should behave as the same value in a set", ^{
+                [NSSet setWithArray:@[person, otherPerson]].count should equal(1);
+            });
         });
 
         context(@"when the (weak) parent property is not equivalent in value", ^{
