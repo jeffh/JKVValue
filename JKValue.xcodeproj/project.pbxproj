@@ -73,7 +73,6 @@
 		1F2CCAB717FCE48E00A382AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1F2CCAB917FCE48E00A382AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1F2CCABB17FCE48E00A382AB /* Specs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Specs-Prefix.pch"; sourceTree = "<group>"; };
-		1F2CCABC17FCE48E00A382AB /* Rakefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
 		1F2CCABD17FCE48F00A382AB /* Cedar-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cedar-iOS.framework"; path = "Frameworks/Cedar-iOS.framework"; sourceTree = "<group>"; };
 		1F2CCAC517FCE4D800A382AB /* JKVMutableValueSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JKVMutableValueSpec.mm; sourceTree = "<group>"; };
 		1F2CCAC817FCE78700A382AB /* JKVMutableValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVMutableValue.h; sourceTree = "<group>"; };
@@ -96,7 +95,6 @@
 		1F2CCAEA17FD180500A382AB /* JKVTypeContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVTypeContainer.h; sourceTree = "<group>"; };
 		1F2CCAEB17FD180500A382AB /* JKVTypeContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVTypeContainer.m; sourceTree = "<group>"; };
 		1F43228F17FE2C94001293C1 /* OSXSpecs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OSXSpecs; sourceTree = BUILT_PRODUCTS_DIR; };
-		1F43229217FE2C94001293C1 /* Rakefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
 		1F43229417FE2C94001293C1 /* OSXSpecs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OSXSpecs-Prefix.pch"; sourceTree = "<group>"; };
 		1F43229517FE2C94001293C1 /* Cedar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cedar.framework; path = Frameworks/Cedar.framework; sourceTree = "<group>"; };
 		1F43229717FE2C94001293C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -194,7 +192,6 @@
 			children = (
 				1F2CCAD117FCFFBF00A382AB /* Helpers */,
 				1F2CCAC417FCE4BE00A382AB /* Public */,
-				1F2CCABC17FCE48E00A382AB /* Rakefile */,
 				1F2CCABD17FCE48F00A382AB /* Cedar-iOS.framework */,
 				1F2CCAB417FCE48E00A382AB /* Supporting Files */,
 			);
@@ -263,7 +260,6 @@
 		1F43229117FE2C94001293C1 /* OSXSpecs */ = {
 			isa = PBXGroup;
 			children = (
-				1F43229217FE2C94001293C1 /* Rakefile */,
 				1F43229517FE2C94001293C1 /* Cedar.framework */,
 				1F43229717FE2C94001293C1 /* main.m */,
 				1F43229317FE2C94001293C1 /* Supporting Files */,
@@ -481,6 +477,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -513,6 +510,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

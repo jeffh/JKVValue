@@ -3,7 +3,6 @@
 
 @implementation JKVProperty
 
-
 - (id)initWithName:(NSString *)name attributes:(NSDictionary *)attributes
 {
     if (self = [super init]) {

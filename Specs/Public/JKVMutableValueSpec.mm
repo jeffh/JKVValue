@@ -84,7 +84,7 @@ describe(@"JKVMutableValue", ^{
         });
 
         it(@"should support copying", ^{
-            clonedPerson should be_instance_of([JKVMutablePerson class]);
+            clonedPerson should_not be_same_instance_as(person);
             clonedPerson should equal(person);
         });
 

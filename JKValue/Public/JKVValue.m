@@ -48,22 +48,13 @@
         return self;
     }
 
-    id clone = [[[self JKV_immutableClass] allocWithZone:zone] init];
-    for (JKVProperty *property in self.JKV_cachedPropertiesForIdentity) {
-        NSString *name = property.name;
-        id value = [self valueForKey:name];
-        if ([value conformsToProtocol:@protocol(NSMutableCopying)]) {
-            [clone setValue:[value mutableCopyWithZone:zone] forKey:name];
-        } else {
-            [clone setValue:value forKey:name];
-        }
-    }
-    for (JKVProperty *property in self.JKV_cachedPropertiesToAssignCopy) {
-        NSString *name = property.name;
-        [clone setValue:[self valueForKey:name] forKey:name];
-    }
-
-    return clone;
+    NSArray *propertiesForIdentity = [self.JKV_cachedPropertiesForIdentity valueForKey:@"name"];
+    NSArray *propertiesToAssign = [self.JKV_cachedPropertiesToAssignCopy valueForKey:@"name"];
+    return [self.JKV_inspector copyOfObject:self
+                                    ofClass:[self JKV_immutableClass]
+                                       zone:zone
+                         identityProperties:propertiesForIdentity
+                         propertiesToAssign:propertiesToAssign];
 }
 
 
@@ -71,45 +62,28 @@
 
 - (id)mutableCopyWithZone:(NSZone *)zone
 {
-    id clone = [[[self JKV_mutableClass] allocWithZone:zone] init];
-    for (NSString *name in [self.JKV_cachedPropertiesForIdentity valueForKey:@"name"]) {
-        id value = [self valueForKey:name];
-        if ([value conformsToProtocol:@protocol(NSMutableCopying)]) {
-            [clone setValue:[value mutableCopyWithZone:zone] forKey:name];
-        } else {
-            [clone setValue:value forKey:name];
-        }
-    }
-    for (NSString *name in [self.JKV_cachedPropertiesToAssignCopy valueForKey:@"name"]) {
-        [clone setValue:[self valueForKey:name] forKey:name];
-    }
-
-    return clone;
+    NSArray *propertiesForIdentity = [self.JKV_cachedPropertiesForIdentity valueForKey:@"name"];
+    NSArray *propertiesToAssign = [self.JKV_cachedPropertiesToAssignCopy valueForKey:@"name"];
+    return [self.JKV_inspector mutableCopyOfObject:self
+                                           ofClass:[self JKV_mutableClass]
+                                              zone:zone
+                                identityProperties:propertiesForIdentity
+                                propertiesToAssign:propertiesToAssign];
 }
 
 #pragma - <NSObject>
 
 - (NSString *)description
 {
-    NSMutableString *string = [NSMutableString new];
-    [string appendFormat:@"<%@ %p", NSStringFromClass([self class]), self];
-    for (JKVProperty *property in self.JKV_inspector.properties) {
-        NSString *name = property.name;
-        [string appendFormat:@" %@=%@", name, [self valueForKey:name]];
-    }
-    [string appendString:@">"];
-    return string;
+    return [self.JKV_inspector descriptionForObject:self];
 }
 
 - (BOOL)isEqual:(id)object
 {
-    for (NSString *name in [self.JKV_cachedPropertiesForIdentity valueForKey:@"name"]) {
-        id value = [self valueForKey:name];
-        if (![value isEqual:[object valueForKey:name]]){
-            return NO;
-        }
-    }
-    return YES;
+    NSArray *propertyNames = [self.JKV_cachedPropertiesForIdentity valueForKey:@"name"];
+    return [self.JKV_inspector object:self
+                      isEqualToObject:object
+                         byProperties:propertyNames];
 }
 
 - (NSUInteger)hash

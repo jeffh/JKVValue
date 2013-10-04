@@ -4,7 +4,7 @@
 
 #pragma mark - Public / Protected
 
-- (BOOL)isMutable
+- (BOOL)JKV_isMutable
 {
     return YES;
 }

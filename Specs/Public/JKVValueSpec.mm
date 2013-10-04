@@ -180,7 +180,8 @@ describe(@"JKVValue", ^{
 
         describe(@"NSCoding", ^{
             __block JKVTypeContainer *deserializedBox;
-            void (^serialize)() = ^{
+
+            beforeEach(^{
                 NSMutableData *data = [NSMutableData data];
                 NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
                 [box encodeWithCoder:archiver];
@@ -188,8 +189,7 @@ describe(@"JKVValue", ^{
                 NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
                 deserializedBox = [[[JKVTypeContainer alloc] initWithCoder:unarchiver] autorelease];
                 [unarchiver finishDecoding];
-            };
-            beforeEach(serialize);
+            });
 
             it(@"should support serialization", ^{
                 deserializedBox should equal(box);

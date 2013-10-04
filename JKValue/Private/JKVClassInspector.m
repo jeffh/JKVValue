@@ -7,8 +7,6 @@
 @property (strong, nonatomic, readwrite) NSArray *properties;
 @property (strong, nonatomic, readwrite) NSArray *weakProperties;
 @property (strong, nonatomic, readwrite) NSArray *nonWeakProperties;
-@property (strong, nonatomic, readwrite) NSArray *ivars;
-
 @end
 
 @implementation JKVClassInspector
@@ -36,6 +34,75 @@ static NSMutableDictionary *inspectors__;
     }
     return self;
 }
+
+- (BOOL)object:(id)object1 isEqualToObject:(id)object2 byProperties:(NSArray *)propertyNames
+{
+    for (NSString *name in propertyNames) {
+        id value = [object1 valueForKey:name];
+        if (![value isEqual:[object2 valueForKey:name]]){
+            return NO;
+        }
+    }
+    return YES;
+}
+
+- (id)copyOfObject:(id)object
+           ofClass:(Class)clonedClass
+              zone:(NSZone *)zone
+identityProperties:(NSArray *)propertyNames
+propertiesToAssign:(NSArray *)assignPropertyNames
+{
+    id clone = [[clonedClass allocWithZone:zone] init];
+    for (NSString *name in propertyNames) {
+        id value = [object valueForKey:name];
+        if ([value conformsToProtocol:@protocol(NSMutableCopying)]) {
+            [clone setValue:[value mutableCopyWithZone:zone] forKey:name];
+        } else {
+            [clone setValue:value forKey:name];
+        }
+    }
+    for (NSString *name in assignPropertyNames) {
+        [clone setValue:[object valueForKey:name] forKey:name];
+    }
+
+    return clone;
+}
+
+- (id)mutableCopyOfObject:(id)object
+                  ofClass:(Class)clonedClass
+                     zone:(NSZone *)zone
+       identityProperties:(NSArray *)propertyNames
+       propertiesToAssign:(NSArray *)assignPropertyNames
+{
+    id clone = [[clonedClass allocWithZone:zone] init];
+    for (NSString *name in propertyNames) {
+        id value = [object valueForKey:name];
+        if ([value conformsToProtocol:@protocol(NSMutableCopying)]) {
+            [clone setValue:[value mutableCopyWithZone:zone] forKey:name];
+        } else {
+            [clone setValue:value forKey:name];
+        }
+    }
+    for (NSString *name in assignPropertyNames) {
+        [clone setValue:[object valueForKey:name] forKey:name];
+    }
+
+    return clone;
+}
+
+- (NSString *)descriptionForObject:(id)object
+{
+    NSMutableString *string = [NSMutableString new];
+    [string appendFormat:@"<%@ %p", NSStringFromClass([object class]), object];
+    for (JKVProperty *property in self.properties) {
+        NSString *name = property.name;
+        [string appendFormat:@" %@=%@", name, [object valueForKey:name]];
+    }
+    [string appendString:@">"];
+    return string;
+}
+
+#pragma mark - Properties
 
 - (NSArray *)nonWeakProperties
 {
