@@ -26,13 +26,8 @@
 
 - (void)propertyWasInt32:(JKVProperty *)property
 {
-#if TARGET_OS_IPHONE
-    [self.coder encodeInt32:[[self.target valueForKey:property.name] longValue]
-                       forKey:property.name];
-#else
     [self.coder encodeInt32:[[self.target valueForKey:property.name] intValue]
                      forKey:property.name];
-#endif
 }
 
 - (void)propertyWasInt16:(JKVProperty *)property

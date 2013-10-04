@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1F2CCA8517FCE3D700A382AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8417FCE3D700A382AB /* Foundation.framework */; };
-		1F2CCAAF17FCE48E00A382AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA9517FCE3D700A382AB /* UIKit.framework */; };
 		1F2CCAB017FCE48E00A382AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8417FCE3D700A382AB /* Foundation.framework */; };
 		1F2CCAB217FCE48E00A382AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCAB117FCE48E00A382AB /* CoreGraphics.framework */; };
 		1F2CCAB817FCE48E00A382AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F2CCAB617FCE48E00A382AB /* InfoPlist.strings */; };
@@ -47,6 +46,9 @@
 		1F4322A917FE2DFD001293C1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4322A817FE2DFD001293C1 /* CoreGraphics.framework */; };
 		1F498DAF17FE3F34000CEA03 /* JKVTypeContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAEB17FD180500A382AB /* JKVTypeContainer.m */; };
 		1F498DB117FE4808000CEA03 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F498DB017FE4808000CEA03 /* Default-568h@2x.png */; };
+		1FB745D317FE5FFC00572B60 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB745D217FE5FFC00572B60 /* UIKit.framework */; };
+		1FB745D417FE630500572B60 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB745D217FE5FFC00572B60 /* UIKit.framework */; };
+		1FB745D517FE631300572B60 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCAB117FCE48E00A382AB /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -100,6 +102,7 @@
 		1F43229717FE2C94001293C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1F4322A817FE2DFD001293C1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		1F498DB017FE4808000CEA03 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		1FB745D217FE5FFC00572B60 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FB745D517FE631300572B60 /* CoreGraphics.framework in Frameworks */,
+				1FB745D417FE630500572B60 /* UIKit.framework in Frameworks */,
 				1F2CCA8517FCE3D700A382AB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,8 +120,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FB745D317FE5FFC00572B60 /* UIKit.framework in Frameworks */,
 				1F2CCAB217FCE48E00A382AB /* CoreGraphics.framework in Frameworks */,
-				1F2CCAAF17FCE48E00A382AB /* UIKit.framework in Frameworks */,
 				1F2CCABE17FCE48F00A382AB /* Cedar-iOS.framework in Frameworks */,
 				1F2CCAB017FCE48E00A382AB /* Foundation.framework in Frameworks */,
 			);
@@ -160,6 +165,7 @@
 		1F2CCA8317FCE3D700A382AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1FB745D217FE5FFC00572B60 /* UIKit.framework */,
 				1F4322A817FE2DFD001293C1 /* CoreGraphics.framework */,
 				1F2CCA8417FCE3D700A382AB /* Foundation.framework */,
 				1F2CCA9217FCE3D700A382AB /* XCTest.framework */,
@@ -555,7 +561,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					/Users/jeff/workspace/JKValue/Specs/Frameworks,
+					"$(SRCROOT)/Specs/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Specs/Specs-Prefix.pch";
@@ -582,7 +588,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					/Users/jeff/workspace/JKValue/Specs/Frameworks,
+					"$(SRCROOT)/Specs/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Specs/Specs-Prefix.pch";
@@ -603,7 +609,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/jeff/workspace/JKValue/OSXSpecs/Frameworks,
+					"$(SRCROOT)/OSXSpecs/Frameworks",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -624,7 +630,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/jeff/workspace/JKValue/OSXSpecs/Frameworks,
+					"$(SRCROOT)/OSXSpecs/Frameworks",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

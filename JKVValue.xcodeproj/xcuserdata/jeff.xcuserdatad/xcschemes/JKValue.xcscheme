@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1F2CCA8017FCE3D700A382AB"
-               BuildableName = "libJKValue.a"
+               BuildableName = "libJKVValue.a"
                BlueprintName = "JKVValue"
                ReferencedContainer = "container:JKVValue.xcodeproj">
             </BuildableReference>
