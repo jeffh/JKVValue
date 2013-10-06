@@ -2,6 +2,8 @@
 #import "JKVMutablePerson.h"
 #import "JKVClassInspector.h"
 #import "JKVTypeContainer.h"
+#import "JKVMutableCollections.h"
+#import "JKVCollections.h"
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
@@ -197,6 +199,35 @@ describe(@"JKVValue", ^{
 
             it(@"should support serialization", ^{
                 deserializedBox should equal(box);
+            });
+        });
+    });
+
+    describe(@"collections that are properties", ^{
+        __block JKVCollections *collections;
+        beforeEach(^{
+            collections = [[JKVCollections alloc] initWithItems:@[@1] pairs:@{@"A":@"B"}];
+        });
+
+        it(@"should support equality for cloned objects", ^{
+            collections should equal([collections copy]);
+        });
+
+        describe(@"mutable clone", ^{
+            __block JKVMutableCollections *mutableCollections;
+            beforeEach(^{
+                mutableCollections = [collections mutableCopy];
+            });
+
+            it(@"should support mutation on the properties", ^{
+                [mutableCollections.items addObject:@2];
+                mutableCollections.pairs[@"C"] = @"D";
+                mutableCollections.items should equal(@[@1, @2]);
+                mutableCollections.pairs should equal(@{@"A": @"B", @"C": @"D"});
+            });
+
+            it(@"should support equality for mutable cloned objects", ^{
+                collections should equal(mutableCollections);
             });
         });
     });

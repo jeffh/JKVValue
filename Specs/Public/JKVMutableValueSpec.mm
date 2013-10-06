@@ -1,5 +1,6 @@
 #import "JKVMutablePerson.h"
 #import "JKVPerson.h"
+#import "JKVMutableCollections.h"
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
@@ -127,6 +128,21 @@ describe(@"JKVMutableValue", ^{
 
         itShouldRecursivelyCopy(@"firstName", ^id(JKVMutablePerson *p){ return p.firstName; });
         itShouldRecursivelyCopy(@"lastName", ^id(JKVMutablePerson *p){ return p.lastName; });
+    });
+
+    describe(@"collections that are properties", ^{
+        __block JKVMutableCollections *collections;
+        beforeEach(^{
+            collections = [[JKVMutableCollections alloc] initWithItems:@[@1] pairs:@{@"A":@"B"}];
+        });
+
+        it(@"should support equality for cloned objects", ^{
+            collections should equal([collections copy]);
+        });
+
+        it(@"should support equality for mutable cloned objects", ^{
+            collections should equal([collections mutableCopy]);
+        });
     });
 });
 

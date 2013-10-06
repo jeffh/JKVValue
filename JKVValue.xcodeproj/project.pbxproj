@@ -30,6 +30,10 @@
 		1F2CCAE817FD11ED00A382AB /* JKVValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE717FD11ED00A382AB /* JKVValue.m */; };
 		1F2CCAE917FD11ED00A382AB /* JKVValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE717FD11ED00A382AB /* JKVValue.m */; };
 		1F2CCAEC17FD180500A382AB /* JKVTypeContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAEB17FD180500A382AB /* JKVTypeContainer.m */; };
+		1F3FCE771801B8E400A929F5 /* JKVCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FCE761801B8E400A929F5 /* JKVCollections.m */; };
+		1F3FCE781801B8E400A929F5 /* JKVCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FCE761801B8E400A929F5 /* JKVCollections.m */; };
+		1F3FCE7B1801B91E00A929F5 /* JKVMutableCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FCE7A1801B91E00A929F5 /* JKVMutableCollections.m */; };
+		1F3FCE7C1801B91E00A929F5 /* JKVMutableCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FCE7A1801B91E00A929F5 /* JKVMutableCollections.m */; };
 		1F43229017FE2C94001293C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8417FCE3D700A382AB /* Foundation.framework */; };
 		1F43229617FE2C94001293C1 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F43229517FE2C94001293C1 /* Cedar.framework */; };
 		1F43229817FE2C94001293C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F43229717FE2C94001293C1 /* main.m */; };
@@ -96,6 +100,10 @@
 		1F2CCAE717FD11ED00A382AB /* JKVValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVValue.m; sourceTree = "<group>"; };
 		1F2CCAEA17FD180500A382AB /* JKVTypeContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVTypeContainer.h; sourceTree = "<group>"; };
 		1F2CCAEB17FD180500A382AB /* JKVTypeContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVTypeContainer.m; sourceTree = "<group>"; };
+		1F3FCE751801B8E400A929F5 /* JKVCollections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVCollections.h; sourceTree = "<group>"; };
+		1F3FCE761801B8E400A929F5 /* JKVCollections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVCollections.m; sourceTree = "<group>"; };
+		1F3FCE791801B91E00A929F5 /* JKVMutableCollections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVMutableCollections.h; sourceTree = "<group>"; };
+		1F3FCE7A1801B91E00A929F5 /* JKVMutableCollections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVMutableCollections.m; sourceTree = "<group>"; };
 		1F43228F17FE2C94001293C1 /* OSXSpecs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OSXSpecs; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F43229417FE2C94001293C1 /* OSXSpecs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OSXSpecs-Prefix.pch"; sourceTree = "<group>"; };
 		1F43229517FE2C94001293C1 /* Cedar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cedar.framework; path = Frameworks/Cedar.framework; sourceTree = "<group>"; };
@@ -259,6 +267,10 @@
 				1F2CCAE217FD10F600A382AB /* JKVPerson.m */,
 				1F2CCAEA17FD180500A382AB /* JKVTypeContainer.h */,
 				1F2CCAEB17FD180500A382AB /* JKVTypeContainer.m */,
+				1F3FCE751801B8E400A929F5 /* JKVCollections.h */,
+				1F3FCE761801B8E400A929F5 /* JKVCollections.m */,
+				1F3FCE791801B91E00A929F5 /* JKVMutableCollections.h */,
+				1F3FCE7A1801B91E00A929F5 /* JKVMutableCollections.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -409,6 +421,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F3FCE7B1801B91E00A929F5 /* JKVMutableCollections.m in Sources */,
 				1F2CCADC17FD0A8100A382AB /* JKVEncoderVisitor.m in Sources */,
 				1F2CCAEC17FD180500A382AB /* JKVTypeContainer.m in Sources */,
 				1F2CCABA17FCE48E00A382AB /* main.m in Sources */,
@@ -416,6 +429,7 @@
 				1F2CCAD017FCFAA700A382AB /* JKVProperty.m in Sources */,
 				1F2CCAD417FCFFD900A382AB /* JKVMutablePerson.m in Sources */,
 				1F2CCAE017FD0C4400A382AB /* JKVClassInspector.m in Sources */,
+				1F3FCE771801B8E400A929F5 /* JKVCollections.m in Sources */,
 				1F2CCAD817FD080F00A382AB /* JKVDecoderVisitor.m in Sources */,
 				1F2CCAC617FCE4D800A382AB /* JKVMutableValueSpec.mm in Sources */,
 				1F2CCAE317FD10F600A382AB /* JKVPerson.m in Sources */,
@@ -428,6 +442,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F3FCE7C1801B91E00A929F5 /* JKVMutableCollections.m in Sources */,
 				1F4322A217FE2DE0001293C1 /* JKVProperty.m in Sources */,
 				1F498DAF17FE3F34000CEA03 /* JKVTypeContainer.m in Sources */,
 				1F4322A317FE2DE0001293C1 /* JKVDecoderVisitor.m in Sources */,
@@ -435,6 +450,7 @@
 				1F4322A517FE2DE0001293C1 /* JKVClassInspector.m in Sources */,
 				1F4322A617FE2DE0001293C1 /* JKVMutableValue.m in Sources */,
 				1F4322A717FE2DE0001293C1 /* JKVValue.m in Sources */,
+				1F3FCE781801B8E400A929F5 /* JKVCollections.m in Sources */,
 				1F43229817FE2C94001293C1 /* main.m in Sources */,
 				1F43229E17FE2CB4001293C1 /* JKVPerson.m in Sources */,
 				1F4322A117FE2CBD001293C1 /* JKVValueSpec.mm in Sources */,
