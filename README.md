@@ -101,8 +101,8 @@ We want -[mutableCopy] to use a different, mutable class. Not a problem!
 
     @implementation MyMutablePerson
     // we need to explicitly synthesize to generate setters.
-    @synthesize firstName;
-    @synthesize lastName;
+    @synthesize firstName=_firstName;
+    @synthesize lastName=_lastName;
 
     - (BOOL)JKV_isMutable
     {
