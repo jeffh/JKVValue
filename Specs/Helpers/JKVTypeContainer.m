@@ -2,7 +2,7 @@
 
 @implementation JKVTypeContainer
 
-- (id)init
+- (id)initWithPresetData
 {
     self = [super init];
     if (self) {

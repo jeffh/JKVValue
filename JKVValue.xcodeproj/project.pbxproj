@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F04B9A518025C2600FFEA7A /* JKVRestrictedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F04B9A418025C2600FFEA7A /* JKVRestrictedObject.m */; };
+		1F04B9A618025C2600FFEA7A /* JKVRestrictedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F04B9A418025C2600FFEA7A /* JKVRestrictedObject.m */; };
 		1F2CCA8517FCE3D700A382AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8417FCE3D700A382AB /* Foundation.framework */; };
 		1F2CCAB017FCE48E00A382AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8417FCE3D700A382AB /* Foundation.framework */; };
 		1F2CCAB217FCE48E00A382AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCAB117FCE48E00A382AB /* CoreGraphics.framework */; };
@@ -68,6 +70,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1F04B9A318025C2600FFEA7A /* JKVRestrictedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVRestrictedObject.h; sourceTree = "<group>"; };
+		1F04B9A418025C2600FFEA7A /* JKVRestrictedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVRestrictedObject.m; sourceTree = "<group>"; };
 		1F2CCA8117FCE3D700A382AB /* libJKVValue.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJKVValue.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F2CCA8417FCE3D700A382AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1F2CCA8817FCE3D700A382AB /* JKVValue-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JKVValue-Prefix.pch"; sourceTree = "<group>"; };
@@ -271,6 +275,8 @@
 				1F3FCE761801B8E400A929F5 /* JKVCollections.m */,
 				1F3FCE791801B91E00A929F5 /* JKVMutableCollections.h */,
 				1F3FCE7A1801B91E00A929F5 /* JKVMutableCollections.m */,
+				1F04B9A318025C2600FFEA7A /* JKVRestrictedObject.h */,
+				1F04B9A418025C2600FFEA7A /* JKVRestrictedObject.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -428,6 +434,7 @@
 				1F2CCAE517FD112100A382AB /* JKVValueSpec.mm in Sources */,
 				1F2CCAD017FCFAA700A382AB /* JKVProperty.m in Sources */,
 				1F2CCAD417FCFFD900A382AB /* JKVMutablePerson.m in Sources */,
+				1F04B9A518025C2600FFEA7A /* JKVRestrictedObject.m in Sources */,
 				1F2CCAE017FD0C4400A382AB /* JKVClassInspector.m in Sources */,
 				1F3FCE771801B8E400A929F5 /* JKVCollections.m in Sources */,
 				1F2CCAD817FD080F00A382AB /* JKVDecoderVisitor.m in Sources */,
@@ -449,6 +456,7 @@
 				1F4322A417FE2DE0001293C1 /* JKVEncoderVisitor.m in Sources */,
 				1F4322A517FE2DE0001293C1 /* JKVClassInspector.m in Sources */,
 				1F4322A617FE2DE0001293C1 /* JKVMutableValue.m in Sources */,
+				1F04B9A618025C2600FFEA7A /* JKVRestrictedObject.m in Sources */,
 				1F4322A717FE2DE0001293C1 /* JKVValue.m in Sources */,
 				1F3FCE781801B8E400A929F5 /* JKVCollections.m in Sources */,
 				1F43229817FE2C94001293C1 /* main.m in Sources */,

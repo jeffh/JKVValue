@@ -9,18 +9,20 @@
 + (instancetype)inspectorForClass:(Class)aClass;
 - (id)initWithClass:(Class)aClass;
 
-- (BOOL)object:(id)object1 isEqualToObject:(id)object2 byProperties:(NSArray *)propertyNames;
+- (BOOL)isObject:(id)object1
+   equalToObject:(id)object2
+ byPropertyNames:(NSArray *)propertyNames;
 
-- (id)copyOfObject:(id)object
-           ofClass:(Class)clonedClass
-              zone:(NSZone *)zone
-identityProperties:(NSArray *)propertyNames
-propertiesToAssign:(NSArray *)assignPropertyNames;
-- (id)mutableCopyOfObject:(id)object
-                  ofClass:(Class)clonedClass
-                     zone:(NSZone *)zone
-       identityProperties:(NSArray *)propertyNames
-       propertiesToAssign:(NSArray *)assignPropertyNames;
-- (NSString *)descriptionForObject:(id)object;
+- (NSUInteger)hashObject:(id)object
+         byPropertyNames:(NSArray *)propertyNames;
+
+- (id)copyToObject:(id)targetObject
+        fromObject:(id)object
+            inZone:(NSZone *)zone
+     propertyNames:(NSArray *)identityPropertyNames
+ weakPropertyNames:(NSArray *)assignPropertyNames;
+
+- (NSString *)descriptionForObject:(id)object
+                    withProperties:(NSArray *)properties;
 
 @end

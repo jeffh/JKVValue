@@ -4,6 +4,7 @@
 #import "JKVTypeContainer.h"
 #import "JKVMutableCollections.h"
 #import "JKVCollections.h"
+#import "JKVRestrictedObject.h"
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
@@ -46,7 +47,7 @@ describe(@"JKVValue", ^{
             });
 
             it(@"should behave as the same value in a set", ^{
-                [NSSet setWithArray:@[person, otherPerson]].count should equal(1);
+                [[NSSet setWithArray:@[person, otherPerson]] count] should equal(1);
             });
         });
 
@@ -57,7 +58,7 @@ describe(@"JKVValue", ^{
                                                                 age:person.age
                                                             married:person.married
                                                              height:person.height
-                                                             parent:nil] autorelease];
+                                                             parent:@"foo"] autorelease];
                 person should equal(otherPerson);
             });
         });
@@ -176,8 +177,8 @@ describe(@"JKVValue", ^{
         __block JKVTypeContainer *box;
         __block JKVTypeContainer *otherBox;
         beforeEach(^{
-            box = [[[JKVTypeContainer alloc] init] autorelease];
-            otherBox = [[[JKVTypeContainer alloc] init] autorelease];
+            box = [[[JKVTypeContainer alloc] initWithPresetData] autorelease];
+            otherBox = [[[JKVTypeContainer alloc] initWithPresetData] autorelease];
         });
 
         it(@"should support various types for encoding", ^{
@@ -228,6 +229,78 @@ describe(@"JKVValue", ^{
 
             it(@"should support equality for mutable cloned objects", ^{
                 collections should equal(mutableCollections);
+            });
+        });
+    });
+
+    describe(@"operating on a subset of properties", ^{
+        __block JKVRestrictedObject *restrictedObject;
+        __block id lastReader, lastWriter;
+        beforeEach(^{
+            restrictedObject = [[[JKVRestrictedObject alloc] initWithPresetData] autorelease];
+            restrictedObject.lastReader = lastReader = [[NSObject new] autorelease];
+            restrictedObject.lastWriter = lastWriter = [[NSObject new] autorelease];
+        });
+
+        describe(@"equality", ^{
+            __block JKVRestrictedObject *otherObject;
+            beforeEach(^{
+                otherObject = [[[JKVRestrictedObject alloc] initWithPresetData] autorelease];
+            });
+
+            void (^itShouldNotEqualWhen)(NSString *, void(^)()) = ^(NSString *name, void(^mutator)()) {
+                context([NSString stringWithFormat:@"when the %@ is not equivalent in value", name], ^{
+                    it(@"should not be equal", ^{
+                        mutator();
+                        restrictedObject should_not equal(otherObject);
+                    });
+                });
+            };
+
+            void (^itShouldEqualWhen)(NSString *, void(^)()) = ^(NSString *name, void(^mutator)()) {
+                context([NSString stringWithFormat:@"when the %@ is not equivalent in value", name], ^{
+                    it(@"should be equal", ^{
+                        mutator();
+                        restrictedObject should equal(otherObject);
+                    });
+                });
+            };
+
+            itShouldEqualWhen(@"accessCount", ^{ otherObject.accessCount = @42; });
+            itShouldEqualWhen(@"source", ^{ otherObject.source = @"Barney"; });
+            itShouldEqualWhen(@"lastReader", ^{ otherObject.lastWriter = @"John"; });
+            itShouldEqualWhen(@"lastWriter", ^{ otherObject.lastWriter = @"Doe"; });
+            itShouldNotEqualWhen(@"accessLevel", ^{ otherObject.accessLevel = JKVAccessLevelAdmin; });
+            itShouldNotEqualWhen(@"name", ^{ otherObject.name = @"Foobar"; });
+        });
+
+        describe(@"NSCopying", ^{
+            __block JKVRestrictedObject *clonedObject;
+            beforeEach(^{
+                clonedObject = [restrictedObject copy];
+            });
+
+            it(@"should only clone the identity properties and the assign properties specified", ^{
+                clonedObject should equal(restrictedObject);
+                clonedObject.accessCount should be_nil;
+                clonedObject.source should be_nil;
+                clonedObject.lastReader should be_nil;
+                clonedObject.lastWriter should be_same_instance_as(lastWriter);
+            });
+        });
+
+        describe(@"NSMutableCopying", ^{
+            __block JKVRestrictedObject *clonedObject;
+            beforeEach(^{
+                clonedObject = [restrictedObject mutableCopy];
+            });
+
+            it(@"should only clone the identity properties and the assign properties specified", ^{
+                clonedObject should equal(restrictedObject);
+                clonedObject.accessCount should be_nil;
+                clonedObject.source should be_nil;
+                clonedObject.lastReader should be_nil;
+                clonedObject.lastWriter should be_same_instance_as(lastWriter);
             });
         });
     });

@@ -7,10 +7,8 @@
 @property (nonatomic, assign, getter=isMarried, readonly) BOOL married;
 @property (atomic, assign, readonly) CGFloat height;
 
+// objc doesn't mark this as weak if it is a readonly attribute
 @property (nonatomic, weak) id parent;
-
-// objc doesn't mark this as weak because of the readonly attribute
-//@property (nonatomic, weak, readonly) id nextSibling;
 
 - (id)initWithFirstName:(NSString *)firstName
                lastName:(NSString *)lastName

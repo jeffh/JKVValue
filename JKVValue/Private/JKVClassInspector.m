@@ -35,7 +35,18 @@ static NSMutableDictionary *inspectors__;
     return self;
 }
 
-- (BOOL)object:(id)object1 isEqualToObject:(id)object2 byProperties:(NSArray *)propertyNames
+- (NSUInteger)hashObject:(id)object byPropertyNames:(NSArray *)propertyNames
+{
+    // http://stackoverflow.com/questions/254281/best-practices-for-overriding-isequal-and-hash
+    NSUInteger prime = 31;
+    NSUInteger result = 1;
+    for (NSString *propertyName in propertyNames){
+        result = prime * result + [[object valueForKey:propertyName] hash];
+    }
+    return result;
+}
+
+- (BOOL)isObject:(id)object1 equalToObject:(id)object2 byPropertyNames:(NSArray *)propertyNames
 {
     for (NSString *name in propertyNames) {
         id value = [object1 valueForKey:name];
@@ -46,55 +57,32 @@ static NSMutableDictionary *inspectors__;
     return YES;
 }
 
-- (id)copyOfObject:(id)object
-           ofClass:(Class)clonedClass
-              zone:(NSZone *)zone
-identityProperties:(NSArray *)propertyNames
-propertiesToAssign:(NSArray *)assignPropertyNames
+- (id)copyToObject:(id)targetObject
+        fromObject:(id)object
+            inZone:(NSZone *)zone
+     propertyNames:(NSArray *)identityPropertyNames
+ weakPropertyNames:(NSArray *)assignPropertyNames
 {
-    id clone = [[clonedClass allocWithZone:zone] init];
-    for (NSString *name in propertyNames) {
+    for (NSString *name in identityPropertyNames) {
         id value = [object valueForKey:name];
         if ([value conformsToProtocol:@protocol(NSMutableCopying)]) {
-            [clone setValue:[value mutableCopyWithZone:zone] forKey:name];
+            [targetObject setValue:[value mutableCopyWithZone:zone] forKey:name];
         } else {
-            [clone setValue:value forKey:name];
+            [targetObject setValue:value forKey:name];
         }
     }
     for (NSString *name in assignPropertyNames) {
-        [clone setValue:[object valueForKey:name] forKey:name];
+        [targetObject setValue:[object valueForKey:name] forKey:name];
     }
 
-    return clone;
+    return targetObject;
 }
 
-- (id)mutableCopyOfObject:(id)object
-                  ofClass:(Class)clonedClass
-                     zone:(NSZone *)zone
-       identityProperties:(NSArray *)propertyNames
-       propertiesToAssign:(NSArray *)assignPropertyNames
-{
-    id clone = [[clonedClass allocWithZone:zone] init];
-    for (NSString *name in propertyNames) {
-        id value = [object valueForKey:name];
-        if ([value conformsToProtocol:@protocol(NSMutableCopying)]) {
-            [clone setValue:[value mutableCopyWithZone:zone] forKey:name];
-        } else {
-            [clone setValue:value forKey:name];
-        }
-    }
-    for (NSString *name in assignPropertyNames) {
-        [clone setValue:[object valueForKey:name] forKey:name];
-    }
-
-    return clone;
-}
-
-- (NSString *)descriptionForObject:(id)object
+- (NSString *)descriptionForObject:(id)object withProperties:(NSArray *)properties
 {
     NSMutableString *string = [NSMutableString new];
     [string appendFormat:@"<%@ %p", NSStringFromClass([object class]), object];
-    for (JKVProperty *property in self.properties) {
+    for (JKVProperty *property in properties) {
         NSString *name = property.name;
         [string appendFormat:@" %@=%@", name, [object valueForKey:name]];
     }

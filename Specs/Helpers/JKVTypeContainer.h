@@ -25,4 +25,6 @@
 @property (nonatomic, assign) NSSize nsSize;
 #endif
 
+- (id)initWithPresetData;
+
 @end
