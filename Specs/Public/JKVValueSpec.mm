@@ -5,6 +5,7 @@
 #import "JKVMutableCollections.h"
 #import "JKVCollections.h"
 #import "JKVRestrictedObject.h"
+#import "JKVBasicValue.h"
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
@@ -16,7 +17,7 @@ describe(@"JKVValue", ^{
     __block id parent;
 
     beforeEach(^{
-        parent = [[@"Ignorable" dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
+        parent = [[NSObject new] autorelease];
         person = [[[JKVPerson alloc] initWithFirstName:@"John"
                                               lastName:@"Doe"
                                                    age:28
@@ -32,7 +33,7 @@ describe(@"JKVValue", ^{
     });
 
     it(@"should have a custom description", ^{
-        NSString *expectedDescription = [NSString stringWithFormat:@"<JKVPerson %p firstName=John lastName=Doe age=28 married=1 height=60.8 parent=%@>", person, [parent description]];
+        NSString *expectedDescription = [NSString stringWithFormat:@"<JKVPerson: %p firstName=John lastName=Doe age=28 married=1 height=60.8 parent=<NSObject: %p> child=(null)>", person, parent];
         person.description should contain(expectedDescription);
     });
 
@@ -71,6 +72,15 @@ describe(@"JKVValue", ^{
                 });
             });
         };
+
+        itShouldNotEqualWhen(@"value's NSObject property is nil", ^{
+            person = [[[JKVPerson alloc] initWithFirstName:nil
+                                                  lastName:person.lastName
+                                                       age:person.age
+                                                   married:person.married
+                                                    height:person.height
+                                                    parent:parent] autorelease];
+        });
 
         itShouldNotEqualWhen(@"age", ^{
             otherPerson = [[[JKVPerson alloc] initWithFirstName:person.firstName
@@ -113,22 +123,156 @@ describe(@"JKVValue", ^{
                                                          height:2.2
                                                          parent:parent] autorelease];
         });
+
+        itShouldNotEqualWhen(@"child", ^{
+            otherPerson = [[[JKVPerson alloc] initWithFirstName:person.firstName
+                                                       lastName:person.lastName
+                                                            age:person.age
+                                                        married:person.married
+                                                         height:person.height
+                                                         parent:parent] autorelease];
+            otherPerson.child = @"FOO";
+        });
     });
 
-    describe(@"NSCoding", ^{
-        __block JKVPerson *deserializedPerson;
+    describe(@"NSSecureCoding", ^{
+        __block JKVBasicValue *deserializedValue;
+        __block NSMutableData *data;
+        __block NSKeyedUnarchiver *unarchiver;
+
         beforeEach(^{
-            NSMutableData *data = [NSMutableData data];
+            data = [NSMutableData data];
             NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
-            [person encodeWithCoder:archiver];
+            [archiver encodeObject:@"bad" forKey:@"number"];
             [archiver finishEncoding];
-            NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-            deserializedPerson = [[[JKVPerson alloc] initWithCoder:unarchiver] autorelease];
+
+            unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        });
+
+        afterEach(^{
             [unarchiver finishDecoding];
         });
 
-        it(@"should support serialization", ^{
-            deserializedPerson should equal(person);
+        it(@"should support secure coding", ^{
+            [JKVPerson supportsSecureCoding] should be_truthy;
+        });
+
+        context(@"when secure coding is required", ^{
+            beforeEach(^{
+                unarchiver.requiresSecureCoding = YES;
+            });
+
+            it(@"should raise exception if decoding a bad value", ^{
+                ^{
+                    deserializedValue = [[[JKVBasicValue alloc] initWithCoder:unarchiver] autorelease];
+                } should raise_exception([NSException exceptionWithName:NSInvalidUnarchiveOperationException reason:@"Failed to unarchive 'number' as 'NSNumber'" userInfo:nil]);
+            });
+        });
+
+        context(@"when secure coding is not required", ^{
+            beforeEach(^{
+                unarchiver.requiresSecureCoding = NO;
+            });
+
+            it(@"should not raise exception if decoding a bad value", ^{
+                ^{
+                    deserializedValue = [[[JKVBasicValue alloc] initWithCoder:unarchiver] autorelease];
+                } should_not raise_exception();
+            });
+        });
+    });
+
+    describe(@"NSCoding", ^{
+        __block JKVPerson *parent;
+        __block JKVPerson *deserializedPerson;
+        __block NSMutableData *data;
+
+        beforeEach(^{
+            data = [NSMutableData data];
+            parent = [[JKVPerson alloc] initWithFixtureData];
+            person.parent = parent;
+            parent.child = person;
+        });
+
+        context(@"conditional coding", ^{
+            beforeEach(^{
+                NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
+                [archiver encodeObject:parent];
+                [archiver finishEncoding];
+
+                NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+                deserializedPerson = [unarchiver decodeObject];
+                [unarchiver finishDecoding];
+            });
+
+            it(@"should have its child.parent encoded", ^{
+                deserializedPerson should equal(parent);
+                deserializedPerson.child should equal(person);
+                (JKVPerson *)[deserializedPerson.child parent] should be_same_instance_as(deserializedPerson);
+            });
+        });
+
+        context(@"Keyed Coding", ^{
+            beforeEach(^{
+                NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
+                [archiver encodeObject:person];
+                [archiver finishEncoding];
+                NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+                deserializedPerson = [unarchiver decodeObject];
+                [unarchiver finishDecoding];
+            });
+
+            it(@"should support serialization", ^{
+                deserializedPerson should equal(person);
+            });
+        });
+
+        context(@"Non-Keyed Coding", ^{
+            // iOS doesn't support NSArchiver
+            context(@"with an archiver", ^{
+                __block NSKeyedArchiver *archiver;
+
+                beforeEach(^{
+                    archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
+                    spy_on(archiver);
+                    archiver stub_method(@selector(allowsKeyedCoding)).and_return(NO);
+                });
+
+                afterEach(^{
+                    [archiver finishEncoding];
+                });
+
+                it(@"should raise an exception", ^{
+                    ^{
+                        [person encodeWithCoder:archiver];
+                    } should raise_exception([NSException exceptionWithName:NSInvalidArchiveOperationException reason:@"Only Keyed-Archivers are supported" userInfo:nil]);
+                });
+            });
+
+            // iOS doesn't support NSUnarchiver
+            context(@"with an unarchiver", ^{
+                __block NSKeyedUnarchiver *unarchiver;
+
+                beforeEach(^{
+                    NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
+                    [archiver encodeObject:person];
+                    [archiver finishEncoding];
+
+                    unarchiver = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
+                    spy_on(unarchiver);
+                    unarchiver stub_method(@selector(allowsKeyedCoding)).and_return(NO);
+                });
+
+                afterEach(^{
+                    [unarchiver finishDecoding];
+                });
+
+                it(@"should raise an exception", ^{
+                    ^{
+                        deserializedPerson = [[[JKVPerson alloc] initWithCoder:unarchiver] autorelease];
+                    } should raise_exception([NSException exceptionWithName:NSInvalidUnarchiveOperationException reason:@"Only Keyed-Unarchivers are supported" userInfo:nil]);
+                });
+            });
         });
     });
 
@@ -191,10 +335,10 @@ describe(@"JKVValue", ^{
             beforeEach(^{
                 NSMutableData *data = [NSMutableData data];
                 NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
-                [box encodeWithCoder:archiver];
+                [archiver encodeObject:box];
                 [archiver finishEncoding];
                 NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-                deserializedBox = [[[JKVTypeContainer alloc] initWithCoder:unarchiver] autorelease];
+                deserializedBox = [unarchiver decodeObject];
                 [unarchiver finishDecoding];
             });
 

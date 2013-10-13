@@ -1,3 +1,4 @@
+#import <Foundation/Foundation.h>
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
 #else
@@ -40,6 +41,7 @@
 
 - (NSString *)encodingType;
 - (NSString *)ivarName;
+- (Class)classType;
 - (BOOL)isEncodingType:(const char *)encoding;
 - (BOOL)isObjCObjectType;
 - (BOOL)isWeak;

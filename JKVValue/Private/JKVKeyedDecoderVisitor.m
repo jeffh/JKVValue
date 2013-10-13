@@ -1,17 +1,21 @@
-#import "JKVDecoderVisitor.h"
+#import "JKVKeyedDecoderVisitor.h"
 
-@interface JKVDecoderVisitor ()
+@interface JKVKeyedDecoderVisitor ()
 @property (strong, nonatomic) NSCoder *coder;
 @property (strong, nonatomic) NSObject *target;
 @end
 
-@implementation JKVDecoderVisitor
+@implementation JKVKeyedDecoderVisitor
 
 - (id)initWithCoder:(NSCoder *)decoder forObject:(NSObject *)target;
 {
     if (self = [super init]) {
         self.coder = decoder;
         self.target = target;
+
+        if (!decoder.allowsKeyedCoding) {
+            [NSException raise:NSInvalidUnarchiveOperationException format:@"Only Keyed-Archivers are supported"];
+        }
     }
     return self;
 }
@@ -56,8 +60,12 @@
 
 - (void)propertyWasObjCObject:(JKVProperty *)property
 {
-    [self.target setValue:[self.coder decodeObjectForKey:property.name]
-                   forKey:property.name];
+    Class theClass = property.classType;
+    id value = [self.coder decodeObjectOfClass:theClass forKey:property.name];
+    if (self.coder.requiresSecureCoding && ![value isKindOfClass:theClass]) {
+        [NSException raise:NSInvalidUnarchiveOperationException format:@"Failed to unarchive '%@' as '%@'", property.name, NSStringFromClass(theClass)];
+    }
+    [self.target setValue:value forKey:property.name];
 }
 
 - (void)propertyWasUnknownType:(JKVProperty *)property

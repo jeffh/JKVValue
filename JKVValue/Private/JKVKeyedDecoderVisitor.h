@@ -1,6 +1,6 @@
 #import "JKVProperty.h"
 
-@interface JKVDecoderVisitor : NSObject <JKVPropertyEncodingTypeVisitor>
+@interface JKVKeyedDecoderVisitor : NSObject <JKVPropertyEncodingTypeVisitor>
 
 - (id)initWithCoder:(NSCoder *)decoder forObject:(NSObject *)target;
 

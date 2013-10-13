@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@interface JKVValue : NSObject <NSCoding, NSMutableCopying, NSCopying>
+@interface JKVValue : NSObject <NSCoding, NSMutableCopying, NSCopying, NSSecureCoding>
 
 // Override this method to return YES to indicate that this subclass is
 // mutable. This changes the behavior of how NSCopying protocol works

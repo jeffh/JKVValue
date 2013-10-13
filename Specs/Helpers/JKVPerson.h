@@ -9,7 +9,9 @@
 
 // objc doesn't mark this as weak if it is a readonly attribute
 @property (nonatomic, weak) id parent;
+@property (nonatomic, strong) id child;
 
+- (id)initWithFixtureData;
 - (id)initWithFirstName:(NSString *)firstName
                lastName:(NSString *)lastName
                     age:(NSInteger)age

@@ -6,6 +6,15 @@
 
 @implementation JKVPerson
 
+- (id)initWithFixtureData
+{
+    return [self initWithFirstName:@"John"
+                          lastName:@"Doe"
+                               age:28
+                           married:YES
+                            height:60.8
+                            parent:nil];
+}
 
 - (id)initWithFirstName:(NSString *)firstName
                lastName:(NSString *)lastName
@@ -21,6 +30,7 @@
         _married = married;
         _height = height;
         _parent = parent;
+        _child = nil;
     }
     return self;
 }

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1F04B9A518025C2600FFEA7A /* JKVRestrictedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F04B9A418025C2600FFEA7A /* JKVRestrictedObject.m */; };
 		1F04B9A618025C2600FFEA7A /* JKVRestrictedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F04B9A418025C2600FFEA7A /* JKVRestrictedObject.m */; };
+		1F1E3FD418080D7400801509 /* JKVBasicValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1E3FD318080D7400801509 /* JKVBasicValue.m */; };
+		1F1E3FD518080D7400801509 /* JKVBasicValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1E3FD318080D7400801509 /* JKVBasicValue.m */; };
 		1F2CCA8517FCE3D700A382AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8417FCE3D700A382AB /* Foundation.framework */; };
 		1F2CCAB017FCE48E00A382AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8417FCE3D700A382AB /* Foundation.framework */; };
 		1F2CCAB217FCE48E00A382AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCAB117FCE48E00A382AB /* CoreGraphics.framework */; };
@@ -21,10 +23,10 @@
 		1F2CCACF17FCFAA700A382AB /* JKVProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCACE17FCFAA700A382AB /* JKVProperty.m */; };
 		1F2CCAD017FCFAA700A382AB /* JKVProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCACE17FCFAA700A382AB /* JKVProperty.m */; };
 		1F2CCAD417FCFFD900A382AB /* JKVMutablePerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD317FCFFD900A382AB /* JKVMutablePerson.m */; };
-		1F2CCAD717FD080F00A382AB /* JKVDecoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD617FD080F00A382AB /* JKVDecoderVisitor.m */; };
-		1F2CCAD817FD080F00A382AB /* JKVDecoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD617FD080F00A382AB /* JKVDecoderVisitor.m */; };
-		1F2CCADB17FD0A8100A382AB /* JKVEncoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADA17FD0A8100A382AB /* JKVEncoderVisitor.m */; };
-		1F2CCADC17FD0A8100A382AB /* JKVEncoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADA17FD0A8100A382AB /* JKVEncoderVisitor.m */; };
+		1F2CCAD717FD080F00A382AB /* JKVKeyedDecoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD617FD080F00A382AB /* JKVKeyedDecoderVisitor.m */; };
+		1F2CCAD817FD080F00A382AB /* JKVKeyedDecoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD617FD080F00A382AB /* JKVKeyedDecoderVisitor.m */; };
+		1F2CCADB17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADA17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m */; };
+		1F2CCADC17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADA17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m */; };
 		1F2CCADF17FD0C4400A382AB /* JKVClassInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADE17FD0C4400A382AB /* JKVClassInspector.m */; };
 		1F2CCAE017FD0C4400A382AB /* JKVClassInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADE17FD0C4400A382AB /* JKVClassInspector.m */; };
 		1F2CCAE317FD10F600A382AB /* JKVPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE217FD10F600A382AB /* JKVPerson.m */; };
@@ -44,8 +46,8 @@
 		1F4322A017FE2CBA001293C1 /* JKVMutableValueSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAC517FCE4D800A382AB /* JKVMutableValueSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1F4322A117FE2CBD001293C1 /* JKVValueSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE417FD112100A382AB /* JKVValueSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1F4322A217FE2DE0001293C1 /* JKVProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCACE17FCFAA700A382AB /* JKVProperty.m */; };
-		1F4322A317FE2DE0001293C1 /* JKVDecoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD617FD080F00A382AB /* JKVDecoderVisitor.m */; };
-		1F4322A417FE2DE0001293C1 /* JKVEncoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADA17FD0A8100A382AB /* JKVEncoderVisitor.m */; };
+		1F4322A317FE2DE0001293C1 /* JKVKeyedDecoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD617FD080F00A382AB /* JKVKeyedDecoderVisitor.m */; };
+		1F4322A417FE2DE0001293C1 /* JKVKeyedEncoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADA17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m */; };
 		1F4322A517FE2DE0001293C1 /* JKVClassInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADE17FD0C4400A382AB /* JKVClassInspector.m */; };
 		1F4322A617FE2DE0001293C1 /* JKVMutableValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAC917FCE78700A382AB /* JKVMutableValue.m */; };
 		1F4322A717FE2DE0001293C1 /* JKVValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE717FD11ED00A382AB /* JKVValue.m */; };
@@ -72,6 +74,8 @@
 /* Begin PBXFileReference section */
 		1F04B9A318025C2600FFEA7A /* JKVRestrictedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVRestrictedObject.h; sourceTree = "<group>"; };
 		1F04B9A418025C2600FFEA7A /* JKVRestrictedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVRestrictedObject.m; sourceTree = "<group>"; };
+		1F1E3FD218080D7400801509 /* JKVBasicValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVBasicValue.h; sourceTree = "<group>"; };
+		1F1E3FD318080D7400801509 /* JKVBasicValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVBasicValue.m; sourceTree = "<group>"; };
 		1F2CCA8117FCE3D700A382AB /* libJKVValue.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJKVValue.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F2CCA8417FCE3D700A382AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1F2CCA8817FCE3D700A382AB /* JKVValue-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JKVValue-Prefix.pch"; sourceTree = "<group>"; };
@@ -91,10 +95,10 @@
 		1F2CCACE17FCFAA700A382AB /* JKVProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVProperty.m; sourceTree = "<group>"; };
 		1F2CCAD217FCFFD900A382AB /* JKVMutablePerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVMutablePerson.h; sourceTree = "<group>"; };
 		1F2CCAD317FCFFD900A382AB /* JKVMutablePerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVMutablePerson.m; sourceTree = "<group>"; };
-		1F2CCAD517FD080F00A382AB /* JKVDecoderVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVDecoderVisitor.h; sourceTree = "<group>"; };
-		1F2CCAD617FD080F00A382AB /* JKVDecoderVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVDecoderVisitor.m; sourceTree = "<group>"; };
-		1F2CCAD917FD0A8100A382AB /* JKVEncoderVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVEncoderVisitor.h; sourceTree = "<group>"; };
-		1F2CCADA17FD0A8100A382AB /* JKVEncoderVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVEncoderVisitor.m; sourceTree = "<group>"; };
+		1F2CCAD517FD080F00A382AB /* JKVKeyedDecoderVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVKeyedDecoderVisitor.h; sourceTree = "<group>"; };
+		1F2CCAD617FD080F00A382AB /* JKVKeyedDecoderVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVKeyedDecoderVisitor.m; sourceTree = "<group>"; };
+		1F2CCAD917FD0A8100A382AB /* JKVKeyedEncoderVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVKeyedEncoderVisitor.h; sourceTree = "<group>"; };
+		1F2CCADA17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVKeyedEncoderVisitor.m; sourceTree = "<group>"; };
 		1F2CCADD17FD0C4400A382AB /* JKVClassInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVClassInspector.h; sourceTree = "<group>"; };
 		1F2CCADE17FD0C4400A382AB /* JKVClassInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVClassInspector.m; sourceTree = "<group>"; };
 		1F2CCAE117FD10F600A382AB /* JKVPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVPerson.h; sourceTree = "<group>"; };
@@ -252,10 +256,10 @@
 			children = (
 				1F2CCACD17FCFAA700A382AB /* JKVProperty.h */,
 				1F2CCACE17FCFAA700A382AB /* JKVProperty.m */,
-				1F2CCAD517FD080F00A382AB /* JKVDecoderVisitor.h */,
-				1F2CCAD617FD080F00A382AB /* JKVDecoderVisitor.m */,
-				1F2CCAD917FD0A8100A382AB /* JKVEncoderVisitor.h */,
-				1F2CCADA17FD0A8100A382AB /* JKVEncoderVisitor.m */,
+				1F2CCAD517FD080F00A382AB /* JKVKeyedDecoderVisitor.h */,
+				1F2CCAD617FD080F00A382AB /* JKVKeyedDecoderVisitor.m */,
+				1F2CCAD917FD0A8100A382AB /* JKVKeyedEncoderVisitor.h */,
+				1F2CCADA17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m */,
 				1F2CCADD17FD0C4400A382AB /* JKVClassInspector.h */,
 				1F2CCADE17FD0C4400A382AB /* JKVClassInspector.m */,
 			);
@@ -277,6 +281,8 @@
 				1F3FCE7A1801B91E00A929F5 /* JKVMutableCollections.m */,
 				1F04B9A318025C2600FFEA7A /* JKVRestrictedObject.h */,
 				1F04B9A418025C2600FFEA7A /* JKVRestrictedObject.m */,
+				1F1E3FD218080D7400801509 /* JKVBasicValue.h */,
+				1F1E3FD318080D7400801509 /* JKVBasicValue.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -414,9 +420,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F2CCAD717FD080F00A382AB /* JKVDecoderVisitor.m in Sources */,
+				1F2CCAD717FD080F00A382AB /* JKVKeyedDecoderVisitor.m in Sources */,
 				1F2CCAE817FD11ED00A382AB /* JKVValue.m in Sources */,
-				1F2CCADB17FD0A8100A382AB /* JKVEncoderVisitor.m in Sources */,
+				1F2CCADB17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m in Sources */,
 				1F2CCACA17FCE78700A382AB /* JKVMutableValue.m in Sources */,
 				1F2CCACF17FCFAA700A382AB /* JKVProperty.m in Sources */,
 				1F2CCADF17FD0C4400A382AB /* JKVClassInspector.m in Sources */,
@@ -428,16 +434,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F3FCE7B1801B91E00A929F5 /* JKVMutableCollections.m in Sources */,
-				1F2CCADC17FD0A8100A382AB /* JKVEncoderVisitor.m in Sources */,
+				1F2CCADC17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m in Sources */,
 				1F2CCAEC17FD180500A382AB /* JKVTypeContainer.m in Sources */,
 				1F2CCABA17FCE48E00A382AB /* main.m in Sources */,
+				1F1E3FD418080D7400801509 /* JKVBasicValue.m in Sources */,
 				1F2CCAE517FD112100A382AB /* JKVValueSpec.mm in Sources */,
 				1F2CCAD017FCFAA700A382AB /* JKVProperty.m in Sources */,
 				1F2CCAD417FCFFD900A382AB /* JKVMutablePerson.m in Sources */,
 				1F04B9A518025C2600FFEA7A /* JKVRestrictedObject.m in Sources */,
 				1F2CCAE017FD0C4400A382AB /* JKVClassInspector.m in Sources */,
 				1F3FCE771801B8E400A929F5 /* JKVCollections.m in Sources */,
-				1F2CCAD817FD080F00A382AB /* JKVDecoderVisitor.m in Sources */,
+				1F2CCAD817FD080F00A382AB /* JKVKeyedDecoderVisitor.m in Sources */,
 				1F2CCAC617FCE4D800A382AB /* JKVMutableValueSpec.mm in Sources */,
 				1F2CCAE317FD10F600A382AB /* JKVPerson.m in Sources */,
 				1F2CCAE917FD11ED00A382AB /* JKVValue.m in Sources */,
@@ -452,8 +459,9 @@
 				1F3FCE7C1801B91E00A929F5 /* JKVMutableCollections.m in Sources */,
 				1F4322A217FE2DE0001293C1 /* JKVProperty.m in Sources */,
 				1F498DAF17FE3F34000CEA03 /* JKVTypeContainer.m in Sources */,
-				1F4322A317FE2DE0001293C1 /* JKVDecoderVisitor.m in Sources */,
-				1F4322A417FE2DE0001293C1 /* JKVEncoderVisitor.m in Sources */,
+				1F4322A317FE2DE0001293C1 /* JKVKeyedDecoderVisitor.m in Sources */,
+				1F1E3FD518080D7400801509 /* JKVBasicValue.m in Sources */,
+				1F4322A417FE2DE0001293C1 /* JKVKeyedEncoderVisitor.m in Sources */,
 				1F4322A517FE2DE0001293C1 /* JKVClassInspector.m in Sources */,
 				1F4322A617FE2DE0001293C1 /* JKVMutableValue.m in Sources */,
 				1F04B9A618025C2600FFEA7A /* JKVRestrictedObject.m in Sources */,

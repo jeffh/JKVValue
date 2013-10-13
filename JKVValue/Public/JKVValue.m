@@ -1,7 +1,7 @@
 #import "JKVValue.h"
 #import "JKVProperty.h"
-#import "JKVDecoderVisitor.h"
-#import "JKVEncoderVisitor.h"
+#import "JKVKeyedDecoderVisitor.h"
+#import "JKVKeyedEncoderVisitor.h"
 #import "JKVClassInspector.h"
 
 @interface JKVValue () {
@@ -22,20 +22,27 @@
 {
     self = [self init];
     if (self) {
-        JKVDecoderVisitor *visitor = [[JKVDecoderVisitor alloc] initWithCoder:aDecoder forObject:self];
-        for (JKVProperty *property in self.JKV_cachedPropertiesForIdentity) {
+        JKVKeyedDecoderVisitor *visitor = [[JKVKeyedDecoderVisitor alloc] initWithCoder:aDecoder forObject:self];
+        for (JKVProperty *property in self.JKV_inspector.allProperties) {
             [property visitEncodingType:visitor];
         }
     }
     return self;
 }
 
+#pragma mark - <NSSecureCoding>
+
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 #pragma mark - <NSCoding>
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    JKVEncoderVisitor *visitor = [[JKVEncoderVisitor alloc] initWithCoder:aCoder forObject:self];
-    for (JKVProperty *property in self.JKV_cachedPropertiesForIdentity) {
+    JKVKeyedEncoderVisitor *visitor = [[JKVKeyedEncoderVisitor alloc] initWithCoder:aCoder forObject:self];
+    for (JKVProperty *property in self.JKV_inspector.allProperties) {
         [property visitEncodingType:visitor];
     }
 }
@@ -83,7 +90,7 @@
 - (NSString *)debugDescription
 {
     return [self.JKV_inspector descriptionForObject:self
-                                     withProperties:self.JKV_inspector.properties];
+                                     withProperties:self.JKV_inspector.allProperties];
 }
 
 - (BOOL)isEqual:(id)object
@@ -134,7 +141,7 @@
 {
     if (!_JKV_propertiesForIdentity){
         NSSet *whitelist = [NSSet setWithArray:[self JKV_propertyNamesForIdentity]];
-        _JKV_propertiesForIdentity = [self.JKV_inspector.properties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name in %@", whitelist]];
+        _JKV_propertiesForIdentity = [self.JKV_inspector.allProperties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name in %@", whitelist]];
     }
     return _JKV_propertiesForIdentity;
 }
@@ -143,7 +150,7 @@
 {
     if (!_JKV_propertiesToAssignCopy){
         NSSet *whitelist = [NSSet setWithArray:[self JKV_propertyNamesToAssignCopy]];
-        _JKV_propertiesToAssignCopy = [self.JKV_inspector.properties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name in %@", whitelist]];
+        _JKV_propertiesToAssignCopy = [self.JKV_inspector.allProperties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name in %@", whitelist]];
     }
     return _JKV_propertiesToAssignCopy;
 }

@@ -1,17 +1,21 @@
-#import "JKVEncoderVisitor.h"
+#import "JKVKeyedEncoderVisitor.h"
 
-@interface JKVEncoderVisitor ()
+@interface JKVKeyedEncoderVisitor ()
 @property (strong, nonatomic) NSCoder *coder;
 @property (strong, nonatomic) NSObject *target;
 @end
 
-@implementation JKVEncoderVisitor
+@implementation JKVKeyedEncoderVisitor
 
 - (id)initWithCoder:(NSCoder *)coder forObject:(NSObject *)target;
 {
     if (self = [super init]) {
         self.coder = coder;
         self.target = target;
+
+        if (!coder.allowsKeyedCoding) {
+            [NSException raise:NSInvalidArchiveOperationException format:@"Only Keyed-Unarchivers are supported"];
+        }
     }
     return self;
 }
@@ -56,8 +60,12 @@
 
 - (void)propertyWasObjCObject:(JKVProperty *)property
 {
-    [self.coder encodeObject:[self.target valueForKey:property.name]
-                      forKey:property.name];
+    id value = [self.target valueForKey:property.name];
+    if (property.isWeak){
+        [self.coder encodeConditionalObject:value forKey:property.name];
+    } else {
+        [self.coder encodeObject:value forKey:property.name];
+    }
 }
 
 - (void)propertyWasUnknownType:(JKVProperty *)property

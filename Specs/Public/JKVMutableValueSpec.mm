@@ -12,7 +12,7 @@ describe(@"JKVMutableValue", ^{
     __block id parent;
 
     beforeEach(^{
-        parent = [[@"Ignorable" dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
+        parent = [[NSObject new] autorelease];
         person = [[[JKVMutablePerson alloc] init] autorelease];
         otherPerson = [[[JKVMutablePerson alloc] init] autorelease];
         person.age       = otherPerson.age       = 28;
@@ -24,7 +24,7 @@ describe(@"JKVMutableValue", ^{
     });
 
     it(@"should have a custom description", ^{
-        NSString *expectedDescription = [NSString stringWithFormat:@"<JKVMutablePerson %p firstName=John lastName=Doe age=28 married=1 height=60.8 parent=%@>", person, [parent description]];
+        NSString *expectedDescription = [NSString stringWithFormat:@"<JKVMutablePerson: %p child=(null) firstName=John lastName=Doe age=28 married=1 height=60.8 parent=<NSObject: %p>>", person, parent];
         person.description should contain(expectedDescription);
     });
 

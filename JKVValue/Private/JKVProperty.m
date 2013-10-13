@@ -27,6 +27,36 @@
     return self.attributes[@"V"];
 }
 
+- (NSString *)encodingTypeObjCDeclaration
+{
+    NSString *encodingType = self.encodingType;
+    if (self.isObjCObjectType) {
+        if (encodingType.length > 3 &&
+            [encodingType characterAtIndex:1] == '"' &&
+            [encodingType characterAtIndex:encodingType.length-1] == '"') {
+            return [encodingType substringWithRange:NSMakeRange(2, encodingType.length - 3)];
+        }
+        return @"NSObject";
+    }
+    return nil;
+}
+
+- (Class)classType
+{
+    if (!self.isObjCObjectType) {
+        return nil;
+    }
+    NSString *declaration = [self encodingTypeObjCDeclaration];
+    NSString *className = @"";
+    NSRange protocolStart = [declaration rangeOfString:@"<"];
+    if (protocolStart.location == NSNotFound){
+        className = declaration;
+    } else {
+        className = [declaration substringToIndex:protocolStart.location];
+    }
+    return NSClassFromString(className);
+}
+
 - (BOOL)isEncodingType:(const char *)encoding
 {
     return strcmp(self.encodingType.UTF8String, encoding) == 0;

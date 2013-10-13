@@ -48,9 +48,14 @@ static NSMutableDictionary *inspectors__;
 
 - (BOOL)isObject:(id)object1 equalToObject:(id)object2 byPropertyNames:(NSArray *)propertyNames
 {
+    if (object1 == object2){
+        return YES;
+    }
+
     for (NSString *name in propertyNames) {
         id value = [object1 valueForKey:name];
-        if (![value isEqual:[object2 valueForKey:name]]){
+        id otherValue = [object2 valueForKey:name];
+        if (value != otherValue && ![value isEqual:otherValue]){
             return NO;
         }
     }
@@ -81,10 +86,16 @@ static NSMutableDictionary *inspectors__;
 - (NSString *)descriptionForObject:(id)object withProperties:(NSArray *)properties
 {
     NSMutableString *string = [NSMutableString new];
-    [string appendFormat:@"<%@ %p", NSStringFromClass([object class]), object];
+    [string appendFormat:@"<%@: %p", NSStringFromClass([object class]), object];
     for (JKVProperty *property in properties) {
         NSString *name = property.name;
-        [string appendFormat:@" %@=%@", name, [object valueForKey:name]];
+        id value = [object valueForKey:name];
+        [string appendFormat:@" %@=", name];
+        if (property.isWeak && value) {
+            [string appendFormat:@"<%@: %p>", NSStringFromClass([value class]), value];
+        } else {
+            [string appendFormat:@"%@", value];
+        }
     }
     [string appendString:@">"];
     return string;
@@ -95,7 +106,7 @@ static NSMutableDictionary *inspectors__;
 - (NSArray *)nonWeakProperties
 {
     if (!_nonWeakProperties){
-        _nonWeakProperties = [self.properties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isWeak = NO"]];
+        _nonWeakProperties = [self.allProperties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isWeak = NO"]];
     }
     return _nonWeakProperties;
 }
@@ -103,7 +114,7 @@ static NSMutableDictionary *inspectors__;
 - (NSArray *)weakProperties
 {
     if (!_weakProperties){
-        _weakProperties = [self.properties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isWeak = YES"]];
+        _weakProperties = [self.allProperties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isWeak = YES"]];
     }
     return _weakProperties;
 }
@@ -137,6 +148,23 @@ static NSMutableDictionary *inspectors__;
         _properties = properties;
     }
     return _properties;
+}
+
+- (NSArray *)allProperties
+{
+    NSArray *classProperties = self.properties;
+    NSSet *classPropertyNames = [NSSet setWithArray:[classProperties valueForKey:@"name"]];
+    NSMutableArray *properties = [NSMutableArray new];
+    Class parentClass = class_getSuperclass(self.aClass);
+    if (parentClass && parentClass != [NSObject class]) {
+        for (JKVProperty *property in [[JKVClassInspector inspectorForClass:parentClass] allProperties]) {
+            if (![classPropertyNames containsObject:property.name]) {
+                [properties addObject:property];
+            }
+        }
+    }
+    [properties addObjectsFromArray:classProperties];
+    return properties;
 }
 
 @end
