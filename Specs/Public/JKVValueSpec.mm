@@ -147,6 +147,7 @@ describe(@"JKVValue", ^{
             [archiver finishEncoding];
 
             unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+            spy_on(unarchiver);
         });
 
         afterEach(^{
@@ -159,7 +160,8 @@ describe(@"JKVValue", ^{
 
         context(@"when secure coding is required", ^{
             beforeEach(^{
-                unarchiver.requiresSecureCoding = YES;
+                // OSX doesn't support setter of requiresSecureCoding
+                unarchiver stub_method(@selector(requiresSecureCoding)).and_return(YES);
             });
 
             it(@"should raise exception if decoding a bad value", ^{
@@ -171,7 +173,8 @@ describe(@"JKVValue", ^{
 
         context(@"when secure coding is not required", ^{
             beforeEach(^{
-                unarchiver.requiresSecureCoding = NO;
+                // OSX doesn't support setter of requiresSecureCoding
+                unarchiver stub_method(@selector(requiresSecureCoding)).and_return(NO);
             });
 
             it(@"should not raise exception if decoding a bad value", ^{
