@@ -42,7 +42,7 @@ desc 'Builds static lib for ios'
 task :build_ios do
   build(
     project: 'JKVValue.xcodeproj',
-    scheme: 'JKVValue',
+    target: 'JKVValue',
     sdk: 'iphonesimulator7.0',
     configuration: BUILD_CONFIG,
   )
@@ -52,7 +52,7 @@ desc 'Builds specs for mac os x'
 task :build_osx_specs do
   build(
     project: 'JKVValue.xcodeproj',
-    scheme: 'OSXSpecs',
+    target: 'OSXSpecs',
     sdk: 'macosx10.8',
     configuration: BUILD_CONFIG,
   )
@@ -63,6 +63,7 @@ task :build_ios_specs do
   build(
     project: 'JKVValue.xcodeproj',
     scheme: 'Specs',
+    arch: 'i386',
     sdk: 'iphonesimulator7.0',
     configuration: BUILD_CONFIG,
   )
