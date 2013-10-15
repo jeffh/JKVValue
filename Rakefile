@@ -77,7 +77,7 @@ end
 
 desc 'Builds static lib for ios'
 task :build_ios do
-  build([:build], ios_config)
+  build(['ARCHS=i386', 'ONLY_ACTIVE_ARCH=NO', :build], ios_config)
 end
 
 desc 'Builds specs for mac os x'
@@ -87,7 +87,7 @@ end
 
 desc 'Builds specs for ios'
 task :build_ios_specs do
-  build([:build], ios_specs_config)
+  build(['ARCHS=i386', 'ONLY_ACTIVE_ARCH=NO', :build], ios_specs_config)
 end
 
 desc 'Runs OSX Specs'
