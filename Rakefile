@@ -49,6 +49,7 @@ end
 ios_config = {
   project: 'JKVValue.xcodeproj',
   target: 'JKVValue',
+  arch: 'i386',
   sdk: "iphonesimulator#{SDK_VERSION}",
   configuration: BUILD_CONFIG,
 }
