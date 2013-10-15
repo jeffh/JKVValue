@@ -1,11 +1,19 @@
 require 'tmpdir'
 
+SDK_VERSION=ENV['JKV_SDK_VERSION'] || '6.1'
+SDK_RUNTIME_VERSION=ENV['JKV_SDK_RUNTIME_VERSION'] || SDK_VERSION
 BUILD_CONFIG='Debug'
 BUILD_DIR=File.expand_path('./build/')
 
 def sdk_dir(version)
   xcode_developer_dir = `xcode-select -print-path`.strip
   "#{xcode_developer_dir}/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator#{version}.sdk"
+end
+
+def kill_simulator
+  system %Q[killall -m -KILL "lldb"]
+  system %Q[killall -m -KILL "otest"]
+  system %Q[killall -m -KILL "iPhone Simulator"]
 end
 
 def with_env_vars(env_vars)
@@ -41,14 +49,14 @@ end
 ios_config = {
   project: 'JKVValue.xcodeproj',
   target: 'JKVValue',
-  sdk: 'iphonesimulator7.0',
+  sdk: "iphonesimulator#{SDK_VERSION}",
   configuration: BUILD_CONFIG,
 }
 ios_specs_config = {
   project: 'JKVValue.xcodeproj',
   target: 'Specs',
   arch: 'i386',
-  sdk: 'iphonesimulator7.0',
+  sdk: "iphonesimulator#{SDK_VERSION}",
   configuration: BUILD_CONFIG,
 }
 osx_specs_config = {
@@ -94,7 +102,8 @@ end
 
 desc 'Run iOS Specs'
 task :ios_specs => [:build_ios_specs] do
-  sdk_path = sdk_dir('7.0')
+  kill_simulator
+  sdk_path = sdk_dir(SDK_RUNTIME_VERSION)
   env_vars = {
     "DYLD_ROOT_PATH" => sdk_path,
     "IPHONE_SIMULATOR_ROOT" => sdk_path,
