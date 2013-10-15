@@ -69,6 +69,7 @@ osx_specs_config = {
 
 desc 'Clean builds'
 task :clean do
+  system "rm -rf #{BUILD_DIR}"
   build(['-alltargets', :clean],
     project: 'JKVValue.xcodeproj',
     configuration: BUILD_CONFIG,
@@ -77,7 +78,7 @@ end
 
 desc 'Builds static lib for ios'
 task :build_ios do
-  build(['ARCHS=i386', 'ONLY_ACTIVE_ARCH=NO', :build], ios_config)
+  build(['ONLY_ACTIVE_ARCH=NO', :build], ios_config)
 end
 
 desc 'Builds specs for mac os x'
@@ -87,7 +88,7 @@ end
 
 desc 'Builds specs for ios'
 task :build_ios_specs do
-  build(['ARCHS=i386', 'ONLY_ACTIVE_ARCH=NO', :build], ios_specs_config)
+  build(['ONLY_ACTIVE_ARCH=NO', :build], ios_specs_config)
 end
 
 desc 'Runs OSX Specs'

@@ -146,7 +146,7 @@ describe(@"JKVValue", ^{
             [archiver encodeObject:@"bad" forKey:@"number"];
             [archiver finishEncoding];
 
-            unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+            unarchiver = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
             spy_on(unarchiver);
         });
 
@@ -203,7 +203,7 @@ describe(@"JKVValue", ^{
                 [archiver encodeObject:parent];
                 [archiver finishEncoding];
 
-                NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+                NSKeyedUnarchiver *unarchiver = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
                 deserializedPerson = [unarchiver decodeObject];
                 [unarchiver finishDecoding];
             });
@@ -220,7 +220,7 @@ describe(@"JKVValue", ^{
                 NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
                 [archiver encodeObject:person];
                 [archiver finishEncoding];
-                NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+                NSKeyedUnarchiver *unarchiver = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
                 deserializedPerson = [unarchiver decodeObject];
                 [unarchiver finishDecoding];
             });
@@ -340,7 +340,7 @@ describe(@"JKVValue", ^{
                 NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
                 [archiver encodeObject:box];
                 [archiver finishEncoding];
-                NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+                NSKeyedUnarchiver *unarchiver = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
                 deserializedBox = [unarchiver decodeObject];
                 [unarchiver finishDecoding];
             });

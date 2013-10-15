@@ -1,13 +1,9 @@
 language: objective-c
 rvm:
-  - "1.9; export JKV_SDK_VERSION=5.0 #"
-  - "1.9; export JKV_SDK_VERSION=5.1 #"
-  - "1.9; export JKV_SDK_VERSION=6.0 #"
-  - "1.9; export JKV_SDK_VERSION=6.1 #"
+  - "default; export JKV_SDK_VERSION=6.0 #"
+  - "default; export JKV_SDK_VERSION=6.1 #"
 env:
     matrix:
-        - JKV_SDK_RUNTIME_VERSION="5.0"
-        - JKV_SDK_RUNTIME_VERSION="5.1"
         - JKV_SDK_RUNTIME_VERSION="6.0"
         - JKV_SDK_RUNTIME_VERSION="6.1"
 script: rake

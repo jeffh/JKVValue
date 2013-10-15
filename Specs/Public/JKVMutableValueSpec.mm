@@ -69,7 +69,7 @@ describe(@"JKVMutableValue", ^{
             NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
             [person encodeWithCoder:archiver];
             [archiver finishEncoding];
-            NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+            NSKeyedUnarchiver *unarchiver = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
             deserializedPerson = [[[JKVMutablePerson alloc] initWithCoder:unarchiver] autorelease];
             [unarchiver finishDecoding];
         });
