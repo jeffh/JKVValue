@@ -1,4 +1,5 @@
 require 'tmpdir'
+require 'tempfile'
 
 SDK_VERSION=ENV['JKV_SDK_VERSION'] || '6.1'
 SDK_RUNTIME_VERSION=ENV['JKV_SDK_RUNTIME_VERSION'] || SDK_VERSION
@@ -43,7 +44,12 @@ end
 def ios_sim(app, options={}, env={})
   kwargs = options.map { |key, value| "--#{key} #{value == true ? '' : value.inspect}" }.join(' ')
   envs = env.map { |key, value| "--setenv #{key}=#{value.inspect}" }.join(' ')
-  system_or_exit "ios-sim launch #{app} #{kwargs} #{envs}"
+
+  tmpfile = Tempfile.new('ios-sim-output')
+  cmd = "ios-sim launch #{app} #{kwargs} #{envs} | tee #{tmpfile.path.inspect}"
+  puts "Run: #{cmd}"
+  system cmd
+  system_or_exit "cat #{tmpfile.path.inspect} | grep -q ', 0 failures'"
 end
 
 ios_config = {
