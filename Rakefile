@@ -116,7 +116,7 @@ task :ios_specs => [:build_ios_specs] do
 
   ios_sim_params = {
     family: 'iphone',
-    sdk: 7.0,
+    sdk: SDK_VERSION,
     retina: true,
     tall: true
   }
