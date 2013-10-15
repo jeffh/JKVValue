@@ -27,9 +27,9 @@ def system_or_exit(cmd)
   system(cmd) or exit 1
 end
 
-def build(options={})
+def build(actions, options={})
   kwargs = options.map { |key, value| "-#{key} #{value}" }.join(' ')
-  system_or_exit "xcodebuild #{kwargs} clean build SYMROOT=#{BUILD_DIR.inspect}"
+  system_or_exit "xcodebuild #{kwargs} #{actions.join(' ')} OBJROOT=#{BUILD_DIR.inspect} SYMROOT=#{BUILD_DIR.inspect} RUN_CLANG_STATIC_ANALYZER=YES"
 end
 
 def ios_sim(app, options={}, env={})
@@ -38,35 +38,47 @@ def ios_sim(app, options={}, env={})
   system_or_exit "ios-sim launch #{app} #{kwargs} #{envs}"
 end
 
-desc 'Builds static lib for ios'
-task :build_ios do
-  build(
+ios_config = {
+  project: 'JKVValue.xcodeproj',
+  target: 'JKVValue',
+  sdk: 'iphonesimulator7.0',
+  configuration: BUILD_CONFIG,
+}
+ios_specs_config = {
+  project: 'JKVValue.xcodeproj',
+  target: 'Specs',
+  arch: 'i386',
+  sdk: 'iphonesimulator7.0',
+  configuration: BUILD_CONFIG,
+}
+osx_specs_config = {
+  project: 'JKVValue.xcodeproj',
+  target: 'OSXSpecs',
+  sdk: 'macosx10.8',
+  configuration: BUILD_CONFIG,
+}
+
+desc 'Clean builds'
+task :clean do
+  build(['-alltargets', :clean],
     project: 'JKVValue.xcodeproj',
-    target: 'JKVValue',
-    sdk: 'iphonesimulator7.0',
     configuration: BUILD_CONFIG,
   )
+end
+
+desc 'Builds static lib for ios'
+task :build_ios do
+  build([:build], ios_config)
 end
 
 desc 'Builds specs for mac os x'
 task :build_osx_specs do
-  build(
-    project: 'JKVValue.xcodeproj',
-    target: 'OSXSpecs',
-    sdk: 'macosx10.8',
-    configuration: BUILD_CONFIG,
-  )
+  build([:build], osx_specs_config)
 end
 
 desc 'Builds specs for ios'
 task :build_ios_specs do
-  build(
-    project: 'JKVValue.xcodeproj',
-    scheme: 'Specs',
-    arch: 'i386',
-    sdk: 'iphonesimulator7.0',
-    configuration: BUILD_CONFIG,
-  )
+  build([:build], ios_specs_config)
 end
 
 desc 'Runs OSX Specs'
@@ -105,4 +117,4 @@ task :ios_specs => [:build_ios_specs] do
   )
 end
 
-task :default => [:osx_specs, :ios_specs]
+task :default => [:clean, :build_ios, :osx_specs, :ios_specs]

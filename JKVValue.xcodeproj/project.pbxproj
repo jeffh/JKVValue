@@ -566,7 +566,7 @@
 			buildSettings = {
 				DSTROOT = /tmp/JKValue.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JKValue/JKVValue-Prefix.pch";
+				GCC_PREFIX_HEADER = "JKVValue/JKVValue-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = JKVValue;
 				SKIP_INSTALL = YES;
@@ -578,7 +578,7 @@
 			buildSettings = {
 				DSTROOT = /tmp/JKValue.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JKValue/JKVValue-Prefix.pch";
+				GCC_PREFIX_HEADER = "JKVValue/JKVValue-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = JKVValue;
 				SKIP_INSTALL = YES;
