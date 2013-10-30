@@ -326,14 +326,14 @@
 		1F2CCACC17FCFA8C00A382AB /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				1F2CCACD17FCFAA700A382AB /* JKVProperty.h */,
-				1F2CCACE17FCFAA700A382AB /* JKVProperty.m */,
+				1F2CCADD17FD0C4400A382AB /* JKVClassInspector.h */,
+				1F2CCADE17FD0C4400A382AB /* JKVClassInspector.m */,
 				1F2CCAD517FD080F00A382AB /* JKVKeyedDecoderVisitor.h */,
 				1F2CCAD617FD080F00A382AB /* JKVKeyedDecoderVisitor.m */,
 				1F2CCAD917FD0A8100A382AB /* JKVKeyedEncoderVisitor.h */,
 				1F2CCADA17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m */,
-				1F2CCADD17FD0C4400A382AB /* JKVClassInspector.h */,
-				1F2CCADE17FD0C4400A382AB /* JKVClassInspector.m */,
+				1F2CCACD17FCFAA700A382AB /* JKVProperty.h */,
+				1F2CCACE17FCFAA700A382AB /* JKVProperty.m */,
 			);
 			path = Private;
 			sourceTree = "<group>";
