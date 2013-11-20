@@ -5,7 +5,7 @@
 //
 
 #ifdef __OBJC__
-    #import <Cedar/SpecHelper.h>
+    #import <SpecHelper.h>
     #import <Foundation/Foundation.h>
     #import <CoreGraphics/CoreGraphics.h>
 #endif
