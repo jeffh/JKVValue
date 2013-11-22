@@ -37,6 +37,10 @@ describe(@"JKVValue", ^{
         person.description should contain(expectedDescription);
     });
 
+    it(@"should have a debug description be the same as the description", ^{
+        person.debugDescription should contain(person.description);
+    });
+
     describe(@"equality", ^{
         context(@"when all properties are equivalent in value", ^{
             it(@"should be equal", ^{
