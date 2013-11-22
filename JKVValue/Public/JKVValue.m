@@ -98,7 +98,7 @@
     NSArray *propertyNames = [self.JKV_cachedPropertiesForIdentity valueForKey:@"name"];
     return [self.JKV_inspector isObject:self
                           equalToObject:object
-                        byPropertyNames:propertyNames];
+                      withPropertyNames:propertyNames];
 
 }
 

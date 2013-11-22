@@ -54,6 +54,10 @@ describe(@"JKVValue", ^{
             it(@"should behave as the same value in a set", ^{
                 [[NSSet setWithArray:@[person, otherPerson]] count] should equal(1);
             });
+
+            it(@"should be equal to mutable variant", ^{
+                person should equal([person mutableCopy]);
+            });
         });
 
         context(@"when the (weak) parent property is not equivalent in value", ^{
@@ -66,6 +70,10 @@ describe(@"JKVValue", ^{
                                                              parent:@"foo"] autorelease];
                 person should equal(otherPerson);
             });
+        });
+
+        it(@"should not be equal to another object", ^{
+            person should_not equal((id)@1);
         });
 
         void (^itShouldNotEqualWhen)(NSString *, void(^)()) = ^(NSString *name, void(^mutator)()) {

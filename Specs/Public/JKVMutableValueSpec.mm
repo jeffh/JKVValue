@@ -37,6 +37,10 @@ describe(@"JKVMutableValue", ^{
             it(@"should have the same hash code", ^{
                 person.hash should equal(otherPerson.hash);
             });
+
+            it(@"should be equal to the immutable variant", ^{
+                person should equal([person copy]);
+            });
         });
 
         context(@"when the (weak) parent property is not equivalent in value", ^{
@@ -44,6 +48,10 @@ describe(@"JKVMutableValue", ^{
                 otherPerson.parent = nil;
                 person should equal(otherPerson);
             });
+        });
+
+        it(@"should not equal another object", ^{
+            person should_not equal((id)@1);
         });
 
         void (^itShouldNotEqualWhen)(NSString *, void(^)()) = ^(NSString *name, void(^mutator)()) {

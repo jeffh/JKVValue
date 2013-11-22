@@ -46,12 +46,24 @@ static NSMutableDictionary *inspectors__;
     return result;
 }
 
-- (BOOL)isObject:(id)object1 equalToObject:(id)object2 byPropertyNames:(NSArray *)propertyNames
+- (BOOL)isObject:(id)object1 equalToObject:(id)object2 withPropertyNames:(NSArray *)propertyNames
 {
     if (object1 == object2){
         return YES;
     }
 
+    Class class1 = [object1 class];
+    Class class2 = [object2 class];
+
+    if (![class1 isSubclassOfClass:class2] && ![class2 isSubclassOfClass:class1]){
+        return NO;
+    }
+
+    return [self isObject:object1 equalToObject:object2 byPropertyNames:propertyNames];
+}
+
+- (BOOL)isObject:(id)object1 equalToObject:(id)object2 byPropertyNames:(NSArray *)propertyNames
+{
     for (NSString *name in propertyNames) {
         id value = [object1 valueForKey:name];
         id otherValue = [object2 valueForKey:name];
