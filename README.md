@@ -17,7 +17,9 @@ When you add (or change) a property, you usually have to do:
 - Add it to `-[isEqual:]` to support equality for that modified property
 - Add it to `-[hash:]` to support hashing
 - Add it to `-[initWithCoder:]` to support deserialization
-- Add it to `-[encodeWithCoder:]` to support serialization (NSCoding)
+- Add it to `-[encodeWithCoder:]` to support serialization (NSSecureCoding)
+- Add it to `-[description]` for nice logging output
+- Add it to `-[debugDescription]` for nice object printouts in a debugger.
 
 And forget about doing the right thing, and having both mutable and immutable
 versions of value objects like Apple's Foundation data structures...
@@ -51,6 +53,7 @@ protocols supported automatically:
     @end
 
     @implementation MyPerson
+
     - (id)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName
     {
         if (self = [super init]) {
@@ -59,16 +62,17 @@ protocols supported automatically:
         }
         return self;
     }
+
     @end
 
 That's it! All the cool methods are supported now:
 
     MyPerson *person = [[MyPerson alloc] initWithFirstName:@"John" lastName:"Doe"];
 
-    // Since copy returns same instance here, since it assumes immutability.
+    // Copy returns same instance here, since it assumes immutability.
     MyPerson *cloned = [person copy];
 
-    // this creates a MyPerson copy, but still read only. We'll see how to change that later
+    // this creates a new MyPerson instance, but still read only. We'll see how to change that later.
     MyPerson *mutableClone = [person mutableCopy];
 
     [person isEqual:mutableClone]; // => true
@@ -76,16 +80,14 @@ That's it! All the cool methods are supported now:
 
     // get a nice description for free
     [person description]; // => <MyPerson 0xdeadbeef firstName=John lastName=Doe>
+    // even in LLDB:
+    // > po person => <MyPerson 0xdeadbeef firstName=John lastName=Doe> 
 
-We want -[mutableCopy] to use a different, mutable class. Not a problem!
+Want `-[mutableCopy]` to use a different, actual, mutable class? Not a problem!
 
     @class MyMutablePerson;
 
-    // using a category is purely optional
-    @interface MyPerson (MutableCopying)
-    @end
-
-    @implementation MyPerson (MutableCopying)
+    @implementation MyPerson
 
     - (Class)JKV_mutableClass
     {
@@ -106,12 +108,12 @@ We want -[mutableCopy] to use a different, mutable class. Not a problem!
 
     - (BOOL)JKV_isMutable
     {
-        return YES; // to hint to JKVValue that this class is mutable.
+        return YES; // to hint to JKVValue that this concrete class is mutable.
     }
 
     - (Class)JKV_immutableClass
     {
-        return [MyPerson class];
+        return [MyPerson class]; // tells JKVValue which class to create for the immutable variant
     }
 
     @end
@@ -128,4 +130,15 @@ default of `NO`.
 
 It's worth noting that copy/mutableCopy is called on all properties if they support
 NSCopying or NSMutableCopying correspondingly.
+
+Gotchas
+-------
+
+Potential strangeness due to implementation details:
+
+ - Property assignment is done using KVC, which allows mutation of properties despite being marked as readonly. This allows default constructor `-[init]` plus KVC to be used when copying JKVValue objects.
+ - weak properties are not used for equality (or hashing) since their life can be lost to a value object at any time.
+ - weak properties are assigned through copying, and are not copied (a copied weak would just be released immediately).
+ - weak properties are correctly encoded and decoded as conditional objects.
+ - Due to the Objective-C Runtime, weak readonly properties behave like strong properties for JKVValues.
 
