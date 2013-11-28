@@ -54,6 +54,10 @@
 
     for (NSString *propertyName in self.properties) {
         id value = self.properties[propertyName];
+        if (value == [NSNull null]) {
+            value = nil;
+        }
+        
         [object setValue:value forKey:propertyName];
     }
 

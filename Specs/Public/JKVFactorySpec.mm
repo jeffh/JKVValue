@@ -45,7 +45,7 @@ describe(@"JKVFactory", ^{
                 person.lastName should equal(@"lastName");
                 person.married should be_truthy;
                 person.height should equal(1.0);
-                person.child should_not be_nil;
+                person.child should be_nil;
                 person.parent should be_nil;
             });
         });
@@ -63,7 +63,9 @@ describe(@"JKVFactory", ^{
 
             describe(@"building an object with custom values factory", ^{
                 beforeEach(^{
-                    person = [[factory factoryWithProperties:@{@"firstName": @"John", @"age": @42}] object];
+                    person = [[factory factoryWithProperties:@{@"firstName": @"John",
+                                                               @"age": @42,
+                                                               @"child": [NSNull null]}] object];
                 });
 
                 itShouldBehaveLikeAPersonObjectWithModifiedDefaults();
@@ -71,7 +73,9 @@ describe(@"JKVFactory", ^{
 
             describe(@"building an object with custom values", ^{
                 beforeEach(^{
-                    person = [factory objectWithProperties:@{@"firstName": @"John", @"age": @42}];
+                    person = [factory objectWithProperties:@{@"firstName": @"John",
+                                                             @"age": @42,
+                                                             @"child": [NSNull null]}];
                 });
 
                 itShouldBehaveLikeAPersonObjectWithModifiedDefaults();
@@ -80,7 +84,9 @@ describe(@"JKVFactory", ^{
             describe(@"building an object with nested custom factories", ^{
                 beforeEach(^{
                     person = [[factory
-                               factoryWithProperties:@{@"firstName": @"John", @"age": @42}]
+                               factoryWithProperties:@{@"firstName": @"John",
+                                                       @"age": @42,
+                                                       @"child": [NSNull null]}]
                               objectWithProperties:@{@"firstName": @"James"}];
                 });
 
@@ -134,7 +140,7 @@ describe(@"JKVFactory", ^{
 
         describe(@"building a custom object without a factory instance", ^{
             beforeEach(^{
-                person = [JKVPersonFactory buildObjectWithProperties:@{@"firstName": @"John", @"age": @42}];
+                person = [JKVPersonFactory buildObjectWithProperties:@{@"firstName": @"John", @"age": @42, @"child": [NSNull null]}];
             });
 
             itShouldBehaveLikeAPersonObjectWithModifiedDefaults();

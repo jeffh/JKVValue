@@ -131,6 +131,44 @@ default of `NO`.
 It's worth noting that copy/mutableCopy is called on all properties if they support
 NSCopying or NSMutableCopying correspondingly.
 
+Testing
+-------
+
+This library comes with a factory class, `JKVFactory`, to produce pre-built value objects easily.
+It's not explicitly tied to `JKVValue` or `JKVMutableValue`, but is useful pattern for drying
+up the boilerplate of generating pre-populated value objects.
+
+For the simpliest case of having a value object where non of its properties are zero:
+
+    JKVFactory *personFactory = [JKVFactory factoryForClass:[MyPerson class]]
+    JKVPerson *person = [personFactory object];
+
+If you want more customization, it's recommended to inherit from `JKVFactory` with a
+custom `-[init]` method:
+
+    @interface MyPersonFactory : JKVFactory
+    @end
+
+    @implementation MyPersonFactory
+
+    - (id)init
+    {
+        return [super initWithClass:[MyPerson class] properties:@{@"firstName": @"John"}];
+    }
+
+    @end
+
+    // shortcut to [[MyPersonFactory new] object]
+    MyPerson *person = [MyPersonFactory buildObject];
+
+Want a special object with custom properties?
+
+    [MyPersonFactory buildObjectWithProperties:@{@"firstName": @"James"}];
+
+Need to nil out a property? Use `[NSNull null]`:
+
+    [MyPersonFactory buildObjectWithProperties:@{@"lastName": [NSNull null]}];
+
 Gotchas
 -------
 
