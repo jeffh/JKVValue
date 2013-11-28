@@ -141,7 +141,7 @@ up the boilerplate of generating pre-populated value objects.
 For the simpliest case of having a value object where non of its properties are zero:
 
     JKVFactory *personFactory = [JKVFactory factoryForClass:[MyPerson class]]
-    JKVPerson *person = [personFactory object];
+    MyPerson *person = [personFactory object];
 
 If you want more customization, it's recommended to inherit from `JKVFactory` with a
 custom `-[init]` method:
