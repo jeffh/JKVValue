@@ -54,6 +54,16 @@
 		1F498DB117FE4808000CEA03 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F498DB017FE4808000CEA03 /* Default-568h@2x.png */; };
 		1F956B52180CFF2E00E603A9 /* libCedar-StaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F956B49180CFF1700E603A9 /* libCedar-StaticLib.a */; };
 		1F956B53180CFF3300E603A9 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F956B43180CFF1700E603A9 /* Cedar.framework */; };
+		1FB5D33A1847382F00789483 /* JKVFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3391847382F00789483 /* JKVFactory.m */; };
+		1FB5D33B1847382F00789483 /* JKVFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3391847382F00789483 /* JKVFactory.m */; };
+		1FB5D33C1847382F00789483 /* JKVFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3391847382F00789483 /* JKVFactory.m */; };
+		1FB5D3451847384500789483 /* JKVFactorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3441847384500789483 /* JKVFactorySpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1FB5D3461847384500789483 /* JKVFactorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3441847384500789483 /* JKVFactorySpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1FB5D3491847386D00789483 /* JKVPersonFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3481847386D00789483 /* JKVPersonFactory.m */; };
+		1FB5D34A1847386D00789483 /* JKVPersonFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3481847386D00789483 /* JKVPersonFactory.m */; };
+		1FB5D34D18473BFF00789483 /* JKVNonZeroSetterVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D34C18473BFF00789483 /* JKVNonZeroSetterVisitor.m */; };
+		1FB5D34E18473BFF00789483 /* JKVNonZeroSetterVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D34C18473BFF00789483 /* JKVNonZeroSetterVisitor.m */; };
+		1FB5D34F18473BFF00789483 /* JKVNonZeroSetterVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D34C18473BFF00789483 /* JKVNonZeroSetterVisitor.m */; };
 		1FB745D317FE5FFC00572B60 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB745D217FE5FFC00572B60 /* UIKit.framework */; };
 		1FB745D417FE630500572B60 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB745D217FE5FFC00572B60 /* UIKit.framework */; };
 		1FB745D517FE631300572B60 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCAB117FCE48E00A382AB /* CoreGraphics.framework */; };
@@ -130,6 +140,13 @@
 			remoteGlobalIDString = AEEE222811DC2B0600029872;
 			remoteInfo = "Cedar-StaticLib";
 		};
+		1FB5D3511847499900789483 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F956B36180CFF1600E603A9 /* Cedar.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F45A3DD180E4796003C1E36;
+			remoteInfo = XCUnitAppTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -190,6 +207,13 @@
 		1F4322A817FE2DFD001293C1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		1F498DB017FE4808000CEA03 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1F956B36180CFF1600E603A9 /* Cedar.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cedar.xcodeproj; path = cedar/Cedar.xcodeproj; sourceTree = "<group>"; };
+		1FB5D3381847382F00789483 /* JKVFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVFactory.h; sourceTree = "<group>"; };
+		1FB5D3391847382F00789483 /* JKVFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVFactory.m; sourceTree = "<group>"; };
+		1FB5D3441847384500789483 /* JKVFactorySpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JKVFactorySpec.mm; sourceTree = "<group>"; };
+		1FB5D3471847386D00789483 /* JKVPersonFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVPersonFactory.h; sourceTree = "<group>"; };
+		1FB5D3481847386D00789483 /* JKVPersonFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVPersonFactory.m; sourceTree = "<group>"; };
+		1FB5D34B18473BFF00789483 /* JKVNonZeroSetterVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVNonZeroSetterVisitor.h; sourceTree = "<group>"; };
+		1FB5D34C18473BFF00789483 /* JKVNonZeroSetterVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVNonZeroSetterVisitor.m; sourceTree = "<group>"; };
 		1FB745D217FE5FFC00572B60 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -308,6 +332,7 @@
 			children = (
 				1F2CCAC517FCE4D800A382AB /* JKVMutableValueSpec.mm */,
 				1F2CCAE417FD112100A382AB /* JKVValueSpec.mm */,
+				1FB5D3441847384500789483 /* JKVFactorySpec.mm */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -319,6 +344,8 @@
 				1F2CCAC917FCE78700A382AB /* JKVMutableValue.m */,
 				1F2CCAE617FD11ED00A382AB /* JKVValue.h */,
 				1F2CCAE717FD11ED00A382AB /* JKVValue.m */,
+				1FB5D3381847382F00789483 /* JKVFactory.h */,
+				1FB5D3391847382F00789483 /* JKVFactory.m */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -332,6 +359,8 @@
 				1F2CCAD617FD080F00A382AB /* JKVKeyedDecoderVisitor.m */,
 				1F2CCAD917FD0A8100A382AB /* JKVKeyedEncoderVisitor.h */,
 				1F2CCADA17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m */,
+				1FB5D34B18473BFF00789483 /* JKVNonZeroSetterVisitor.h */,
+				1FB5D34C18473BFF00789483 /* JKVNonZeroSetterVisitor.m */,
 				1F2CCACD17FCFAA700A382AB /* JKVProperty.h */,
 				1F2CCACE17FCFAA700A382AB /* JKVProperty.m */,
 			);
@@ -355,6 +384,8 @@
 				1F04B9A418025C2600FFEA7A /* JKVRestrictedObject.m */,
 				1F1E3FD218080D7400801509 /* JKVBasicValue.h */,
 				1F1E3FD318080D7400801509 /* JKVBasicValue.m */,
+				1FB5D3471847386D00789483 /* JKVPersonFactory.h */,
+				1FB5D3481847386D00789483 /* JKVPersonFactory.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -394,6 +425,7 @@
 				1F956B4B180CFF1700E603A9 /* iOSSpecs.app */,
 				1F956B4D180CFF1700E603A9 /* OCUnitApp.app */,
 				1F956B4F180CFF1700E603A9 /* OCUnitAppTests.octest */,
+				1FB5D3521847499900789483 /* XCUnitAppTests.xctest */,
 				1F956B51180CFF1700E603A9 /* OCUnitAppLogicTests.octest */,
 			);
 			name = Products;
@@ -545,6 +577,13 @@
 			remoteRef = 1F956B50180CFF1700E603A9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		1FB5D3521847499900789483 /* XCUnitAppTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = XCUnitAppTests.xctest;
+			remoteRef = 1FB5D3511847499900789483 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -565,9 +604,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F2CCAD717FD080F00A382AB /* JKVKeyedDecoderVisitor.m in Sources */,
+				1FB5D34D18473BFF00789483 /* JKVNonZeroSetterVisitor.m in Sources */,
 				1F2CCAE817FD11ED00A382AB /* JKVValue.m in Sources */,
 				1F2CCADB17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m in Sources */,
 				1F2CCACA17FCE78700A382AB /* JKVMutableValue.m in Sources */,
+				1FB5D33A1847382F00789483 /* JKVFactory.m in Sources */,
 				1F2CCACF17FCFAA700A382AB /* JKVProperty.m in Sources */,
 				1F2CCADF17FD0C4400A382AB /* JKVClassInspector.m in Sources */,
 			);
@@ -578,20 +619,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F3FCE7B1801B91E00A929F5 /* JKVMutableCollections.m in Sources */,
+				1FB5D34E18473BFF00789483 /* JKVNonZeroSetterVisitor.m in Sources */,
 				1F2CCADC17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m in Sources */,
 				1F2CCAEC17FD180500A382AB /* JKVTypeContainer.m in Sources */,
 				1F2CCABA17FCE48E00A382AB /* main.m in Sources */,
 				1F1E3FD418080D7400801509 /* JKVBasicValue.m in Sources */,
 				1F2CCAE517FD112100A382AB /* JKVValueSpec.mm in Sources */,
 				1F2CCAD017FCFAA700A382AB /* JKVProperty.m in Sources */,
+				1FB5D33B1847382F00789483 /* JKVFactory.m in Sources */,
 				1F2CCAD417FCFFD900A382AB /* JKVMutablePerson.m in Sources */,
 				1F04B9A518025C2600FFEA7A /* JKVRestrictedObject.m in Sources */,
 				1F2CCAE017FD0C4400A382AB /* JKVClassInspector.m in Sources */,
 				1F3FCE771801B8E400A929F5 /* JKVCollections.m in Sources */,
 				1F2CCAD817FD080F00A382AB /* JKVKeyedDecoderVisitor.m in Sources */,
+				1FB5D3451847384500789483 /* JKVFactorySpec.mm in Sources */,
 				1F2CCAC617FCE4D800A382AB /* JKVMutableValueSpec.mm in Sources */,
 				1F2CCAE317FD10F600A382AB /* JKVPerson.m in Sources */,
 				1F2CCAE917FD11ED00A382AB /* JKVValue.m in Sources */,
+				1FB5D3491847386D00789483 /* JKVPersonFactory.m in Sources */,
 				1F2CCACB17FCE78700A382AB /* JKVMutableValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -601,20 +646,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F3FCE7C1801B91E00A929F5 /* JKVMutableCollections.m in Sources */,
+				1FB5D34F18473BFF00789483 /* JKVNonZeroSetterVisitor.m in Sources */,
 				1F4322A217FE2DE0001293C1 /* JKVProperty.m in Sources */,
 				1F498DAF17FE3F34000CEA03 /* JKVTypeContainer.m in Sources */,
 				1F4322A317FE2DE0001293C1 /* JKVKeyedDecoderVisitor.m in Sources */,
 				1F1E3FD518080D7400801509 /* JKVBasicValue.m in Sources */,
 				1F4322A417FE2DE0001293C1 /* JKVKeyedEncoderVisitor.m in Sources */,
 				1F4322A517FE2DE0001293C1 /* JKVClassInspector.m in Sources */,
+				1FB5D33C1847382F00789483 /* JKVFactory.m in Sources */,
 				1F4322A617FE2DE0001293C1 /* JKVMutableValue.m in Sources */,
 				1F04B9A618025C2600FFEA7A /* JKVRestrictedObject.m in Sources */,
 				1F4322A717FE2DE0001293C1 /* JKVValue.m in Sources */,
 				1F3FCE781801B8E400A929F5 /* JKVCollections.m in Sources */,
 				1F43229817FE2C94001293C1 /* main.m in Sources */,
+				1FB5D3461847384500789483 /* JKVFactorySpec.mm in Sources */,
 				1F43229E17FE2CB4001293C1 /* JKVPerson.m in Sources */,
 				1F4322A117FE2CBD001293C1 /* JKVValueSpec.mm in Sources */,
 				1F4322A017FE2CBA001293C1 /* JKVMutableValueSpec.mm in Sources */,
+				1FB5D34A1847386D00789483 /* JKVPersonFactory.m in Sources */,
 				1F43229F17FE2CB6001293C1 /* JKVMutablePerson.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

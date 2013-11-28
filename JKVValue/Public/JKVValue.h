@@ -9,6 +9,9 @@
  *  - NSMutableCopying
  *  - NSCopying
  *
+ *  This implementation assumes immutability. This means -[JKVValue copy] returns the same
+ *  instance.
+ *
  *  If you want a mutable variant, inherit from JKVMutableValue.
  */
 @interface JKVValue : NSObject <NSMutableCopying, NSCopying, NSSecureCoding>
