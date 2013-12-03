@@ -16,7 +16,7 @@
 		1F2CCAB217FCE48E00A382AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCAB117FCE48E00A382AB /* CoreGraphics.framework */; };
 		1F2CCAB817FCE48E00A382AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F2CCAB617FCE48E00A382AB /* InfoPlist.strings */; };
 		1F2CCABA17FCE48E00A382AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAB917FCE48E00A382AB /* main.m */; };
-		1F2CCAC617FCE4D800A382AB /* JKVMutableValueSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAC517FCE4D800A382AB /* JKVMutableValueSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1F2CCAC617FCE4D800A382AB /* JKVMutableValueSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAC517FCE4D800A382AB /* JKVMutableValueSpec.mm */; };
 		1F2CCACA17FCE78700A382AB /* JKVMutableValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAC917FCE78700A382AB /* JKVMutableValue.m */; };
 		1F2CCACB17FCE78700A382AB /* JKVMutableValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAC917FCE78700A382AB /* JKVMutableValue.m */; };
 		1F2CCACF17FCFAA700A382AB /* JKVProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCACE17FCFAA700A382AB /* JKVProperty.m */; };
@@ -29,7 +29,7 @@
 		1F2CCADF17FD0C4400A382AB /* JKVClassInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADE17FD0C4400A382AB /* JKVClassInspector.m */; };
 		1F2CCAE017FD0C4400A382AB /* JKVClassInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADE17FD0C4400A382AB /* JKVClassInspector.m */; };
 		1F2CCAE317FD10F600A382AB /* JKVPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE217FD10F600A382AB /* JKVPerson.m */; };
-		1F2CCAE517FD112100A382AB /* JKVValueSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE417FD112100A382AB /* JKVValueSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1F2CCAE517FD112100A382AB /* JKVValueSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE417FD112100A382AB /* JKVValueSpec.mm */; };
 		1F2CCAE817FD11ED00A382AB /* JKVValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE717FD11ED00A382AB /* JKVValue.m */; };
 		1F2CCAE917FD11ED00A382AB /* JKVValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE717FD11ED00A382AB /* JKVValue.m */; };
 		1F2CCAEC17FD180500A382AB /* JKVTypeContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAEB17FD180500A382AB /* JKVTypeContainer.m */; };
@@ -41,8 +41,8 @@
 		1F43229817FE2C94001293C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F43229717FE2C94001293C1 /* main.m */; };
 		1F43229E17FE2CB4001293C1 /* JKVPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE217FD10F600A382AB /* JKVPerson.m */; };
 		1F43229F17FE2CB6001293C1 /* JKVMutablePerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD317FCFFD900A382AB /* JKVMutablePerson.m */; };
-		1F4322A017FE2CBA001293C1 /* JKVMutableValueSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAC517FCE4D800A382AB /* JKVMutableValueSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		1F4322A117FE2CBD001293C1 /* JKVValueSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE417FD112100A382AB /* JKVValueSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1F4322A017FE2CBA001293C1 /* JKVMutableValueSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAC517FCE4D800A382AB /* JKVMutableValueSpec.mm */; };
+		1F4322A117FE2CBD001293C1 /* JKVValueSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE417FD112100A382AB /* JKVValueSpec.mm */; };
 		1F4322A217FE2DE0001293C1 /* JKVProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCACE17FCFAA700A382AB /* JKVProperty.m */; };
 		1F4322A317FE2DE0001293C1 /* JKVKeyedDecoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD617FD080F00A382AB /* JKVKeyedDecoderVisitor.m */; };
 		1F4322A417FE2DE0001293C1 /* JKVKeyedEncoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADA17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m */; };
@@ -57,8 +57,8 @@
 		1FB5D33A1847382F00789483 /* JKVFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3391847382F00789483 /* JKVFactory.m */; };
 		1FB5D33B1847382F00789483 /* JKVFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3391847382F00789483 /* JKVFactory.m */; };
 		1FB5D33C1847382F00789483 /* JKVFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3391847382F00789483 /* JKVFactory.m */; };
-		1FB5D3451847384500789483 /* JKVFactorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3441847384500789483 /* JKVFactorySpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		1FB5D3461847384500789483 /* JKVFactorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3441847384500789483 /* JKVFactorySpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1FB5D3451847384500789483 /* JKVFactorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3441847384500789483 /* JKVFactorySpec.mm */; };
+		1FB5D3461847384500789483 /* JKVFactorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3441847384500789483 /* JKVFactorySpec.mm */; };
 		1FB5D3491847386D00789483 /* JKVPersonFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3481847386D00789483 /* JKVPersonFactory.m */; };
 		1FB5D34A1847386D00789483 /* JKVPersonFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3481847386D00789483 /* JKVPersonFactory.m */; };
 		1FB5D34D18473BFF00789483 /* JKVNonZeroSetterVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D34C18473BFF00789483 /* JKVNonZeroSetterVisitor.m */; };
@@ -67,23 +67,6 @@
 		1FB745D317FE5FFC00572B60 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB745D217FE5FFC00572B60 /* UIKit.framework */; };
 		1FB745D417FE630500572B60 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB745D217FE5FFC00572B60 /* UIKit.framework */; };
 		1FB745D517FE631300572B60 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCAB117FCE48E00A382AB /* CoreGraphics.framework */; };
-		1FF7F8EC184DBC0A00B2CF05 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4322A817FE2DFD001293C1 /* CoreGraphics.framework */; };
-		1FF7F8ED184DBC0A00B2CF05 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB745D217FE5FFC00572B60 /* UIKit.framework */; };
-		1FF7F8EE184DBC0A00B2CF05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8417FCE3D700A382AB /* Foundation.framework */; };
-		1FF7F8F4184DBC0A00B2CF05 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1FF7F8F2184DBC0A00B2CF05 /* InfoPlist.strings */; };
-		1FF7F905184DBC3000B2CF05 /* libCedar-StaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F956B49180CFF1700E603A9 /* libCedar-StaticLib.a */; };
-		1FF7F908184DBC4600B2CF05 /* JKVMutableValueSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAC517FCE4D800A382AB /* JKVMutableValueSpec.mm */; };
-		1FF7F909184DBC4600B2CF05 /* JKVValueSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE417FD112100A382AB /* JKVValueSpec.mm */; };
-		1FF7F90A184DBC4600B2CF05 /* JKVFactorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3441847384500789483 /* JKVFactorySpec.mm */; };
-		1FF7F90B184DBC5400B2CF05 /* JKVMutablePerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD317FCFFD900A382AB /* JKVMutablePerson.m */; };
-		1FF7F90C184DBC5400B2CF05 /* JKVPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE217FD10F600A382AB /* JKVPerson.m */; };
-		1FF7F90D184DBC5400B2CF05 /* JKVTypeContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAEB17FD180500A382AB /* JKVTypeContainer.m */; };
-		1FF7F90E184DBC5400B2CF05 /* JKVCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FCE761801B8E400A929F5 /* JKVCollections.m */; };
-		1FF7F90F184DBC5400B2CF05 /* JKVMutableCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FCE7A1801B91E00A929F5 /* JKVMutableCollections.m */; };
-		1FF7F910184DBC5400B2CF05 /* JKVRestrictedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F04B9A418025C2600FFEA7A /* JKVRestrictedObject.m */; };
-		1FF7F911184DBC5400B2CF05 /* JKVBasicValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1E3FD318080D7400801509 /* JKVBasicValue.m */; };
-		1FF7F912184DBC5400B2CF05 /* JKVPersonFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3481847386D00789483 /* JKVPersonFactory.m */; };
-		1FF7F91D184DBCC000B2CF05 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA9217FCE3D700A382AB /* XCTest.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,19 +140,12 @@
 			remoteGlobalIDString = AEEE222811DC2B0600029872;
 			remoteInfo = "Cedar-StaticLib";
 		};
-		1FF7F906184DBC3600B2CF05 /* PBXContainerItemProxy */ = {
+		1FF7F91F184DBE2200B2CF05 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1F956B36180CFF1600E603A9 /* Cedar.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = AEEE222811DC2B0600029872;
-			remoteInfo = "Cedar-StaticLib";
-		};
-		1FF7F91B184DBC8500B2CF05 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1F2CCA7917FCE3D700A382AB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1F2CCA8017FCE3D700A382AB;
-			remoteInfo = JKVValue;
+			proxyType = 2;
+			remoteGlobalIDString = 1F45A3DD180E4796003C1E36;
+			remoteInfo = XCUnitAppTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -239,11 +215,7 @@
 		1FB5D34B18473BFF00789483 /* JKVNonZeroSetterVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVNonZeroSetterVisitor.h; sourceTree = "<group>"; };
 		1FB5D34C18473BFF00789483 /* JKVNonZeroSetterVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVNonZeroSetterVisitor.m; sourceTree = "<group>"; };
 		1FB745D217FE5FFC00572B60 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		1FF7F8E9184DBC0A00B2CF05 /* JKVValueSpecs.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JKVValueSpecs.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FF7F8EA184DBC0A00B2CF05 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		1FF7F8F1184DBC0A00B2CF05 /* JKVValueSpecs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JKVValueSpecs-Info.plist"; sourceTree = "<group>"; };
-		1FF7F8F3184DBC0A00B2CF05 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1FF7F8FA184DBC0B00B2CF05 /* JKVValueSpecs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JKVValueSpecs-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,18 +250,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1FF7F8E5184DBC0A00B2CF05 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1FF7F91D184DBCC000B2CF05 /* XCTest.framework in Frameworks */,
-				1FF7F905184DBC3000B2CF05 /* libCedar-StaticLib.a in Frameworks */,
-				1FF7F8EC184DBC0A00B2CF05 /* CoreGraphics.framework in Frameworks */,
-				1FF7F8ED184DBC0A00B2CF05 /* UIKit.framework in Frameworks */,
-				1FF7F8EE184DBC0A00B2CF05 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -300,7 +260,6 @@
 				1F2CCA8617FCE3D700A382AB /* JKVValue */,
 				1F2CCAB317FCE48E00A382AB /* Specs */,
 				1F43229117FE2C94001293C1 /* OSXSpecs */,
-				1FF7F8EF184DBC0A00B2CF05 /* JKVValueSpecs */,
 				1F956B35180CFEF700E603A9 /* Externals */,
 				1F2CCA8317FCE3D700A382AB /* Frameworks */,
 				1F2CCA8217FCE3D700A382AB /* Products */,
@@ -313,7 +272,6 @@
 				1F2CCA8117FCE3D700A382AB /* libJKVValue.a */,
 				1F2CCAAE17FCE48E00A382AB /* Specs.app */,
 				1F43228F17FE2C94001293C1 /* OSXSpecs */,
-				1FF7F8E9184DBC0A00B2CF05 /* JKVValueSpecs.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -469,27 +427,10 @@
 				1F956B4B180CFF1700E603A9 /* iOSSpecs.app */,
 				1F956B4D180CFF1700E603A9 /* OCUnitApp.app */,
 				1F956B4F180CFF1700E603A9 /* OCUnitAppTests.octest */,
+				1FF7F920184DBE2200B2CF05 /* XCUnitAppTests.xctest */,
 				1F956B51180CFF1700E603A9 /* OCUnitAppLogicTests.octest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		1FF7F8EF184DBC0A00B2CF05 /* JKVValueSpecs */ = {
-			isa = PBXGroup;
-			children = (
-				1FF7F8F0184DBC0A00B2CF05 /* Supporting Files */,
-			);
-			path = JKVValueSpecs;
-			sourceTree = "<group>";
-		};
-		1FF7F8F0184DBC0A00B2CF05 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				1FF7F8F1184DBC0A00B2CF05 /* JKVValueSpecs-Info.plist */,
-				1FF7F8F2184DBC0A00B2CF05 /* InfoPlist.strings */,
-				1FF7F8FA184DBC0B00B2CF05 /* JKVValueSpecs-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -547,26 +488,6 @@
 			productReference = 1F43228F17FE2C94001293C1 /* OSXSpecs */;
 			productType = "com.apple.product-type.tool";
 		};
-		1FF7F8E8184DBC0A00B2CF05 /* JKVValueSpecs */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1FF7F904184DBC0B00B2CF05 /* Build configuration list for PBXNativeTarget "JKVValueSpecs" */;
-			buildPhases = (
-				1FF7F8E4184DBC0A00B2CF05 /* Sources */,
-				1FF7F8E5184DBC0A00B2CF05 /* Frameworks */,
-				1FF7F8E6184DBC0A00B2CF05 /* Resources */,
-				1FF7F8E7184DBC0A00B2CF05 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1FF7F91C184DBC8500B2CF05 /* PBXTargetDependency */,
-				1FF7F907184DBC3600B2CF05 /* PBXTargetDependency */,
-			);
-			name = JKVValueSpecs;
-			productName = JKVValueSpecs;
-			productReference = 1FF7F8E9184DBC0A00B2CF05 /* JKVValueSpecs.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -597,7 +518,6 @@
 				1F2CCA8017FCE3D700A382AB /* JKVValue */,
 				1F2CCAAD17FCE48E00A382AB /* Specs */,
 				1F43228E17FE2C94001293C1 /* OSXSpecs */,
-				1FF7F8E8184DBC0A00B2CF05 /* JKVValueSpecs */,
 			);
 		};
 /* End PBXProject section */
@@ -659,6 +579,13 @@
 			remoteRef = 1F956B50180CFF1700E603A9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		1FF7F920184DBE2200B2CF05 /* XCUnitAppTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = XCUnitAppTests.xctest;
+			remoteRef = 1FF7F91F184DBE2200B2CF05 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -671,31 +598,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1FF7F8E6184DBC0A00B2CF05 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1FF7F8F4184DBC0A00B2CF05 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		1FF7F8E7184DBC0A00B2CF05 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1F2CCA7D17FCE3D700A382AB /* Sources */ = {
@@ -767,24 +670,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1FF7F8E4184DBC0A00B2CF05 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1FF7F90B184DBC5400B2CF05 /* JKVMutablePerson.m in Sources */,
-				1FF7F90C184DBC5400B2CF05 /* JKVPerson.m in Sources */,
-				1FF7F90D184DBC5400B2CF05 /* JKVTypeContainer.m in Sources */,
-				1FF7F90E184DBC5400B2CF05 /* JKVCollections.m in Sources */,
-				1FF7F90F184DBC5400B2CF05 /* JKVMutableCollections.m in Sources */,
-				1FF7F910184DBC5400B2CF05 /* JKVRestrictedObject.m in Sources */,
-				1FF7F911184DBC5400B2CF05 /* JKVBasicValue.m in Sources */,
-				1FF7F912184DBC5400B2CF05 /* JKVPersonFactory.m in Sources */,
-				1FF7F908184DBC4600B2CF05 /* JKVMutableValueSpec.mm in Sources */,
-				1FF7F909184DBC4600B2CF05 /* JKVValueSpec.mm in Sources */,
-				1FF7F90A184DBC4600B2CF05 /* JKVFactorySpec.mm in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -798,16 +683,6 @@
 			name = "Cedar-StaticLib";
 			targetProxy = 1F956B56180CFFAA00E603A9 /* PBXContainerItemProxy */;
 		};
-		1FF7F907184DBC3600B2CF05 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Cedar-StaticLib";
-			targetProxy = 1FF7F906184DBC3600B2CF05 /* PBXContainerItemProxy */;
-		};
-		1FF7F91C184DBC8500B2CF05 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1F2CCA8017FCE3D700A382AB /* JKVValue */;
-			targetProxy = 1FF7F91B184DBC8500B2CF05 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -815,14 +690,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				1F2CCAB717FCE48E00A382AB /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		1FF7F8F2184DBC0A00B2CF05 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1FF7F8F3184DBC0A00B2CF05 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1024,58 +891,6 @@
 			};
 			name = Release;
 		};
-		1FF7F8FB184DBC0B00B2CF05 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JKVValue.app/JKVValue";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JKVValueSpecs/JKVValueSpecs-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/Externals/cedar/Source/Headers/**",
-				);
-				INFOPLIST_FILE = "JKVValueSpecs/JKVValueSpecs-Info.plist";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-					"-lstdc++",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		1FF7F8FC184DBC0B00B2CF05 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JKVValue.app/JKVValue";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JKVValueSpecs/JKVValueSpecs-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/Externals/cedar/Source/Headers/**",
-				);
-				INFOPLIST_FILE = "JKVValueSpecs/JKVValueSpecs-Info.plist";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-					"-lstdc++",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1114,14 +929,6 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
-		};
-		1FF7F904184DBC0B00B2CF05 /* Build configuration list for PBXNativeTarget "JKVValueSpecs" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1FF7F8FB184DBC0B00B2CF05 /* Debug */,
-				1FF7F8FC184DBC0B00B2CF05 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

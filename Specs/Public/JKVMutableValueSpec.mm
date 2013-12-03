@@ -12,9 +12,9 @@ describe(@"JKVMutableValue", ^{
     __block id parent;
 
     beforeEach(^{
-        parent = [[NSObject new] autorelease];
-        person = [[[JKVMutablePerson alloc] init] autorelease];
-        otherPerson = [[[JKVMutablePerson alloc] init] autorelease];
+        parent = [NSObject new];
+        person = [[JKVMutablePerson alloc] init];
+        otherPerson = [[JKVMutablePerson alloc] init];
         person.age       = otherPerson.age       = 28;
         person.firstName = otherPerson.firstName = @"John";
         person.lastName  = otherPerson.lastName  = @"Doe";
@@ -74,11 +74,11 @@ describe(@"JKVMutableValue", ^{
         __block JKVMutablePerson *deserializedPerson;
         beforeEach(^{
             NSMutableData *data = [NSMutableData data];
-            NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
+            NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
             [person encodeWithCoder:archiver];
             [archiver finishEncoding];
-            NSKeyedUnarchiver *unarchiver = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
-            deserializedPerson = [[[JKVMutablePerson alloc] initWithCoder:unarchiver] autorelease];
+            NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+            deserializedPerson = [[JKVMutablePerson alloc] initWithCoder:unarchiver];
             [unarchiver finishDecoding];
         });
 

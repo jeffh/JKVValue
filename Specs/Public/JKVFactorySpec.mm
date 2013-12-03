@@ -125,7 +125,7 @@ describe(@"JKVFactory", ^{
 
     describe(@"customized factory", ^{
         beforeEach(^{
-            factory = [[JKVPersonFactory new] autorelease];
+            factory = [JKVPersonFactory new];
         });
 
         itShouldBehaveLikeAPersonFactoryInstance();

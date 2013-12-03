@@ -17,19 +17,19 @@ describe(@"JKVValue", ^{
     __block id parent;
 
     beforeEach(^{
-        parent = [[NSObject new] autorelease];
-        person = [[[JKVPerson alloc] initWithFirstName:@"John"
+        parent = [NSObject new];
+        person = [[JKVPerson alloc] initWithFirstName:@"John"
                                               lastName:@"Doe"
                                                    age:28
                                                married:YES
                                                 height:60.8
-                                                parent:parent] autorelease];
-        otherPerson = [[[JKVPerson alloc] initWithFirstName:person.firstName
+                                                parent:parent];
+        otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
                                                    lastName:person.lastName
                                                         age:person.age
                                                     married:person.married
                                                      height:person.height
-                                                     parent:parent] autorelease];
+                                                     parent:parent];
     });
 
     it(@"should have a custom description", ^{
@@ -62,12 +62,12 @@ describe(@"JKVValue", ^{
 
         context(@"when the (weak) parent property is not equivalent in value", ^{
             it(@"should be equal", ^{
-                otherPerson = [[[JKVPerson alloc] initWithFirstName:person.firstName
+                otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
                                                            lastName:person.lastName
                                                                 age:person.age
                                                             married:person.married
                                                              height:person.height
-                                                             parent:@"foo"] autorelease];
+                                                             parent:@"foo"];
                 person should equal(otherPerson);
             });
         });
@@ -86,63 +86,63 @@ describe(@"JKVValue", ^{
         };
 
         itShouldNotEqualWhen(@"value's NSObject property is nil", ^{
-            person = [[[JKVPerson alloc] initWithFirstName:nil
+            person = [[JKVPerson alloc] initWithFirstName:nil
                                                   lastName:person.lastName
                                                        age:person.age
                                                    married:person.married
                                                     height:person.height
-                                                    parent:parent] autorelease];
+                                                    parent:parent];
         });
 
         itShouldNotEqualWhen(@"age", ^{
-            otherPerson = [[[JKVPerson alloc] initWithFirstName:person.firstName
+            otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
                                                        lastName:person.lastName
                                                             age:18
                                                         married:person.married
                                                          height:person.height
-                                                         parent:parent] autorelease];
+                                                         parent:parent];
         });
         itShouldNotEqualWhen(@"firstName", ^{
-            otherPerson = [[[JKVPerson alloc] initWithFirstName:@"James"
+            otherPerson = [[JKVPerson alloc] initWithFirstName:@"James"
                                                        lastName:person.lastName
                                                             age:person.age
                                                         married:person.married
                                                          height:person.height
-                                                         parent:parent] autorelease];
+                                                         parent:parent];
         });
         itShouldNotEqualWhen(@"lastName", ^{
-            otherPerson = [[[JKVPerson alloc] initWithFirstName:person.firstName
+            otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
                                                        lastName:@"Appleseed"
                                                             age:person.age
                                                         married:person.married
                                                          height:person.height
-                                                         parent:parent] autorelease];
+                                                         parent:parent];
         });
         itShouldNotEqualWhen(@"married", ^{
-            otherPerson = [[[JKVPerson alloc] initWithFirstName:person.firstName
+            otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
                                                        lastName:person.lastName
                                                             age:person.age
                                                         married:NO
                                                          height:person.height
-                                                         parent:parent] autorelease];
+                                                         parent:parent];
         });
 
         itShouldNotEqualWhen(@"height", ^{
-            otherPerson = [[[JKVPerson alloc] initWithFirstName:person.firstName
+            otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
                                                        lastName:person.lastName
                                                             age:person.age
                                                         married:person.married
                                                          height:2.2
-                                                         parent:parent] autorelease];
+                                                         parent:parent];
         });
 
         itShouldNotEqualWhen(@"child", ^{
-            otherPerson = [[[JKVPerson alloc] initWithFirstName:person.firstName
+            otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
                                                        lastName:person.lastName
                                                             age:person.age
                                                         married:person.married
                                                          height:person.height
-                                                         parent:parent] autorelease];
+                                                         parent:parent];
             otherPerson.child = @"FOO";
         });
     });
@@ -154,11 +154,11 @@ describe(@"JKVValue", ^{
 
         beforeEach(^{
             data = [NSMutableData data];
-            NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
+            NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
             [archiver encodeObject:@"bad" forKey:@"number"];
             [archiver finishEncoding];
 
-            unarchiver = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
+            unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
             spy_on(unarchiver);
         });
 
@@ -178,7 +178,7 @@ describe(@"JKVValue", ^{
 
             it(@"should raise exception if decoding a bad value", ^{
                 ^{
-                    deserializedValue = [[[JKVBasicValue alloc] initWithCoder:unarchiver] autorelease];
+                    deserializedValue = [[JKVBasicValue alloc] initWithCoder:unarchiver];
                 } should raise_exception([NSException exceptionWithName:NSInvalidUnarchiveOperationException reason:@"Failed to unarchive 'number' as 'NSNumber'" userInfo:nil]);
             });
         });
@@ -191,7 +191,7 @@ describe(@"JKVValue", ^{
 
             it(@"should not raise exception if decoding a bad value", ^{
                 ^{
-                    deserializedValue = [[[JKVBasicValue alloc] initWithCoder:unarchiver] autorelease];
+                    deserializedValue = [[JKVBasicValue alloc] initWithCoder:unarchiver];
                 } should_not raise_exception();
             });
         });
@@ -211,11 +211,11 @@ describe(@"JKVValue", ^{
 
         context(@"conditional coding", ^{
             beforeEach(^{
-                NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
+                NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
                 [archiver encodeObject:parent];
                 [archiver finishEncoding];
 
-                NSKeyedUnarchiver *unarchiver = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
+                NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
                 deserializedPerson = [unarchiver decodeObject];
                 [unarchiver finishDecoding];
             });
@@ -229,10 +229,10 @@ describe(@"JKVValue", ^{
 
         context(@"Keyed Coding", ^{
             beforeEach(^{
-                NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
+                NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
                 [archiver encodeObject:person];
                 [archiver finishEncoding];
-                NSKeyedUnarchiver *unarchiver = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
+                NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
                 deserializedPerson = [unarchiver decodeObject];
                 [unarchiver finishDecoding];
             });
@@ -248,7 +248,7 @@ describe(@"JKVValue", ^{
                 __block NSKeyedArchiver *archiver;
 
                 beforeEach(^{
-                    archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
+                    archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
                     spy_on(archiver);
                     archiver stub_method(@selector(allowsKeyedCoding)).and_return(NO);
                 });
@@ -269,11 +269,11 @@ describe(@"JKVValue", ^{
                 __block NSKeyedUnarchiver *unarchiver;
 
                 beforeEach(^{
-                    NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
+                    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
                     [archiver encodeObject:person];
                     [archiver finishEncoding];
 
-                    unarchiver = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
+                    unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
                     spy_on(unarchiver);
                     unarchiver stub_method(@selector(allowsKeyedCoding)).and_return(NO);
                 });
@@ -284,7 +284,7 @@ describe(@"JKVValue", ^{
 
                 it(@"should raise an exception", ^{
                     ^{
-                        deserializedPerson = [[[JKVPerson alloc] initWithCoder:unarchiver] autorelease];
+                        deserializedPerson = [[JKVPerson alloc] initWithCoder:unarchiver];
                     } should raise_exception([NSException exceptionWithName:NSInvalidUnarchiveOperationException reason:@"Only Keyed-Unarchivers are supported" userInfo:nil]);
                 });
             });
@@ -336,8 +336,8 @@ describe(@"JKVValue", ^{
         __block JKVTypeContainer *box;
         __block JKVTypeContainer *otherBox;
         beforeEach(^{
-            box = [[[JKVTypeContainer alloc] initWithPresetData] autorelease];
-            otherBox = [[[JKVTypeContainer alloc] initWithPresetData] autorelease];
+            box = [[JKVTypeContainer alloc] initWithPresetData];
+            otherBox = [[JKVTypeContainer alloc] initWithPresetData];
         });
 
         it(@"should support various types for encoding", ^{
@@ -349,10 +349,10 @@ describe(@"JKVValue", ^{
 
             beforeEach(^{
                 NSMutableData *data = [NSMutableData data];
-                NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
+                NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
                 [archiver encodeObject:box];
                 [archiver finishEncoding];
-                NSKeyedUnarchiver *unarchiver = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
+                NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
                 deserializedBox = [unarchiver decodeObject];
                 [unarchiver finishDecoding];
             });
@@ -396,15 +396,15 @@ describe(@"JKVValue", ^{
         __block JKVRestrictedObject *restrictedObject;
         __block id lastReader, lastWriter;
         beforeEach(^{
-            restrictedObject = [[[JKVRestrictedObject alloc] initWithPresetData] autorelease];
-            restrictedObject.lastReader = lastReader = [[NSObject new] autorelease];
-            restrictedObject.lastWriter = lastWriter = [[NSObject new] autorelease];
+            restrictedObject = [[JKVRestrictedObject alloc] initWithPresetData];
+            restrictedObject.lastReader = lastReader = [NSObject new];
+            restrictedObject.lastWriter = lastWriter = [NSObject new];
         });
 
         describe(@"equality", ^{
             __block JKVRestrictedObject *otherObject;
             beforeEach(^{
-                otherObject = [[[JKVRestrictedObject alloc] initWithPresetData] autorelease];
+                otherObject = [[JKVRestrictedObject alloc] initWithPresetData];
             });
 
             void (^itShouldNotEqualWhen)(NSString *, void(^)()) = ^(NSString *name, void(^mutator)()) {
