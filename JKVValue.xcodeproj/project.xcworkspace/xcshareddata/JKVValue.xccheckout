@@ -5,13 +5,15 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>DDC7642E-B56D-4654-AADD-89787B9C3FA7</string>
+	<string>6D95037A-C6DF-48B9-98F9-102E576BE9E5</string>
 	<key>IDESourceControlProjectName</key>
 	<string>JKVValue</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>BE328BF3-087F-461A-AA63-81DFA778CD12</key>
 		<string>ssh://github.com/jeffh/JKVValue.git</string>
+		<key>CE6E3912-0F63-4D8F-8D67-B18816095F69</key>
+		<string>https://github.com/pivotal/cedar</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>JKVValue.xcodeproj/project.xcworkspace</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>BE328BF3-087F-461A-AA63-81DFA778CD12</key>
 		<string>../..</string>
+		<key>CE6E3912-0F63-4D8F-8D67-B18816095F69</key>
+		<string>../../Externals/cedar</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/jeffh/JKVValue.git</string>
@@ -28,6 +32,14 @@
 	<string>BE328BF3-087F-461A-AA63-81DFA778CD12</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CE6E3912-0F63-4D8F-8D67-B18816095F69</string>
+			<key>IDESourceControlWCCName</key>
+			<string>cedar</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
