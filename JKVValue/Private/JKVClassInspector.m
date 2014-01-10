@@ -102,7 +102,7 @@ static NSMutableDictionary *inspectors__;
     for (JKVProperty *property in properties) {
         NSString *name = property.name;
         id value = [object valueForKey:name];
-        [string appendFormat:@" %@=", name];
+        [string appendFormat:@"\n  %@=", name];
         if (property.isWeak && value) {
             [string appendFormat:@"<%@: %p>", NSStringFromClass([value class]), value];
         } else {
