@@ -65,8 +65,6 @@
 		1FB5D34E18473BFF00789483 /* JKVNonZeroSetterVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D34C18473BFF00789483 /* JKVNonZeroSetterVisitor.m */; };
 		1FB5D34F18473BFF00789483 /* JKVNonZeroSetterVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D34C18473BFF00789483 /* JKVNonZeroSetterVisitor.m */; };
 		1FB745D317FE5FFC00572B60 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB745D217FE5FFC00572B60 /* UIKit.framework */; };
-		1FB745D417FE630500572B60 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB745D217FE5FFC00572B60 /* UIKit.framework */; };
-		1FB745D517FE631300572B60 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCAB117FCE48E00A382AB /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,8 +221,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FB745D517FE631300572B60 /* CoreGraphics.framework in Frameworks */,
-				1FB745D417FE630500572B60 /* UIKit.framework in Frameworks */,
 				1F2CCA8517FCE3D700A382AB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

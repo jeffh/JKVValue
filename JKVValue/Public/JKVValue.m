@@ -4,6 +4,8 @@
 #import "JKVKeyedEncoderVisitor.h"
 #import "JKVClassInspector.h"
 
+// We need ivars to avoid "picking" ourselves up from the runtime introspection
+// Namespaced to avoid getting clobbered by subclasses
 @interface JKVValue () {
     NSArray *_JKV_propertiesForIdentity;
     NSArray *_JKV_propertiesToAssignCopy;
