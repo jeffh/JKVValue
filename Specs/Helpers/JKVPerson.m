@@ -2,9 +2,20 @@
 #import "JKVMutablePerson.h"
 
 @interface JKVPerson ()
+@property (nonatomic, strong, readwrite) NSString<NSCopying> *firstName;
+@property (nonatomic, strong, readwrite) NSString *lastName;
+@property (nonatomic, assign, readwrite) NSInteger age;
+@property (nonatomic, assign, getter=isMarried, readwrite) BOOL married;
+@property (atomic, assign, readwrite) CGFloat height;
 @end
 
 @implementation JKVPerson
+
+- (id)init
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
 
 - (id)initWithFixtureData
 {

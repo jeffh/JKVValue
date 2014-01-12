@@ -108,17 +108,13 @@ describe(@"JKVFactory", ^{
 
         describe(@"+buildObject", ^{
             it(@"should raise an exception", ^{
-                ^{
-                    [JKVFactory buildObject];
-                } should raise_exception;
+                ^{ [JKVFactory buildObject]; } should raise_exception;
             });
         });
 
         describe(@"+buildObjectWithProperties", ^{
             it(@"should raise an exception", ^{
-                ^{
-                    [JKVFactory buildObjectWithProperties:@{}];
-                } should raise_exception;
+                ^{ [JKVFactory buildObjectWithProperties:@{}]; } should raise_exception;
             });
         });
     });

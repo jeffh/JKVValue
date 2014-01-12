@@ -13,14 +13,18 @@ describe(@"JKVMutableValue", ^{
 
     beforeEach(^{
         parent = [NSObject new];
-        person = [[JKVMutablePerson alloc] init];
-        otherPerson = [[JKVMutablePerson alloc] init];
-        person.age       = otherPerson.age       = 28;
-        person.firstName = otherPerson.firstName = @"John";
-        person.lastName  = otherPerson.lastName  = @"Doe";
-        person.married   = otherPerson.married   = YES;
-        person.height    = otherPerson.height    = 60.8;
-        person.parent    = otherPerson.parent    = parent;
+        person = [[JKVMutablePerson alloc] initWithFirstName:@"John"
+                                                    lastName:@"Doe"
+                                                         age:28
+                                                     married:YES
+                                                      height:60.8
+                                                      parent:parent];
+        otherPerson = [[JKVMutablePerson alloc] initWithFirstName:@"John"
+                                                         lastName:@"Doe"
+                                                              age:28
+                                                          married:YES
+                                                           height:60.8
+                                                           parent:parent];
     });
 
     it(@"should have a custom description", ^{

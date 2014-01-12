@@ -52,13 +52,18 @@ protocols supported automatically:
     - (id)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName;
     @end
 
+    @interface MyPerson ()
+    @property (strong, nonatomic, readwrite) NSString *firstName;
+    @property (strong, nonatomic, readwrite) NSString *lastName;
+    @end
+
     @implementation MyPerson
 
     - (id)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName
     {
         if (self = [super init]) {
-            _firstName = firstName;
-            _lastName = lastName;
+            self.firstName = firstName;
+            self.lastName = lastName;
         }
         return self;
     }
@@ -81,7 +86,7 @@ That's it! All the cool methods are supported now:
     // get a nice description for free
     [person description]; // => <MyPerson 0xdeadbeef firstName=John lastName=Doe>
     // even in LLDB:
-    // > po person => <MyPerson 0xdeadbeef firstName=John lastName=Doe> 
+    // > po person => <MyPerson 0xdeadbeef firstName=John lastName=Doe>
 
 Want `-[mutableCopy]` to use a different, actual, mutable class? Not a problem!
 
@@ -174,7 +179,7 @@ Gotchas
 
 Potential strangeness due to implementation details:
 
- - Property assignment is done using KVC, which allows mutation of properties despite being marked as readonly. This allows default constructor `-[init]` plus KVC to be used when copying JKVValue objects.
+ - Property assignment is done using KVC, which allows mutation of properties despite being marked as readonly. A private `-[init]` constructor is used by JKVValue to create the initial object.
  - weak properties are not used for equality (or hashing) since their life can be lost to a value object at any time.
  - weak properties are assigned through copying, and are not copied (a copied weak would just be released immediately).
  - weak properties are correctly encoded and decoded as conditional objects.

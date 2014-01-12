@@ -2,6 +2,11 @@
 #import "JKVClassInspector.h"
 #import "JKVProperty.h"
 #import "JKVNonZeroSetterVisitor.h"
+#import "JKVValue.h"
+
+@interface JKVValue ()
+- (id)initFromJKVValue;
+@end
 
 @interface JKVFactory ()
 @property (strong, nonatomic) JKVClassInspector *inspector;
@@ -46,7 +51,13 @@
 
 - (id)object
 {
-    id object = [[self.productClass alloc] init];
+    id object = [self.productClass alloc];
+    if ([object respondsToSelector:@selector(initFromJKVValue)]) {
+        object = [object initFromJKVValue];
+    } else {
+        object = [object init];
+    }
+
     JKVNonZeroSetterVisitor *visitor = [[JKVNonZeroSetterVisitor alloc] initWithObject:object];
     for (JKVProperty *property in self.inspector.nonWeakProperties) {
         [property visitEncodingType:visitor];

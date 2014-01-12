@@ -10,6 +10,7 @@
     JKVClassInspector *_JKV_inspector;
 }
 
+- (id)initFromJKVValue;
 - (NSArray *)JKV_cachedPropertiesForIdentity;
 - (NSArray *)JKV_cachedPropertiesToAssignCopy;
 - (JKVClassInspector *)JKV_inspector;
@@ -18,9 +19,16 @@
 
 @implementation JKVValue
 
+// like -[init], but allows us to still work if our
+// subclasses override -[init] to be not recognized.
+- (id)initFromJKVValue
+{
+    return self = [super init];
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [self init];
+    self = [super init];
     if (self) {
         JKVKeyedDecoderVisitor *visitor = [[JKVKeyedDecoderVisitor alloc] initWithCoder:aDecoder forObject:self];
         for (JKVProperty *property in self.JKV_inspector.allProperties) {
@@ -57,7 +65,7 @@
 
     NSArray *propertiesForIdentity = [self.JKV_cachedPropertiesForIdentity valueForKey:@"name"];
     NSArray *propertiesToAssign = [self.JKV_cachedPropertiesToAssignCopy valueForKey:@"name"];
-    id cloned = [[[self JKV_immutableClass] allocWithZone:zone] init];
+    id cloned = [[[self JKV_immutableClass] allocWithZone:zone] initFromJKVValue];
     return [self.JKV_inspector copyToObject:cloned
                                  fromObject:self
                                      inZone:zone
@@ -72,7 +80,7 @@
 {
     NSArray *propertiesForIdentity = [self.JKV_cachedPropertiesForIdentity valueForKey:@"name"];
     NSArray *propertiesToAssign = [self.JKV_cachedPropertiesToAssignCopy valueForKey:@"name"];
-    id cloned = [[[self JKV_mutableClass] allocWithZone:zone] init];
+    id cloned = [[[self JKV_mutableClass] allocWithZone:zone] initFromJKVValue];
     return [self.JKV_inspector copyToObject:cloned
                                  fromObject:self
                                      inZone:zone
