@@ -3,7 +3,7 @@ JKVValue
 
 Simple Value Objects for Objective-C.
 
-Value Objects are great for well-designed programs!
+[Value Objects][] are great for well-designed programs!
 
 They're great for documenting data from an API or your internal
 application data, but are terrible to maintain.
@@ -15,7 +15,7 @@ When you add (or change) a property, you usually have to do:
 - Add it to `-[mutableCopyWithZone:]` if it supports NSMutableCopying
 - Add it to `-[copyWithZone:]` if it supports NSCopying
 - Add it to `-[isEqual:]` to support equality for that modified property
-- Add it to `-[hash:]` to support hashing
+- Add it to `-[hash]` to support hashing
 - Add it to `-[initWithCoder:]` to support deserialization
 - Add it to `-[encodeWithCoder:]` to support serialization (NSSecureCoding)
 - Add it to `-[description]` for nice logging output
@@ -26,6 +26,8 @@ versions of value objects like Apple's Foundation data structures...
 until now!
 
 JKVValue simplifies your work to only setting the @property and constructor!
+
+[Value Objects]: http://en.wikipedia.org/wiki/Value_object
 
 Installation
 ============
@@ -118,9 +120,6 @@ Want `-[mutableCopy]` to use a different, actual, mutable class? Not a problem!
     @end
 
     @implementation MyMutablePerson
-    // we need to explicitly synthesize to generate setters.
-    @synthesize firstName=_firstName;
-    @synthesize lastName=_lastName;
 
     - (BOOL)JKV_isMutable
     {
