@@ -28,15 +28,26 @@ until now!
 JKVValue simplifies your work to only setting the @property and constructor!
 
 Installation
-------------
+============
 
-Currently installation is by git submodule add this project and adding it
-to your XCodeProject (for now).
+CocoaPods
+---------
 
-Add the JKVValue static library for your dependencies or use the source directly.
+If you like pod'n it up:
+
+    pod "JKVValue", "~> 1.0.0"
+
+Submodule
+---------
+
+If you like git submodules add this project and adding it to your project:
+
+    git submodule add https://github.com/jeffh/JKVValue <Externals/JKVValue>
+
+And then add the JKVValue static library and public headers for your dependencies.
 
 Usage
------
+=====
 
 There are two classes you can subclass, JKVValue and JKVMutableValue.
 Any properties you declare will automatically be detected and have their
@@ -175,7 +186,7 @@ Need to nil out a property? Use `[NSNull null]`:
     [MyPersonFactory buildObjectWithProperties:@{@"lastName": [NSNull null]}];
 
 Gotchas
--------
+=======
 
 Potential strangeness due to implementation details:
 
