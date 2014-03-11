@@ -35,13 +35,13 @@
                  parent:(id)parent
 {
     if (self = [super init]) {
-        _firstName = firstName;
-        _lastName = lastName;
-        _age = age;
-        _married = married;
-        _height = height;
-        _parent = parent;
-        _child = nil;
+        self.firstName = firstName;
+        self.lastName = lastName;
+        self.age = age;
+        self.married = married;
+        self.height = height;
+        self.parent = parent;
+        self.child = nil;
     }
     return self;
 }

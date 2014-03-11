@@ -121,6 +121,9 @@ Want `-[mutableCopy]` to use a different, actual, mutable class? Not a problem!
 
     @implementation MyMutablePerson
 
+    @synthesize firstName;
+    @synthesize lastName;
+
     - (BOOL)JKV_isMutable
     {
         return YES; // to hint to JKVValue that this concrete class is mutable.
@@ -194,4 +197,5 @@ Potential strangeness due to implementation details:
  - weak properties are assigned through copying, and are not copied (a copied weak would just be released immediately).
  - weak properties are correctly encoded and decoded as conditional objects.
  - Due to the Objective-C Runtime, weak readonly properties behave like strong properties for JKVValues.
+ - If you use the immutable/mutable pattern, you cannot have your constructor use the ivars directly, since the mutable version is overwriting them with its own.
 

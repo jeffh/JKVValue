@@ -28,7 +28,15 @@ describe(@"JKVMutableValue", ^{
     });
 
     it(@"should have a custom description", ^{
-        NSString *expectedDescription = [NSString stringWithFormat:@"<JKVMutablePerson: %p\n  child=(null)\n  firstName=John\n  lastName=Doe\n  age=28\n  married=1\n  height=60.8\n  parent=<NSObject: %p>>", person, parent];
+        NSString *expectedDescription = [NSString stringWithFormat:
+                                         @"<JKVMutablePerson: %p\n"
+                                         @"     child = nil\n"
+                                         @" firstName = @\"John\"\n"
+                                         @"  lastName = @\"Doe\"\n"
+                                         @"       age = 28\n"
+                                         @"   married = 1\n"
+                                         @"    height = 60.8\n"
+                                         @"    parent = <NSObject: %p>>", person, parent];
         person.description should contain(expectedDescription);
     });
 

@@ -33,7 +33,15 @@ describe(@"JKVValue", ^{
     });
 
     it(@"should have a custom description", ^{
-        NSString *expectedDescription = [NSString stringWithFormat:@"<JKVPerson: %p\n  firstName=John\n  lastName=Doe\n  age=28\n  married=1\n  height=60.8\n  parent=<NSObject: %p>\n  child=(null)>", person, parent];
+        NSString *expectedDescription = [NSString stringWithFormat:
+                                         @"<JKVPerson: %p\n"
+                                         @" firstName = @\"John\"\n"
+                                         @"  lastName = @\"Doe\"\n"
+                                         @"       age = 28\n"
+                                         @"   married = 1\n"
+                                         @"    height = 60.8\n"
+                                         @"    parent = <NSObject: %p>\n"
+                                         @"     child = nil>", person, parent];
         person.description should contain(expectedDescription);
     });
 
