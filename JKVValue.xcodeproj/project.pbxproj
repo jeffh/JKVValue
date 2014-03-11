@@ -138,6 +138,13 @@
 			remoteGlobalIDString = AEEE222811DC2B0600029872;
 			remoteInfo = "Cedar-StaticLib";
 		};
+		1FE0CB1518CEC95500194888 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F956B36180CFF1600E603A9 /* Cedar.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AE02E7E4184EABCD00414F19;
+			remoteInfo = iOSFrameworkSpecs;
+		};
 		1FF7F91F184DBE2200B2CF05 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1F956B36180CFF1600E603A9 /* Cedar.xcodeproj */;
@@ -421,6 +428,7 @@
 				1F956B47180CFF1700E603A9 /* FocusedSpecs */,
 				1F956B49180CFF1700E603A9 /* libCedar-StaticLib.a */,
 				1F956B4B180CFF1700E603A9 /* iOSSpecs.app */,
+				1FE0CB1618CEC95500194888 /* iOSFrameworkSpecs.app */,
 				1F956B4D180CFF1700E603A9 /* OCUnitApp.app */,
 				1F956B4F180CFF1700E603A9 /* OCUnitAppTests.octest */,
 				1FF7F920184DBE2200B2CF05 /* XCUnitAppTests.xctest */,
@@ -490,7 +498,7 @@
 		1F2CCA7917FCE3D700A382AB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Jeff Hui";
 			};
 			buildConfigurationList = 1F2CCA7C17FCE3D700A382AB /* Build configuration list for PBXProject "JKVValue" */;
@@ -573,6 +581,13 @@
 			fileType = wrapper.cfbundle;
 			path = OCUnitAppLogicTests.octest;
 			remoteRef = 1F956B50180CFF1700E603A9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1FE0CB1618CEC95500194888 /* iOSFrameworkSpecs.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = iOSFrameworkSpecs.app;
+			remoteRef = 1FE0CB1518CEC95500194888 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		1FF7F920184DBE2200B2CF05 /* XCUnitAppTests.xctest */ = {
@@ -697,7 +712,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -736,7 +750,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -794,7 +807,6 @@
 		1F2CCAC217FCE48F00A382AB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -825,7 +837,6 @@
 		1F2CCAC317FCE48F00A382AB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
