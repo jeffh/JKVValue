@@ -32,21 +32,41 @@ describe(@"JKVValue", ^{
                                                      parent:parent];
     });
 
-    it(@"should have a custom description", ^{
-        NSString *expectedDescription = [NSString stringWithFormat:
-                                         @"<JKVPerson: %p\n"
-                                         @" firstName = @\"John\"\n"
-                                         @"  lastName = @\"Doe\"\n"
-                                         @"       age = 28\n"
-                                         @"   married = 1\n"
-                                         @"    height = 60.8\n"
-                                         @"    parent = <NSObject: %p>\n"
-                                         @"     child = nil>", person, parent];
-        person.description should contain(expectedDescription);
-    });
+    describe(@"descriptions", ^{
+        it(@"should have a custom description", ^{
+            NSString *expectedDescription = [NSString stringWithFormat:
+                                             @"<JKVPerson: %p\n"
+                                             @" firstName = @\"John\"\n"
+                                             @"  lastName = @\"Doe\"\n"
+                                             @"       age = 28\n"
+                                             @"   married = 1\n"
+                                             @"    height = 60.8\n"
+                                             @"    parent = <NSObject: %p>\n"
+                                             @"     child = nil>", person, parent];
+            person.description should contain(expectedDescription);
+        });
+        
+        it(@"should have a debug description be the same as the description", ^{
+            person.debugDescription should contain(person.description);
+        });
 
-    it(@"should have a debug description be the same as the description", ^{
-        person.debugDescription should contain(person.description);
+        it(@"should pretty print objective-c containers", ^{
+            JKVCollections *container = [[JKVCollections alloc] initWithItems:@[@{@"hi": [NSSet setWithArray:@[@"lo", @"what up"]],
+                                                                                  @"some": @"value"}]
+                                                                        pairs:@{@"items": @[@{@"good": @"eats"},
+                                                                                            @1],
+                                                                                @"place": [NSURL URLWithString:@"http://google.com"]}];
+            NSString *expectedDescription = [NSString stringWithFormat:
+                                             @"<JKVCollections: %p\n"
+                                             @" items = @[@{@'hi': [NSSet setWithArray:@[@'lo',\n"
+                                             @"                                          @'what up']],\n"
+                                             @"             @'some': @'value'}]\n"
+                                             @" pairs = @{@'place': [NSURL URLWithString:@'http://google.com'],\n"
+                                             @"           @'items': @[@{@'good': @'eats'},\n"
+                                             @"                       1]}>", container];
+            expectedDescription = [expectedDescription stringByReplacingOccurrencesOfString:@"'" withString:@"\""];
+            container.description should equal(expectedDescription);
+        });
     });
 
     describe(@"equality", ^{

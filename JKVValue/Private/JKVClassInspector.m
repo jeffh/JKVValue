@@ -114,7 +114,10 @@ static NSMutableDictionary *inspectors__;
         if (property.isWeak && value) {
             [string appendFormat:@"<%@: %p>", NSStringFromClass([value class]), value];
         } else {
-            [string appendFormat:@"%@", [self descriptionForObject:value]];
+            NSString *prefix = [self stringByPaddingString:@"" toLength:maxLengthPropertyName + 4 withString:@" "];
+            [string appendFormat:@"%@", [self stringWithMultilineString:[self descriptionForObject:value]
+                                                         withLinePrefix:prefix
+                                                        prefixFirstLine:NO]];
         }
     }
     [string appendString:@">"];
@@ -125,29 +128,42 @@ static NSMutableDictionary *inspectors__;
 {
     NSMutableString *output = [NSMutableString string];
     if ([object isKindOfClass:[NSArray class]]) {
-        [output appendString:@"@[\n"];
+        [output appendString:@"@["];
+        NSMutableArray *itemStrings = [NSMutableArray arrayWithCapacity:[object count]];
+        BOOL prefixLinePrefix = NO;
         for (id item in object) {
-            NSString *string = [NSString stringWithFormat:@"%@,", [self descriptionForObject:item]];
-            [output appendString:[self stringWithMultilineString:string withLinePrefix:@"  "]];
+            NSString *string = [NSString stringWithFormat:@"%@", [self descriptionForObject:item]];
+            [itemStrings addObject:[self stringWithMultilineString:string withLinePrefix:@"  " prefixFirstLine:prefixLinePrefix]];
+            prefixLinePrefix = YES;
         }
+        [output appendString:[itemStrings componentsJoinedByString:@",\n"]];
         [output appendString:@"]"];
     } else if ([object isKindOfClass:[NSSet class]]) {
-        [output appendString:@"[NSSet setWithObjects:\n"];
-        for (id item in object) {
-            NSString *string = [NSString stringWithFormat:@"%@,", [self descriptionForObject:item]];
-            [output appendString:[self stringWithMultilineString:string withLinePrefix:@"  "]];
-        }
-        [output appendString:@"nil]"];
+        [output appendString:@"[NSSet setWithArray:"];
+        [output appendString:[self stringWithMultilineString:[self descriptionForObject:[object allObjects]]
+                                              withLinePrefix:@"                      "
+                                             prefixFirstLine:NO]];
+        [output appendString:@"]"];
     } else if ([object isKindOfClass:[NSDictionary class]]) {
-        [output appendString:@"@{\n"];
+        [output appendString:@"@{"];
+        NSMutableArray *itemStrings = [NSMutableArray arrayWithCapacity:[object count]];
+        BOOL prefixLinePrefix = NO;
         for (id key in object) {
             id value = [object objectForKey:key];
-            NSString *string = [NSString stringWithFormat:@"%@: %@,", [self descriptionForObject:key], [self descriptionForObject:value]];
-            [output appendString:[self stringWithMultilineString:string withLinePrefix:@"  "]];
+            NSString *keyString = [self stringWithMultilineString:[self descriptionForObject:key]
+                                                   withLinePrefix:@"  "
+                                                  prefixFirstLine:prefixLinePrefix];
+            NSString *string = [NSString stringWithFormat:@"%@: %@", keyString, [self descriptionForObject:value]];
+            NSString *prefixString = [self stringByPaddingString:@"" toLength:keyString.length + 2 withString:@" "];
+            [itemStrings addObject:[self stringWithMultilineString:string withLinePrefix:prefixString prefixFirstLine:NO]];
+            prefixLinePrefix = YES;
         }
+        [output appendString:[itemStrings componentsJoinedByString:@",\n"]];
         [output appendString:@"}"];
     } else if ([object isKindOfClass:[NSNull class]]) {
         [output appendString:@"[NSNull null]"];
+    } else if ([object isKindOfClass:[NSURL class]]) {
+        [output appendFormat:@"[NSURL URLWithString:%@]", [self descriptionForObject:[object absoluteString]]];
     } else if ([object isKindOfClass:[NSString class]]) {
         [output appendFormat:@"@\"%@\"", [object stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];
     } else if (!object) {
@@ -170,11 +186,15 @@ static NSMutableDictionary *inspectors__;
     return output;
 }
 
-- (NSString *)stringWithMultilineString:(NSString *)content withLinePrefix:(NSString *)linePrefix
+- (NSString *)stringWithMultilineString:(NSString *)content withLinePrefix:(NSString *)linePrefix prefixFirstLine:(BOOL)prefixFirstLine
 {
     NSArray *components = [content componentsSeparatedByString:@"\n"];
     NSString *prefix = [NSString stringWithFormat:@"\n%@", linePrefix];
-    return [prefix stringByAppendingString:[components componentsJoinedByString:prefix]];
+    if (prefixFirstLine) {
+        return [linePrefix stringByAppendingString:[components componentsJoinedByString:prefix]];
+    } else {
+        return [components componentsJoinedByString:prefix];
+    }
 }
 
 #pragma mark - Properties
