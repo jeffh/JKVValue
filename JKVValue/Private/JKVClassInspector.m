@@ -2,6 +2,16 @@
 #import "JKVProperty.h"
 #import <objc/runtime.h>
 
+NSComparisonResult (^JKVGenericSorter)(id, id) = ^NSComparisonResult(id obj1, id obj2){
+    if ((__bridge void *)obj1 > (__bridge void *)obj2) {
+        return NSOrderedAscending;
+    } else if (obj1 == obj2) {
+        return NSOrderedSame;
+    } else {
+        return NSOrderedDescending;
+    }
+};
+
 @interface JKVClassInspector ()
 @property (strong, nonatomic) Class aClass;
 @property (strong, nonatomic, readwrite) NSArray *properties;
@@ -139,16 +149,24 @@ static NSMutableDictionary *inspectors__;
         [output appendString:[itemStrings componentsJoinedByString:@",\n"]];
         [output appendString:@"]"];
     } else if ([object isKindOfClass:[NSSet class]]) {
-        [output appendString:@"[NSSet setWithArray:"];
-        [output appendString:[self stringWithMultilineString:[self descriptionForObject:[object allObjects]]
-                                              withLinePrefix:@"                      "
+        NSString *prefix = @"[NSSet setWithArray:";
+        [output appendString:prefix];
+
+        // we sort here for order consistency in tests. Maybe we can have a better generic comparison.
+        NSString *arrayString = [self descriptionForObject:[[object allObjects] sortedArrayUsingComparator:JKVGenericSorter]];
+        [output appendString:[self stringWithMultilineString:arrayString
+                                              withLinePrefix:[self stringByPaddingString:@"" toLength:prefix.length withString:@" "]
                                              prefixFirstLine:NO]];
         [output appendString:@"]"];
     } else if ([object isKindOfClass:[NSDictionary class]]) {
         [output appendString:@"@{"];
         NSMutableArray *itemStrings = [NSMutableArray arrayWithCapacity:[object count]];
         BOOL prefixLinePrefix = NO;
-        for (id key in object) {
+
+        // we sort here for order consistency in tests. Maybe we can have a better generic comparison.
+        NSArray *keys = [[object allKeys] sortedArrayUsingComparator:JKVGenericSorter];
+
+        for (id key in keys) {
             id value = [object objectForKey:key];
             NSString *keyString = [self stringWithMultilineString:[self descriptionForObject:key]
                                                    withLinePrefix:@"  "

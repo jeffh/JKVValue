@@ -58,9 +58,9 @@ describe(@"JKVValue", ^{
                                                                                 @"place": [NSURL URLWithString:@"http://google.com"]}];
             NSString *expectedDescription = [NSString stringWithFormat:
                                              @"<JKVCollections: %p\n"
-                                             @" items = @[@{@'hi': [NSSet setWithArray:@[@'lo',\n"
-                                             @"                                          @'what up']],\n"
-                                             @"             @'some': @'value'}]\n"
+                                             @" items = @[@{@'some': @'value',\n"
+                                             @"             @'hi': [NSSet setWithArray:@[@'what up',\n"
+                                             @"                                          @'lo']]}]\n"
                                              @" pairs = @{@'place': [NSURL URLWithString:@'http://google.com'],\n"
                                              @"           @'items': @[@{@'good': @'eats'},\n"
                                              @"                       1]}>", container];
