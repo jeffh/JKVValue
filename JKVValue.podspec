@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "JKVValue"
-  s.version      = "1.0.0"
+  s.version      = "1.1.0"
   s.summary      = "A simple Value Object library."
 
   s.description  = <<-DESC
@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '6.0'
   s.osx.deployment_target = '10.8'
-  s.source       = { :git => "https://github.com/jeffh/JKVValue.git", :tag => "v1.0.0" }
+  s.source       = { :git => "https://github.com/jeffh/JKVValue.git", :tag => "v1.1.0" }
   s.source_files  = 'JKVValue/**/*.{h,m}'
   s.public_header_files = 'JKVValue/Public/**/*.h'
   s.requires_arc = true
