@@ -9,7 +9,7 @@ def system_or_exit(cmd)
 end
 
 def xcbuild(cmd)
-  xcp = ENV['XCPRETTY'] || `which xcpretty`.strip!
+  xcp = ENV['XCPRETTY'] || `which xcpretty`.strip! || ""
   if File.exists? xcp
     system_or_exit("xcodebuild #{cmd} | #{xcp} -tc")
   else
