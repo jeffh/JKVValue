@@ -16,6 +16,7 @@
 /*! The class that this factory will produce instances of.
  */
 @property (strong, nonatomic) Class productClass;
+
 /*! A dictionary of properties names to values. This allows you to specify
  *  different default values when generating an object.
  *
@@ -49,12 +50,14 @@
  *  @returns a new factory instance for the given class.
  */
 + (instancetype)factoryForClass:(Class)aClass;
+
 /*! Creates a new factory instance that can produce the object of the given class.
  *
  *  @param aClass The class of objects for the factory instance to produce.
  *  @returns a new factory instance for the given class.
  */
 - (id)initWithClass:(Class)aClass;
+
 /*! Creates a new factory instance that can produce the object of the given class.
  *
  *  @param aClass The class of objects for the factory instance to produce.

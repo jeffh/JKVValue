@@ -68,7 +68,7 @@
         if (value == [NSNull null]) {
             value = nil;
         }
-        
+
         [object setValue:value forKey:propertyName];
     }
 

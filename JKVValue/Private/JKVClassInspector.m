@@ -1,16 +1,7 @@
 #import "JKVClassInspector.h"
 #import "JKVProperty.h"
 #import <objc/runtime.h>
-
-NSComparisonResult (^JKVGenericSorter)(id, id) = ^NSComparisonResult(id obj1, id obj2){
-    if ((__bridge void *)obj1 > (__bridge void *)obj2) {
-        return NSOrderedAscending;
-    } else if (obj1 == obj2) {
-        return NSOrderedSame;
-    } else {
-        return NSOrderedDescending;
-    }
-};
+#import "JKVObjectPrinter.h"
 
 @interface JKVClassInspector ()
 @property (strong, nonatomic) Class aClass;
@@ -136,60 +127,7 @@ static NSMutableDictionary *inspectors__;
 
 - (NSString *)descriptionForObject:(id)object
 {
-    NSMutableString *output = [NSMutableString string];
-    if ([object isKindOfClass:[NSArray class]]) {
-        [output appendString:@"@["];
-        NSMutableArray *itemStrings = [NSMutableArray arrayWithCapacity:[object count]];
-        BOOL prefixLinePrefix = NO;
-        for (id item in object) {
-            NSString *string = [NSString stringWithFormat:@"%@", [self descriptionForObject:item]];
-            [itemStrings addObject:[self stringWithMultilineString:string withLinePrefix:@"  " prefixFirstLine:prefixLinePrefix]];
-            prefixLinePrefix = YES;
-        }
-        [output appendString:[itemStrings componentsJoinedByString:@",\n"]];
-        [output appendString:@"]"];
-    } else if ([object isKindOfClass:[NSSet class]]) {
-        NSString *prefix = @"[NSSet setWithArray:";
-        [output appendString:prefix];
-
-        // we sort here for order consistency in tests. Maybe we can have a better generic comparison.
-        NSString *arrayString = [self descriptionForObject:[[object allObjects] sortedArrayUsingComparator:JKVGenericSorter]];
-        [output appendString:[self stringWithMultilineString:arrayString
-                                              withLinePrefix:[self stringByPaddingString:@"" toLength:prefix.length withString:@" "]
-                                             prefixFirstLine:NO]];
-        [output appendString:@"]"];
-    } else if ([object isKindOfClass:[NSDictionary class]]) {
-        [output appendString:@"@{"];
-        NSMutableArray *itemStrings = [NSMutableArray arrayWithCapacity:[object count]];
-        BOOL prefixLinePrefix = NO;
-
-        // we sort here for order consistency in tests. Maybe we can have a better generic comparison.
-        NSArray *keys = [[object allKeys] sortedArrayUsingComparator:JKVGenericSorter];
-
-        for (id key in keys) {
-            id value = [object objectForKey:key];
-            NSString *keyString = [self stringWithMultilineString:[self descriptionForObject:key]
-                                                   withLinePrefix:@"  "
-                                                  prefixFirstLine:prefixLinePrefix];
-            NSString *string = [NSString stringWithFormat:@"%@: %@", keyString, [self descriptionForObject:value]];
-            NSString *prefixString = [self stringByPaddingString:@"" toLength:keyString.length + 2 withString:@" "];
-            [itemStrings addObject:[self stringWithMultilineString:string withLinePrefix:prefixString prefixFirstLine:NO]];
-            prefixLinePrefix = YES;
-        }
-        [output appendString:[itemStrings componentsJoinedByString:@",\n"]];
-        [output appendString:@"}"];
-    } else if ([object isKindOfClass:[NSNull class]]) {
-        [output appendString:@"[NSNull null]"];
-    } else if ([object isKindOfClass:[NSURL class]]) {
-        [output appendFormat:@"[NSURL URLWithString:%@]", [self descriptionForObject:[object absoluteString]]];
-    } else if ([object isKindOfClass:[NSString class]]) {
-        [output appendFormat:@"@\"%@\"", [object stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];
-    } else if (!object) {
-        [output appendString:@"nil"];
-    } else {
-        [output appendString:[object description]];
-    }
-    return output;
+    return [JKVObjectPrinter stringForObject:object];
 }
 
 #pragma mark - Private

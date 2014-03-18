@@ -52,6 +52,9 @@
 /*! For subclasses to override to specify which properties are used for equality and hashing.
  */
 - (NSArray *)JKV_propertyNamesForIdentity;
+
+/*! For subclasses to override which weak properties to check for assignment and do weak encoding.
+ */
 - (NSArray *)JKV_propertyNamesToAssignCopy;
 
 @end

@@ -14,7 +14,10 @@
 		1F2CCADB17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADA17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m */; };
 		1F2CCADF17FD0C4400A382AB /* JKVClassInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADE17FD0C4400A382AB /* JKVClassInspector.m */; };
 		1F2CCAE817FD11ED00A382AB /* JKVValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE717FD11ED00A382AB /* JKVValue.m */; };
-		1FA39D0818D5402E0066061C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FA39D0718D5402E0066061C /* XCTest.framework */; };
+		1F5CF03718D7F00400E874B9 /* JKVObjectPrinter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F5CF03518D7F00400E874B9 /* JKVObjectPrinter.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		1F5CF03818D7F00400E874B9 /* JKVObjectPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5CF03618D7F00400E874B9 /* JKVObjectPrinter.m */; };
+		1F5CF03918D7F00400E874B9 /* JKVObjectPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5CF03618D7F00400E874B9 /* JKVObjectPrinter.m */; };
+		1F5CF04518D7F87600E874B9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5CF04418D7F87600E874B9 /* SenTestingKit.framework */; };
 		1FA39D0918D5402E0066061C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8417FCE3D700A382AB /* Foundation.framework */; };
 		1FA39D1918D540360066061C /* libCedar-StaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F956B49180CFF1700E603A9 /* libCedar-StaticLib.a */; };
 		1FA39D1C18D540880066061C /* JKVMutablePerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD317FCFFD900A382AB /* JKVMutablePerson.m */; };
@@ -204,8 +207,11 @@
 		1F43229417FE2C94001293C1 /* OSXSpecs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OSXSpecs-Prefix.pch"; sourceTree = "<group>"; };
 		1F4322A817FE2DFD001293C1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		1F498DB017FE4808000CEA03 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		1F5CF03518D7F00400E874B9 /* JKVObjectPrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVObjectPrinter.h; sourceTree = "<group>"; };
+		1F5CF03618D7F00400E874B9 /* JKVObjectPrinter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVObjectPrinter.m; sourceTree = "<group>"; };
+		1F5CF04418D7F87600E874B9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		1F956B36180CFF1600E603A9 /* Cedar.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cedar.xcodeproj; path = cedar/Cedar.xcodeproj; sourceTree = "<group>"; };
-		1FA39D0618D5402E0066061C /* Specs.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Specs.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FA39D0618D5402E0066061C /* Specs.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Specs.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA39D0718D5402E0066061C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		1FA39D2C18D541ED0066061C /* OSXSpecs.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSXSpecs.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA39D5318D544AD0066061C /* JKVValue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JKVValue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -237,9 +243,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F5CF04518D7F87600E874B9 /* SenTestingKit.framework in Frameworks */,
 				1FA39D2718D5410D0066061C /* libJKVValue.a in Frameworks */,
 				1FA39D1918D540360066061C /* libCedar-StaticLib.a in Frameworks */,
-				1FA39D0818D5402E0066061C /* XCTest.framework in Frameworks */,
 				1FA39D0918D5402E0066061C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,7 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				1F2CCA8117FCE3D700A382AB /* libJKVValue.a */,
-				1FA39D0618D5402E0066061C /* Specs.xctest */,
+				1FA39D0618D5402E0066061C /* Specs.octest */,
 				1FA39D2C18D541ED0066061C /* OSXSpecs.xctest */,
 				1FA39D5318D544AD0066061C /* JKVValue.framework */,
 			);
@@ -292,6 +298,7 @@
 		1F2CCA8317FCE3D700A382AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1F5CF04418D7F87600E874B9 /* SenTestingKit.framework */,
 				1FB745D217FE5FFC00572B60 /* UIKit.framework */,
 				1F4322A817FE2DFD001293C1 /* CoreGraphics.framework */,
 				1F2CCA8417FCE3D700A382AB /* Foundation.framework */,
@@ -380,6 +387,8 @@
 				1FB5D34C18473BFF00789483 /* JKVNonZeroSetterVisitor.m */,
 				1F2CCACD17FCFAA700A382AB /* JKVProperty.h */,
 				1F2CCACE17FCFAA700A382AB /* JKVProperty.m */,
+				1F5CF03518D7F00400E874B9 /* JKVObjectPrinter.h */,
+				1F5CF03618D7F00400E874B9 /* JKVObjectPrinter.m */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -471,6 +480,7 @@
 				1FA39D9118D5456B0066061C /* JKVProperty.h in Headers */,
 				1FA39D8F18D5456B0066061C /* JKVKeyedEncoderVisitor.h in Headers */,
 				1FA39D9018D5456B0066061C /* JKVNonZeroSetterVisitor.h in Headers */,
+				1F5CF03718D7F00400E874B9 /* JKVObjectPrinter.h in Headers */,
 				1FA39D8B18D544CC0066061C /* JKVFactory.h in Headers */,
 				1FA39D8718D544CC0066061C /* JKVMutableValue.h in Headers */,
 			);
@@ -512,7 +522,7 @@
 			);
 			name = Specs;
 			productName = Specs;
-			productReference = 1FA39D0618D5402E0066061C /* Specs.xctest */;
+			productReference = 1FA39D0618D5402E0066061C /* Specs.octest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		1FA39D2B18D541ED0066061C /* OSXSpecs */ = {
@@ -694,6 +704,7 @@
 				1F2CCACA17FCE78700A382AB /* JKVMutableValue.m in Sources */,
 				1FB5D33A1847382F00789483 /* JKVFactory.m in Sources */,
 				1F2CCACF17FCFAA700A382AB /* JKVProperty.m in Sources */,
+				1F5CF03818D7F00400E874B9 /* JKVObjectPrinter.m in Sources */,
 				1F2CCADF17FD0C4400A382AB /* JKVClassInspector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -745,6 +756,7 @@
 				1FA39D7F18D544C10066061C /* JKVNonZeroSetterVisitor.m in Sources */,
 				1FA39D7C18D544C10066061C /* JKVClassInspector.m in Sources */,
 				1FA39D8A18D544CC0066061C /* JKVValue.m in Sources */,
+				1F5CF03918D7F00400E874B9 /* JKVObjectPrinter.m in Sources */,
 				1FA39D7D18D544C10066061C /* JKVKeyedDecoderVisitor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -790,6 +802,7 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -803,7 +816,9 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_SHADOW = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -828,6 +843,7 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
@@ -835,7 +851,9 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_SHADOW = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -894,12 +912,9 @@
 				);
 				INFOPLIST_FILE = "Specs/Specs-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = xctest;
+				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -921,12 +936,9 @@
 				);
 				INFOPLIST_FILE = "Specs/Specs-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = xctest;
+				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};

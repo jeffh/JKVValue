@@ -45,7 +45,7 @@ describe(@"JKVValue", ^{
                                              @"     child = nil>", person, parent];
             person.description should contain(expectedDescription);
         });
-        
+
         it(@"should have a debug description be the same as the description", ^{
             person.debugDescription should contain(person.description);
         });
@@ -226,21 +226,21 @@ describe(@"JKVValue", ^{
     });
 
     describe(@"NSCoding", ^{
-        __block JKVPerson *parent;
+        __block JKVPerson *parentPerson;
         __block JKVPerson *deserializedPerson;
         __block NSMutableData *data;
 
         beforeEach(^{
             data = [NSMutableData data];
-            parent = [[JKVPerson alloc] initWithFixtureData];
-            person.parent = parent;
-            parent.child = person;
+            parentPerson = [[JKVPerson alloc] initWithFixtureData];
+            person.parent = parentPerson;
+            parentPerson.child = person;
         });
 
         context(@"conditional coding", ^{
             beforeEach(^{
                 NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-                [archiver encodeObject:parent];
+                [archiver encodeObject:parentPerson];
                 [archiver finishEncoding];
 
                 NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
@@ -249,7 +249,7 @@ describe(@"JKVValue", ^{
             });
 
             it(@"should have its child.parent encoded", ^{
-                deserializedPerson should equal(parent);
+                deserializedPerson should equal(parentPerson);
                 deserializedPerson.child should equal(person);
                 (JKVPerson *)[deserializedPerson.child parent] should be_same_instance_as(deserializedPerson);
             });
