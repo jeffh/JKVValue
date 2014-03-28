@@ -118,7 +118,31 @@
     return [self.JKV_inspector hashObject:self byPropertyNames:propertyNames];
 }
 
-#pragma mark - Public / Protected
+#pragma mark - Public
+
+- (NSDictionary *)differenceToObject:(id)otherValueObject
+{
+    NSMutableDictionary *differences = [NSMutableDictionary dictionary];
+    if (self == otherValueObject) {
+        return differences;
+    }
+
+    if (![[otherValueObject class] isSubclassOfClass:[self class]] && ![[self class] isSubclassOfClass:[otherValueObject class]]) {
+        differences[@"class"] = @[[self class], [otherValueObject class]];
+        return differences;
+    }
+    NSArray *propertyNames = [self.JKV_cachedPropertiesForIdentity valueForKey:@"name"];
+    for (NSString *name in propertyNames) {
+        id value = [self valueForKey:name];
+        id otherValue = [otherValueObject valueForKey:name];
+        if (value != otherValue && ![value isEqual:otherValue]){
+            differences[name] = @[value ?: [NSNull null], otherValue ?: [NSNull null]];
+        }
+    }
+    return differences;
+}
+
+#pragma mark - Protected
 
 - (BOOL)JKV_isMutable
 {

@@ -86,100 +86,143 @@ describe(@"JKVValue", ^{
             it(@"should be equal to mutable variant", ^{
                 person should equal([person mutableCopy]);
             });
+
+            it(@"should have no diff", ^{
+                [person differenceToObject:otherPerson] should be_empty;
+            });
+        });
+
+        context(@"when comparing to another class", ^{
+            it(@"should not be equal", ^{
+                person should_not equal((id)@1);
+            });
+
+            it(@"should have class-type diff", ^{
+                [person differenceToObject:@1] should equal(@{@"class": @[[JKVPerson class], [@1 class]]});
+            });
         });
 
         context(@"when the (weak) parent property is not equivalent in value", ^{
-            it(@"should be equal", ^{
+            beforeEach(^{
                 otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
                                                            lastName:person.lastName
                                                                 age:person.age
                                                             married:person.married
                                                              height:person.height
                                                              parent:@"foo"];
+            });
+
+            it(@"should be equal", ^{
                 person should equal(otherPerson);
+            });
+
+            it(@"should have no diff", ^{
+                [person differenceToObject:otherPerson] should be_empty;
             });
         });
 
-        it(@"should not be equal to another object", ^{
-            person should_not equal((id)@1);
+        context(@"when multiple properties are not equal", ^{
+            beforeEach(^{
+                otherPerson = [[JKVPerson alloc] initWithFirstName:nil
+                                                          lastName:@"Pizza"
+                                                               age:person.age
+                                                           married:person.married
+                                                            height:person.height
+                                                            parent:parent];
+            });
+
+            it(@"should produce a diff of the properties that are different", ^{
+                [person differenceToObject:otherPerson] should equal(@{@"firstName": @[person.firstName, [NSNull null]],
+                                                                       @"lastName": @[person.lastName, @"Pizza"]});
+            });
         });
 
-        void (^itShouldNotEqualWhen)(NSString *, void(^)()) = ^(NSString *name, void(^mutator)()) {
+        void (^itShouldNotEqualWhen)(NSString *, NSString *, void(^)()) = ^(NSString *name, NSString *fieldName, void(^mutator)()) {
             context([NSString stringWithFormat:@"when the %@ is not equivalent in value", name], ^{
-                it(@"should not be equal", ^{
+                beforeEach(^{
                     mutator();
+                });
+
+                it(@"should not be equal", ^{
                     person should_not equal(otherPerson);
+                });
+
+                it(@"should produce a diff of that property that is different", ^{
+                    id originalValue = [person valueForKey:fieldName];
+                    id mutatedValue = [otherPerson valueForKey:fieldName];
+                    [person differenceToObject:otherPerson] should equal(@{fieldName: @[originalValue ?: [NSNull null],
+                                                                                        mutatedValue ?: [NSNull null]]});
                 });
             });
         };
 
-        itShouldNotEqualWhen(@"value's NSObject property is nil", ^{
+        itShouldNotEqualWhen(@"value's NSObject property is nil", @"firstName", ^{
             person = [[JKVPerson alloc] initWithFirstName:nil
-                                                  lastName:person.lastName
-                                                       age:person.age
-                                                   married:person.married
-                                                    height:person.height
-                                                    parent:parent];
+                                                 lastName:person.lastName
+                                                      age:person.age
+                                                  married:person.married
+                                                   height:person.height
+                                                   parent:parent];
         });
-
-        itShouldNotEqualWhen(@"age", ^{
+        
+        itShouldNotEqualWhen(@"age", @"age", ^{
             otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
-                                                       lastName:person.lastName
-                                                            age:18
-                                                        married:person.married
-                                                         height:person.height
-                                                         parent:parent];
+                                                      lastName:person.lastName
+                                                           age:18
+                                                       married:person.married
+                                                        height:person.height
+                                                        parent:parent];
         });
-        itShouldNotEqualWhen(@"firstName", ^{
+        itShouldNotEqualWhen(@"firstName", @"firstName", ^{
             otherPerson = [[JKVPerson alloc] initWithFirstName:@"James"
-                                                       lastName:person.lastName
-                                                            age:person.age
-                                                        married:person.married
-                                                         height:person.height
-                                                         parent:parent];
+                                                      lastName:person.lastName
+                                                           age:person.age
+                                                       married:person.married
+                                                        height:person.height
+                                                        parent:parent];
         });
-        itShouldNotEqualWhen(@"lastName", ^{
+        itShouldNotEqualWhen(@"lastName", @"lastName", ^{
             otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
-                                                       lastName:@"Appleseed"
-                                                            age:person.age
-                                                        married:person.married
-                                                         height:person.height
-                                                         parent:parent];
+                                                      lastName:@"Appleseed"
+                                                           age:person.age
+                                                       married:person.married
+                                                        height:person.height
+                                                        parent:parent];
         });
-        itShouldNotEqualWhen(@"married", ^{
+        itShouldNotEqualWhen(@"married", @"married", ^{
             otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
-                                                       lastName:person.lastName
-                                                            age:person.age
-                                                        married:NO
-                                                         height:person.height
-                                                         parent:parent];
+                                                      lastName:person.lastName
+                                                           age:person.age
+                                                       married:NO
+                                                        height:person.height
+                                                        parent:parent];
         });
-
-        itShouldNotEqualWhen(@"height", ^{
+        
+        itShouldNotEqualWhen(@"height", @"height", ^{
             otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
-                                                       lastName:person.lastName
-                                                            age:person.age
-                                                        married:person.married
-                                                         height:2.2
-                                                         parent:parent];
+                                                      lastName:person.lastName
+                                                           age:person.age
+                                                       married:person.married
+                                                        height:2.2
+                                                        parent:parent];
         });
-
-        itShouldNotEqualWhen(@"child", ^{
+        
+        itShouldNotEqualWhen(@"child", @"child", ^{
             otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
-                                                       lastName:person.lastName
-                                                            age:person.age
-                                                        married:person.married
-                                                         height:person.height
-                                                         parent:parent];
+                                                      lastName:person.lastName
+                                                           age:person.age
+                                                       married:person.married
+                                                        height:person.height
+                                                        parent:parent];
             otherPerson.child = @"FOO";
         });
     });
-
+    
     describe(@"NSSecureCoding", ^{
         __block JKVBasicValue *deserializedValue;
         __block NSMutableData *data;
         __block NSKeyedUnarchiver *unarchiver;
-
+        
         beforeEach(^{
             data = [NSMutableData data];
             NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];

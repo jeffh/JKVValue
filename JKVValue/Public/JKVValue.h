@@ -16,7 +16,22 @@
  */
 @interface JKVValue : NSObject <NSMutableCopying, NSCopying, NSSecureCoding>
 
-- (id)differenceTo:(id)object;
+/*! Returns the difference between this value object an the given object.
+ *
+ *  This is a higher-order function to -[isEqual:] its results are similar to the
+ *  behavior for equality. Unlike -[isEqual:], this method is NOT recursive.
+ *
+ *  The dictionary maps fields to arrays for all differing properties. Each array contains
+ *  exactly two elements: the value of the field for self and the value of the field
+ *  for the other object.
+ *
+ *  Classes are also checked, objects that differ in classes will only have a
+ *  "class" key with an array of @[[self class], [otherValueObject class]];
+ *
+ *  @param otherValueObject The other value object to diff against.
+ *
+ */
+- (NSDictionary *)differenceToObject:(id)otherValueObject;
 
 /*! Override this method to return YES to indicate that this subclass is
  *  mutable. This changes the behavior of how NSCopying protocol works
