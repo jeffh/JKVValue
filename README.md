@@ -149,6 +149,19 @@ default of `NO`.
 It's worth noting that copy/mutableCopy is called on all properties if they support
 NSCopying or NSMutableCopying correspondingly.
 
+Basic Diffing
+-------------
+
+You have a lot of fields for two value objects and you want to know why `-[isEqual:]` is failing?
+Use `-[differenceToObject:]`:
+
+    MyPerson *person1 = [MyPerson new];
+    person1.firstName = @"John";
+    MyPerson *person2 = [MyPerson new];
+    person2.firstName = @"James";
+    [person1 differenceToObject:person2]; // => @{@"firstName": @[@"John", @"James"};
+    [person1 differenceToObject:@1]; // => @{@"class": @[[MyPerson class], NSClassFromString(@"__CFNSNumber")}
+
 Testing
 -------
 
@@ -186,6 +199,7 @@ Want a special object with custom properties?
 Need to nil out a property? Use `[NSNull null]`:
 
     [MyPersonFactory buildObjectWithProperties:@{@"lastName": [NSNull null]}];
+
 
 Gotchas
 =======
