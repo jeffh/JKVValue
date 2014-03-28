@@ -26,7 +26,7 @@ task :osx_specs do
 end
 
 task :specs71 do
-  xcbuild("test -scheme JKVValue -sdk iphonesimulator#{SDK_BUILD_VERSION} -destination 'name=iPhone Retina (4-inch),OS=7.0' SYMROOT=#{BUILD_DIR.inspect}")
+  xcbuild("test -scheme JKVValue -sdk iphonesimulator#{SDK_BUILD_VERSION} -destination 'name=iPhone Retina (4-inch),OS=7.1' SYMROOT=#{BUILD_DIR.inspect}")
 end
 
 task :specs70 do

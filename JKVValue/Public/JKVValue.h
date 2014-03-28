@@ -16,6 +16,8 @@
  */
 @interface JKVValue : NSObject <NSMutableCopying, NSCopying, NSSecureCoding>
 
+- (id)differenceTo:(id)object;
+
 /*! Override this method to return YES to indicate that this subclass is
  *  mutable. This changes the behavior of how NSCopying protocol works
  *  from returning itself to copying all properties.

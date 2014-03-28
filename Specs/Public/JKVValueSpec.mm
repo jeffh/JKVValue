@@ -19,17 +19,17 @@ describe(@"JKVValue", ^{
     beforeEach(^{
         parent = [NSObject new];
         person = [[JKVPerson alloc] initWithFirstName:@"John"
-                                              lastName:@"Doe"
-                                                   age:28
-                                               married:YES
-                                                height:60.8
-                                                parent:parent];
+                                             lastName:@"Doe"
+                                                  age:28
+                                              married:YES
+                                               height:60.8
+                                               parent:parent];
         otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
-                                                   lastName:person.lastName
-                                                        age:person.age
-                                                    married:person.married
-                                                     height:person.height
-                                                     parent:parent];
+                                                  lastName:person.lastName
+                                                       age:person.age
+                                                   married:person.married
+                                                    height:person.height
+                                                    parent:parent];
     });
 
     describe(@"descriptions", ^{
