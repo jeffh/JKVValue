@@ -1,6 +1,5 @@
 #import <Foundation/Foundation.h>
 
-@protocol JKVObjectStringer;
 
 @interface JKVObjectPrinter : NSObject
 

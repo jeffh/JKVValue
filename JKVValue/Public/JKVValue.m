@@ -3,7 +3,6 @@
 #import "JKVKeyedDecoderVisitor.h"
 #import "JKVKeyedEncoderVisitor.h"
 #import "JKVClassInspector.h"
-#import "JKVObjectStringer.h"
 #import "JKVObjectPrinter.h"
 
 // We need ivars to avoid "picking" ourselves up from the runtime introspection
