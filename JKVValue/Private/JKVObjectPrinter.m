@@ -1,4 +1,5 @@
 #import "JKVObjectPrinter.h"
+#import "JKVProperty.h"
 
 NSComparisonResult (^JKVGenericSorter)(id, id) = ^NSComparisonResult(id obj1, id obj2){
     if ((__bridge void *)obj1 > (__bridge void *)obj2) {
@@ -12,17 +13,51 @@ NSComparisonResult (^JKVGenericSorter)(id, id) = ^NSComparisonResult(id obj1, id
 
 @implementation JKVObjectPrinter
 
-+ (NSString *)stringForObject:(id)object
++ (instancetype)sharedInstance
 {
     static JKVObjectPrinter *JKVObjectPrinterInstance__;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         JKVObjectPrinterInstance__ = [self new];
     });
-    return [JKVObjectPrinterInstance__ stringForObject:object];
+    return JKVObjectPrinterInstance__;
 }
 
-- (NSString *)stringForObject:(id)object
++ (NSString *)descriptionForObject:(id)object withProperties:(NSArray *)properties
+{
+    return [[self sharedInstance] descriptionForObject:object withProperties:properties];
+}
+
+- (NSString *)descriptionForObject:(id)object withProperties:(NSArray *)properties
+{
+    NSMutableString *string = [NSMutableString new];
+    [string appendFormat:@"<%@: %p", NSStringFromClass([object class]), object];
+    NSInteger maxLengthPropertyName = 0;
+
+    for (JKVProperty *property in properties) {
+        maxLengthPropertyName = MAX(property.name.length, maxLengthPropertyName);
+    }
+
+    for (JKVProperty *property in properties) {
+        NSString *name = property.name;
+        id value = [object valueForKey:name];
+        [string appendFormat:@"\n %@ = ", [self stringByPaddingString:name
+                                                             toLength:maxLengthPropertyName
+                                                           withString:@" "]];
+        if (property.isWeak && value) {
+            [string appendFormat:@"<%@: %p>", NSStringFromClass([value class]), value];
+        } else {
+            NSString *prefix = [self stringByPaddingString:@"" toLength:maxLengthPropertyName + 4 withString:@" "];
+            [string appendFormat:@"%@", [self stringWithMultilineString:[self stringForObject:value withProperties:nil]
+                                                         withLinePrefix:prefix
+                                                        prefixFirstLine:NO]];
+        }
+    }
+    [string appendString:@">"];
+    return string;
+}
+
+- (NSString *)stringForObject:(id)object withProperties:(NSDictionary *)properties
 {
     if ([object isKindOfClass:[NSDictionary class]]) {
         return [self stringForDictionary:object];
@@ -34,7 +69,7 @@ NSComparisonResult (^JKVGenericSorter)(id, id) = ^NSComparisonResult(id obj1, id
         return @"[NSNull null]";
     } else if ([object isKindOfClass:[NSURL class]]) {
         return [NSString stringWithFormat:@"[NSURL URLWithString:%@]",
-                [self stringForObject:[object absoluteString]]];
+                                          [self stringForObject:[object absoluteString] withProperties:properties]];
     } else if ([object isKindOfClass:[NSString class]]) {
         return [NSString stringWithFormat:@"@\"%@\"",
                 [object stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];
@@ -58,10 +93,10 @@ NSComparisonResult (^JKVGenericSorter)(id, id) = ^NSComparisonResult(id obj1, id
 
     for (id key in keys) {
         id value = [dictionary objectForKey:key];
-        NSString *keyString = [self stringWithMultilineString:[self stringForObject:key]
+        NSString *keyString = [self stringWithMultilineString:[self stringForObject:key withProperties:nil ]
                                                withLinePrefix:@"  "
                                               prefixFirstLine:prefixLinePrefix];
-        NSString *string = [NSString stringWithFormat:@"%@: %@", keyString, [self stringForObject:value]];
+        NSString *string = [NSString stringWithFormat:@"%@: %@", keyString, [self stringForObject:value withProperties:nil ]];
         NSString *prefixString = [self stringByPaddingString:@"" toLength:keyString.length + 2 withString:@" "];
         [itemStrings addObject:[self stringWithMultilineString:string withLinePrefix:prefixString prefixFirstLine:NO]];
         prefixLinePrefix = YES;
@@ -78,7 +113,7 @@ NSComparisonResult (^JKVGenericSorter)(id, id) = ^NSComparisonResult(id obj1, id
     NSMutableArray *itemStrings = [NSMutableArray arrayWithCapacity:[array count]];
     BOOL prefixLinePrefix = NO;
     for (id item in array) {
-        NSString *string = [NSString stringWithFormat:@"%@", [self stringForObject:item]];
+        NSString *string = [NSString stringWithFormat:@"%@", [self stringForObject:item withProperties:nil ]];
         [itemStrings addObject:[self stringWithMultilineString:string withLinePrefix:@"  " prefixFirstLine:prefixLinePrefix]];
         prefixLinePrefix = YES;
     }

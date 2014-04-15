@@ -1,8 +1,10 @@
 #import <Foundation/Foundation.h>
 
+@protocol JKVObjectStringer;
+
 @interface JKVObjectPrinter : NSObject
 
-+ (NSString *)stringForObject:(id)object;
-- (NSString *)stringForObject:(id)object;
++ (instancetype)sharedInstance;
+- (NSString *)descriptionForObject:(id)object withProperties:(NSArray *)properties;
 
 @end

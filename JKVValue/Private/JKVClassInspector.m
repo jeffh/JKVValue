@@ -1,14 +1,17 @@
 #import "JKVClassInspector.h"
 #import "JKVProperty.h"
 #import <objc/runtime.h>
-#import "JKVObjectPrinter.h"
+
 
 @interface JKVClassInspector ()
+
 @property (strong, nonatomic) Class aClass;
 @property (strong, nonatomic, readwrite) NSArray *properties;
 @property (strong, nonatomic, readwrite) NSArray *weakProperties;
 @property (strong, nonatomic, readwrite) NSArray *nonWeakProperties;
+
 @end
+
 
 @implementation JKVClassInspector
 
@@ -17,15 +20,17 @@ static NSMutableDictionary *inspectors__;
 + (instancetype)inspectorForClass:(Class)aClass
 {
     NSString *key = NSStringFromClass(aClass);
-    @synchronized (self) {
+    __block JKVClassInspector *inspector = nil;
+    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         if (!inspectors__) {
             inspectors__ = [NSMutableDictionary new];
         }
         if (!inspectors__[key]) {
             inspectors__[key] = [[self alloc] initWithClass:aClass];
         }
-        return inspectors__[key];
-    }
+        inspector = inspectors__[key];
+    });
+    return inspector;
 }
 
 - (id)initWithClass:(Class)aClass
@@ -49,14 +54,14 @@ static NSMutableDictionary *inspectors__;
 
 - (BOOL)isObject:(id)object1 equalToObject:(id)object2 withPropertyNames:(NSArray *)propertyNames
 {
-    if (object1 == object2){
+    if (object1 == object2) {
         return YES;
     }
 
     Class class1 = [object1 class];
     Class class2 = [object2 class];
 
-    if (![class1 isSubclassOfClass:class2] && ![class2 isSubclassOfClass:class1]){
+    if (![class1 isSubclassOfClass:class2] && ![class2 isSubclassOfClass:class1]) {
         return NO;
     }
 
@@ -96,68 +101,11 @@ static NSMutableDictionary *inspectors__;
     return targetObject;
 }
 
-- (NSString *)descriptionForObject:(id)object withProperties:(NSArray *)properties
-{
-    NSMutableString *string = [NSMutableString new];
-    [string appendFormat:@"<%@: %p", NSStringFromClass([object class]), object];
-    NSInteger maxLengthPropertyName = 0;
-
-    for (JKVProperty *property in properties) {
-        maxLengthPropertyName = MAX(property.name.length, maxLengthPropertyName);
-    }
-
-    for (JKVProperty *property in properties) {
-        NSString *name = property.name;
-        id value = [object valueForKey:name];
-        [string appendFormat:@"\n %@ = ", [self stringByPaddingString:name
-                                                             toLength:maxLengthPropertyName
-                                                           withString:@" "]];
-        if (property.isWeak && value) {
-            [string appendFormat:@"<%@: %p>", NSStringFromClass([value class]), value];
-        } else {
-            NSString *prefix = [self stringByPaddingString:@"" toLength:maxLengthPropertyName + 4 withString:@" "];
-            [string appendFormat:@"%@", [self stringWithMultilineString:[self descriptionForObject:value]
-                                                         withLinePrefix:prefix
-                                                        prefixFirstLine:NO]];
-        }
-    }
-    [string appendString:@">"];
-    return string;
-}
-
-- (NSString *)descriptionForObject:(id)object
-{
-    return [JKVObjectPrinter stringForObject:object];
-}
-
-#pragma mark - Private
-
-- (NSString *)stringByPaddingString:(NSString *)string toLength:(NSInteger)length withString:(NSString *)padString
-{
-    NSMutableString *output = [NSMutableString string];
-    while (output.length + string.length < length) {
-        [output appendString:padString];
-    }
-    [output appendString:string];
-    return output;
-}
-
-- (NSString *)stringWithMultilineString:(NSString *)content withLinePrefix:(NSString *)linePrefix prefixFirstLine:(BOOL)prefixFirstLine
-{
-    NSArray *components = [content componentsSeparatedByString:@"\n"];
-    NSString *prefix = [NSString stringWithFormat:@"\n%@", linePrefix];
-    if (prefixFirstLine) {
-        return [linePrefix stringByAppendingString:[components componentsJoinedByString:prefix]];
-    } else {
-        return [components componentsJoinedByString:prefix];
-    }
-}
-
 #pragma mark - Properties
 
 - (NSArray *)nonWeakProperties
 {
-    if (!_nonWeakProperties){
+    if (!_nonWeakProperties) {
         _nonWeakProperties = [self.allProperties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isWeak = NO"]];
     }
     return _nonWeakProperties;
@@ -165,7 +113,7 @@ static NSMutableDictionary *inspectors__;
 
 - (NSArray *)weakProperties
 {
-    if (!_weakProperties){
+    if (!_weakProperties) {
         _weakProperties = [self.allProperties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isWeak = YES"]];
     }
     return _weakProperties;
@@ -173,7 +121,7 @@ static NSMutableDictionary *inspectors__;
 
 - (NSArray *)properties
 {
-    if (!_properties){
+    if (!_properties) {
         NSMutableArray *properties = [NSMutableArray new];
         unsigned int numProperties = 0;
         objc_property_t *objc_properties = class_copyPropertyList(self.aClass, &numProperties);

@@ -11,7 +11,6 @@
 
 - (BOOL)isObject:(id)object1 equalToObject:(id)object2 withPropertyNames:(NSArray *)propertyNames;
 - (NSUInteger)hashObject:(id)object byPropertyNames:(NSArray *)propertyNames;
-- (NSString *)descriptionForObject:(id)object withProperties:(NSArray *)properties;
 
 - (id)copyToObject:(id)targetObject
         fromObject:(id)object

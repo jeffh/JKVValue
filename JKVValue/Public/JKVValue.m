@@ -3,6 +3,8 @@
 #import "JKVKeyedDecoderVisitor.h"
 #import "JKVKeyedEncoderVisitor.h"
 #import "JKVClassInspector.h"
+#import "JKVObjectStringer.h"
+#import "JKVObjectPrinter.h"
 
 // We need ivars to avoid "picking" ourselves up from the runtime introspection
 // Namespaced to avoid getting clobbered by subclasses
@@ -13,8 +15,8 @@
 }
 
 - (id)initFromJKVValue;
-- (NSArray *)JKV_cachedPropertiesForIdentity;
-- (NSArray *)JKV_cachedPropertiesToAssignCopy;
+- (NSArray *)JKV_cachedPropertyNamesForIdentity;
+- (NSArray *)JKV_cachedPropertyNamesToAssignCopy;
 - (JKVClassInspector *)JKV_inspector;
 @end
 
@@ -65,14 +67,12 @@
         return self;
     }
 
-    NSArray *propertiesForIdentity = [self.JKV_cachedPropertiesForIdentity valueForKey:@"name"];
-    NSArray *propertiesToAssign = [self.JKV_cachedPropertiesToAssignCopy valueForKey:@"name"];
     id cloned = [[[self JKV_immutableClass] allocWithZone:zone] initFromJKVValue];
     return [self.JKV_inspector copyToObject:cloned
                                  fromObject:self
                                      inZone:zone
-                              propertyNames:propertiesForIdentity
-                          weakPropertyNames:propertiesToAssign];
+                              propertyNames:self.JKV_cachedPropertyNamesForIdentity
+                          weakPropertyNames:self.JKV_cachedPropertyNamesToAssignCopy];
 }
 
 
@@ -80,14 +80,12 @@
 
 - (id)mutableCopyWithZone:(NSZone *)zone
 {
-    NSArray *propertiesForIdentity = [self.JKV_cachedPropertiesForIdentity valueForKey:@"name"];
-    NSArray *propertiesToAssign = [self.JKV_cachedPropertiesToAssignCopy valueForKey:@"name"];
     id cloned = [[[self JKV_mutableClass] allocWithZone:zone] initFromJKVValue];
     return [self.JKV_inspector copyToObject:cloned
                                  fromObject:self
                                      inZone:zone
-                              propertyNames:propertiesForIdentity
-                          weakPropertyNames:propertiesToAssign];
+                              propertyNames:self.JKV_cachedPropertyNamesForIdentity
+                          weakPropertyNames:self.JKV_cachedPropertyNamesToAssignCopy];
 }
 
 #pragma - <NSObject>
@@ -99,23 +97,20 @@
 
 - (NSString *)debugDescription
 {
-    return [self.JKV_inspector descriptionForObject:self
-                                     withProperties:self.JKV_inspector.allProperties];
+    return [[JKVObjectPrinter sharedInstance] descriptionForObject:self withProperties:self.JKV_inspector.allProperties];
 }
 
 - (BOOL)isEqual:(id)object
 {
-    NSArray *propertyNames = [self.JKV_cachedPropertiesForIdentity valueForKey:@"name"];
     return [self.JKV_inspector isObject:self
                           equalToObject:object
-                      withPropertyNames:propertyNames];
+                      withPropertyNames:self.JKV_cachedPropertyNamesForIdentity];
 
 }
 
 - (NSUInteger)hash
 {
-    NSArray *propertyNames = [self.JKV_cachedPropertiesForIdentity valueForKey:@"name"];
-    return [self.JKV_inspector hashObject:self byPropertyNames:propertyNames];
+    return [self.JKV_inspector hashObject:self byPropertyNames:self.JKV_cachedPropertyNamesForIdentity];
 }
 
 #pragma mark - Public
@@ -131,8 +126,7 @@
         differences[@"class"] = @[[self class], [otherValueObject class]];
         return differences;
     }
-    NSArray *propertyNames = [self.JKV_cachedPropertiesForIdentity valueForKey:@"name"];
-    for (NSString *name in propertyNames) {
+    for (NSString *name in self.JKV_cachedPropertyNamesForIdentity) {
         id value = [self valueForKey:name];
         id otherValue = [otherValueObject valueForKey:name];
         if (value != otherValue && ![value isEqual:otherValue]){
@@ -171,20 +165,22 @@
 
 #pragma mark - Private
 
-- (NSArray *)JKV_cachedPropertiesForIdentity
+- (NSArray *)JKV_cachedPropertyNamesForIdentity
 {
     if (!_JKV_propertiesForIdentity){
         NSSet *whitelist = [NSSet setWithArray:[self JKV_propertyNamesForIdentity]];
-        _JKV_propertiesForIdentity = [self.JKV_inspector.allProperties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name in %@", whitelist]];
+        NSArray *properties = [self.JKV_inspector.allProperties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name in %@", whitelist]];
+        _JKV_propertiesForIdentity = [properties valueForKey:@"name"];
     }
     return _JKV_propertiesForIdentity;
 }
 
-- (NSArray *)JKV_cachedPropertiesToAssignCopy
+- (NSArray *)JKV_cachedPropertyNamesToAssignCopy
 {
     if (!_JKV_propertiesToAssignCopy){
         NSSet *whitelist = [NSSet setWithArray:[self JKV_propertyNamesToAssignCopy]];
-        _JKV_propertiesToAssignCopy = [self.JKV_inspector.allProperties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name in %@", whitelist]];
+        NSArray *properties = [self.JKV_inspector.allProperties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name in %@", whitelist]];
+        _JKV_propertiesToAssignCopy = [properties valueForKey:@"name"];
     }
     return _JKV_propertiesToAssignCopy;
 }
