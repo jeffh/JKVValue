@@ -7,6 +7,7 @@
 @property (nonatomic, assign, readwrite) NSInteger age;
 @property (nonatomic, assign, getter=isMarried, readwrite) BOOL married;
 @property (atomic, assign, readwrite) CGFloat height;
+@property (nonatomic, strong, readwrite) NSArray *siblings;
 @end
 
 @implementation JKVPerson
@@ -24,7 +25,9 @@
                                age:28
                            married:YES
                             height:60.8
-                            parent:nil];
+                            parent:nil
+                          siblings:nil
+                             child:nil];
 }
 
 - (id)initWithFirstName:(NSString *)firstName
@@ -33,6 +36,8 @@
                 married:(BOOL)married
                  height:(CGFloat)height
                  parent:(id)parent
+               siblings:(NSArray *)siblings
+                  child:(id)child
 {
     if (self = [super init]) {
         self.firstName = firstName;
@@ -41,7 +46,8 @@
         self.married = married;
         self.height = height;
         self.parent = parent;
-        self.child = nil;
+        self.child = child;
+        self.siblings = siblings;
     }
     return self;
 }

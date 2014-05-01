@@ -18,25 +18,30 @@ describe(@"JKVMutableValue", ^{
                                                          age:28
                                                      married:YES
                                                       height:60.8
-                                                      parent:parent];
+                                                      parent:parent
+                                                    siblings:@[[NSMutableString stringWithString:@"yolo"]]
+                                                       child:@{[NSMutableString stringWithFormat:@"hi"]: [NSMutableString stringWithFormat:@"lo"]}];
         otherPerson = [[JKVMutablePerson alloc] initWithFirstName:@"John"
                                                          lastName:@"Doe"
                                                               age:28
                                                           married:YES
                                                            height:60.8
-                                                           parent:parent];
+                                                           parent:parent
+                                                         siblings:@[[NSMutableString stringWithString:@"yolo"]]
+                                                            child:@{[NSMutableString stringWithFormat:@"hi"]: [NSMutableString stringWithFormat:@"lo"]}];
     });
 
     it(@"should have a custom description", ^{
         NSString *expectedDescription = [NSString stringWithFormat:
                                          @"<JKVMutablePerson: %p\n"
-                                         @"     child = nil\n"
+                                         @"     child = @{@\"hi\": @\"lo\"}\n"
                                          @" firstName = @\"John\"\n"
                                          @"  lastName = @\"Doe\"\n"
                                          @"       age = 28\n"
                                          @"   married = 1\n"
                                          @"    height = 60.8\n"
-                                         @"    parent = <NSObject: %p>>", person, parent];
+                                         @"    parent = <NSObject: %p>\n"
+                                         @"  siblings = @[@\"yolo\"]>", person, parent];
         person.description should contain(expectedDescription);
     });
 
@@ -84,6 +89,7 @@ describe(@"JKVMutableValue", ^{
 
     describe(@"NSCoding", ^{
         __block JKVMutablePerson *deserializedPerson;
+
         beforeEach(^{
             NSMutableData *data = [NSMutableData data];
             NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
@@ -98,8 +104,10 @@ describe(@"JKVMutableValue", ^{
             deserializedPerson should equal(person);
         });
     });
+
     describe(@"NSCopying", ^{
         __block JKVPerson *clonedPerson;
+
         beforeEach(^{
             clonedPerson = [person copy];
         });
@@ -126,6 +134,7 @@ describe(@"JKVMutableValue", ^{
 
     describe(@"NSMutableCopying", ^{
         __block JKVMutablePerson *clonedPerson;
+
         beforeEach(^{
             clonedPerson = [person mutableCopy];
         });
@@ -150,18 +159,29 @@ describe(@"JKVMutableValue", ^{
         itShouldRecursivelyCopy(@"lastName", ^id(JKVMutablePerson *p){ return p.lastName; });
     });
 
-    describe(@"collections that are properties", ^{
+    context(@"collections that are properties", ^{
         __block JKVMutableCollections *collections;
+        
         beforeEach(^{
-            collections = [[JKVMutableCollections alloc] initWithItems:@[@1] pairs:@{@"A":@"B"}];
+            collections = [[JKVMutableCollections alloc] initWithItems:@[[NSMutableString stringWithString:@"hi"]]
+                                                                 pairs:@{[NSMutableString stringWithString:@"A"]: [NSMutableString stringWithString:@"B"]}];
         });
 
-        it(@"should support equality for cloned objects", ^{
-            collections should equal([collections copy]);
+        describe(@"copying", ^{
+            it(@"should support equality for cloned objects", ^{
+                collections should equal([collections copy]);
+            });
         });
 
-        it(@"should support equality for mutable cloned objects", ^{
-            collections should equal([collections mutableCopy]);
+        describe(@"mutableCopying", ^{
+            it(@"should copy all values in collections", ^{
+                [collections.items firstObject] should_not be_same_instance_as([[[collections mutableCopy] items] firstObject]);
+                [[collections.pairs allValues] firstObject] should_not be_same_instance_as([[[[collections mutableCopy] pairs] allValues] firstObject]);
+            });
+            
+            it(@"should support equality for mutable cloned objects", ^{
+                collections should equal([collections mutableCopy]);
+            });
         });
     });
 });

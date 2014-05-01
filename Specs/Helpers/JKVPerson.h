@@ -6,6 +6,7 @@
 @property (nonatomic, assign, readonly) NSInteger age;
 @property (nonatomic, assign, getter=isMarried, readonly) BOOL married;
 @property (atomic, assign, readonly) CGFloat height;
+@property (nonatomic, strong, readonly) NSArray *siblings;
 
 // objc doesn't mark this as weak if it is a readonly attribute
 @property (nonatomic, weak) id parent;
@@ -17,6 +18,8 @@
                     age:(NSInteger)age
                 married:(BOOL)married
                  height:(CGFloat)height
-                 parent:(id)parent;
+                 parent:(id)parent
+               siblings:(NSArray *)siblings
+                  child:(id)child;
 
 @end

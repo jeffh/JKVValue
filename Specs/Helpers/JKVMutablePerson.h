@@ -7,5 +7,6 @@
 @property (nonatomic, assign, readwrite, getter=isMarried) BOOL married;
 @property (atomic, assign, readwrite) CGFloat height;
 @property (nonatomic, weak, readwrite) id parent;
+@property (nonatomic, strong, readwrite) NSArray *siblings;
 @end
 

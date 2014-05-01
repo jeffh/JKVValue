@@ -23,13 +23,17 @@ describe(@"JKVValue", ^{
                                                   age:28
                                               married:YES
                                                height:60.8
-                                               parent:parent];
+                                               parent:parent
+                                             siblings:@[[[JKVMutablePerson alloc] initWithFixtureData]]
+                                                child:@{[NSMutableString stringWithFormat:@"hi"]: [NSMutableString stringWithFormat:@"lo"]}];
         otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
                                                   lastName:person.lastName
                                                        age:person.age
                                                    married:person.married
                                                     height:person.height
-                                                    parent:parent];
+                                                    parent:parent
+                                                  siblings:@[[[JKVMutablePerson alloc] initWithFixtureData]]
+                                                     child:@{[NSMutableString stringWithFormat:@"hi"]: [NSMutableString stringWithFormat:@"lo"]}];
     });
 
     describe(@"descriptions", ^{
@@ -41,8 +45,17 @@ describe(@"JKVValue", ^{
                                              @"       age = 28\n"
                                              @"   married = 1\n"
                                              @"    height = 60.8\n"
+                                             @"  siblings = @[<JKVMutablePerson: %p\n"
+                                             @"                    child = nil\n"
+                                             @"                firstName = @\"John\"\n"
+                                             @"                 lastName = @\"Doe\"\n"
+                                             @"                      age = 28\n"
+                                             @"                  married = 1\n"
+                                             @"                   height = 60.8\n"
+                                             @"                   parent = nil\n"
+                                             @"                 siblings = nil>]\n"
                                              @"    parent = <NSObject: %p>\n"
-                                             @"     child = nil>", person, parent];
+                                             @"     child = @{@\"hi\": @\"lo\"}>", person, [person.siblings firstObject], parent];
             person.description should contain(expectedDescription);
         });
 
@@ -105,11 +118,13 @@ describe(@"JKVValue", ^{
         context(@"when the (weak) parent property is not equivalent in value", ^{
             beforeEach(^{
                 otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
-                                                           lastName:person.lastName
-                                                                age:person.age
-                                                            married:person.married
-                                                             height:person.height
-                                                             parent:@"foo"];
+                                                          lastName:person.lastName
+                                                               age:person.age
+                                                           married:person.married
+                                                            height:person.height
+                                                            parent:@"foo"
+                                                          siblings:person.siblings
+                                                             child:person.child];
             });
 
             it(@"should be equal", ^{
@@ -128,7 +143,9 @@ describe(@"JKVValue", ^{
                                                                age:person.age
                                                            married:person.married
                                                             height:person.height
-                                                            parent:parent];
+                                                            parent:parent
+                                                          siblings:person.siblings
+                                                             child:person.child];
             });
 
             it(@"should produce a diff of the properties that are different", ^{
@@ -162,7 +179,9 @@ describe(@"JKVValue", ^{
                                                       age:person.age
                                                   married:person.married
                                                    height:person.height
-                                                   parent:parent];
+                                                   parent:parent
+                                                 siblings:person.siblings
+                                                    child:person.child];
         });
         
         itShouldNotEqualWhen(@"age", @"age", ^{
@@ -171,7 +190,9 @@ describe(@"JKVValue", ^{
                                                            age:18
                                                        married:person.married
                                                         height:person.height
-                                                        parent:parent];
+                                                        parent:parent
+                                                      siblings:person.siblings
+                                                         child:person.child];
         });
         itShouldNotEqualWhen(@"firstName", @"firstName", ^{
             otherPerson = [[JKVPerson alloc] initWithFirstName:@"James"
@@ -179,7 +200,9 @@ describe(@"JKVValue", ^{
                                                            age:person.age
                                                        married:person.married
                                                         height:person.height
-                                                        parent:parent];
+                                                        parent:parent
+                                                      siblings:person.siblings
+                                                         child:person.child];
         });
         itShouldNotEqualWhen(@"lastName", @"lastName", ^{
             otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
@@ -187,7 +210,9 @@ describe(@"JKVValue", ^{
                                                            age:person.age
                                                        married:person.married
                                                         height:person.height
-                                                        parent:parent];
+                                                        parent:parent
+                                                      siblings:person.siblings
+                                                         child:person.child];
         });
         itShouldNotEqualWhen(@"married", @"married", ^{
             otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
@@ -195,7 +220,9 @@ describe(@"JKVValue", ^{
                                                            age:person.age
                                                        married:NO
                                                         height:person.height
-                                                        parent:parent];
+                                                        parent:parent
+                                                      siblings:person.siblings
+                                                         child:person.child];
         });
         
         itShouldNotEqualWhen(@"height", @"height", ^{
@@ -204,7 +231,9 @@ describe(@"JKVValue", ^{
                                                            age:person.age
                                                        married:person.married
                                                         height:2.2
-                                                        parent:parent];
+                                                        parent:parent
+                                                      siblings:person.siblings
+                                                         child:person.child];
         });
         
         itShouldNotEqualWhen(@"child", @"child", ^{
@@ -213,7 +242,9 @@ describe(@"JKVValue", ^{
                                                            age:person.age
                                                        married:person.married
                                                         height:person.height
-                                                        parent:parent];
+                                                        parent:parent
+                                                      siblings:person.siblings
+                                                         child:person.child];
             otherPerson.child = @"FOO";
         });
     });
@@ -375,6 +406,7 @@ describe(@"JKVValue", ^{
 
     describe(@"NSMutableCopying", ^{
         __block JKVPerson *clonedPerson;
+
         beforeEach(^{
             clonedPerson = [person mutableCopy];
         });
@@ -397,6 +429,17 @@ describe(@"JKVValue", ^{
 
         it(@"should preserve the weak properties", ^{
             clonedPerson.parent should be_same_instance_as(parent);
+        });
+
+        it(@"should copy items in arrays", ^{
+            [clonedPerson.siblings firstObject] should_not be_same_instance_as([person.siblings firstObject]);
+        });
+
+        it(@"should copy values in dictionaries", ^{
+            clonedPerson.child should_not be_nil;
+            for (NSInteger i=0; i<[clonedPerson.child count]; i++) {
+                [clonedPerson.child allValues][i] should_not be_same_instance_as([person.child allValues][i]);
+            }
         });
 
         itShouldRecursivelyCopy(@"firstName", ^id(JKVPerson *p){ return p.firstName; });

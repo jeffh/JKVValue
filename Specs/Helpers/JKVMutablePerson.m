@@ -8,6 +8,7 @@
 @synthesize married;
 @synthesize height;
 @synthesize parent;
+@synthesize siblings;
 
 - (BOOL)JKV_isMutable
 {

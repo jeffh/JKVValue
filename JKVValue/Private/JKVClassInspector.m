@@ -88,11 +88,14 @@ static NSMutableDictionary *inspectors__;
 {
     for (NSString *name in identityPropertyNames) {
         id value = [object valueForKey:name];
-        if ([value conformsToProtocol:@protocol(NSMutableCopying)]) {
-            [targetObject setValue:[value mutableCopyWithZone:zone] forKey:name];
-        } else {
-            [targetObject setValue:value forKey:name];
+        if ([value isKindOfClass:[NSArray class]]) {
+            value = [[NSMutableArray alloc] initWithArray:value copyItems:YES];
+        } else if ([value isKindOfClass:[NSDictionary class]]) {
+            value = [[NSMutableDictionary alloc] initWithDictionary:value copyItems:YES];
+        } else if ([value conformsToProtocol:@protocol(NSMutableCopying)]) {
+            value = [value mutableCopyWithZone:zone];
         }
+        [targetObject setValue:value forKey:name];
     }
     for (NSString *name in assignPropertyNames) {
         [targetObject setValue:[object valueForKey:name] forKey:name];
