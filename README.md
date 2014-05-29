@@ -37,7 +37,7 @@ CocoaPods
 
 If you like pod'n it up:
 
-    pod "JKVValue", "~> 1.1.0"
+    pod "JKVValue", "~> 1.1.1"
 
 Submodule
 ---------
@@ -47,7 +47,7 @@ If you like git submodules add this project and adding it to your project:
     git submodule add https://github.com/jeffh/JKVValue <Externals/JKVValue>
     # checking out the stable version
     cd <Externals/JKVValue>
-    git co tag v1.1.0
+    git co tag v1.1.1
 
 And then add the JKVValue static library and public headers for your dependencies.
 
