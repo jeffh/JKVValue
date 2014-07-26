@@ -37,7 +37,7 @@ CocoaPods
 
 If you like pod'n it up:
 
-    pod "JKVValue", "~> 1.1.1"
+    pod "JKVValue", "~> 1.2.0"
 
 Submodule
 ---------
