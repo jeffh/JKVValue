@@ -8,5 +8,7 @@
 @property (atomic, assign, readwrite) CGFloat height;
 @property (nonatomic, weak, readwrite) id parent;
 @property (nonatomic, strong, readwrite) NSArray *siblings;
+
+@property (readonly) NSUInteger hash;
 @end
 

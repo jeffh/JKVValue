@@ -161,7 +161,7 @@ describe(@"JKVMutableValue", ^{
 
     context(@"collections that are properties", ^{
         __block JKVMutableCollections *collections;
-        
+
         beforeEach(^{
             collections = [[JKVMutableCollections alloc] initWithItems:@[[NSMutableString stringWithString:@"hi"]]
                                                                  pairs:@{[NSMutableString stringWithString:@"A"]: [NSMutableString stringWithString:@"B"]}];

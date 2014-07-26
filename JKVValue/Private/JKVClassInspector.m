@@ -41,7 +41,21 @@ static NSMutableDictionary *inspectors__;
     return self;
 }
 
-- (NSUInteger)hashObject:(id)object byPropertyNames:(NSArray *)propertyNames
+#pragma mark - Private
+
+- (BOOL)isObject:(id)object1 equalToObject:(id)object2 byPropertyNames:(NSArray *)propertyNames
+{
+    for (NSString *name in propertyNames) {
+        id value = [object1 valueForKey:name];
+        id otherValue = [object2 valueForKey:name];
+        if (value != otherValue && ![value isEqual:otherValue]){
+            return NO;
+        }
+    }
+    return YES;
+}
+
+- (NSUInteger)hashObject:(id)object byPropertyNames:(NSArray *)propertyNames visitedObjects:(NSArray *)objects
 {
     // http://stackoverflow.com/questions/254281/best-practices-for-overriding-isequal-and-hash
     NSUInteger prime = 31;
@@ -51,6 +65,8 @@ static NSMutableDictionary *inspectors__;
     }
     return result;
 }
+
+#pragma mark - Public
 
 - (BOOL)isObject:(id)object1 equalToObject:(id)object2 withPropertyNames:(NSArray *)propertyNames
 {
@@ -68,16 +84,15 @@ static NSMutableDictionary *inspectors__;
     return [self isObject:object1 equalToObject:object2 byPropertyNames:propertyNames];
 }
 
-- (BOOL)isObject:(id)object1 equalToObject:(id)object2 byPropertyNames:(NSArray *)propertyNames
+- (NSUInteger)hashObject:(id)object byPropertyNames:(NSArray *)propertyNames
 {
-    for (NSString *name in propertyNames) {
-        id value = [object1 valueForKey:name];
-        id otherValue = [object2 valueForKey:name];
-        if (value != otherValue && ![value isEqual:otherValue]){
-            return NO;
-        }
+    // http://stackoverflow.com/questions/254281/best-practices-for-overriding-isequal-and-hash
+    NSUInteger prime = 31;
+    NSUInteger result = 1;
+    for (NSString *propertyName in propertyNames){
+        result = prime * result + [[object valueForKey:propertyName] hash];
     }
-    return YES;
+    return result;
 }
 
 - (id)copyToObject:(id)targetObject
@@ -109,7 +124,8 @@ static NSMutableDictionary *inspectors__;
 - (NSArray *)nonWeakProperties
 {
     if (!_nonWeakProperties) {
-        _nonWeakProperties = [self.allProperties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isWeak = NO"]];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isWeak = NO"];
+        _nonWeakProperties = [self.allPropertiesBackedByInstanceVariables filteredArrayUsingPredicate:predicate];
     }
     return _nonWeakProperties;
 }
@@ -117,7 +133,8 @@ static NSMutableDictionary *inspectors__;
 - (NSArray *)weakProperties
 {
     if (!_weakProperties) {
-        _weakProperties = [self.allProperties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isWeak = YES"]];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isWeak = YES"];
+        _weakProperties = [self.allPropertiesBackedByInstanceVariables filteredArrayUsingPredicate:predicate];
     }
     return _weakProperties;
 }
@@ -153,14 +170,27 @@ static NSMutableDictionary *inspectors__;
     return _properties;
 }
 
-- (NSArray *)allProperties
+- (NSArray *)propertiesBackedByInstanceVariables
 {
-    NSArray *classProperties = self.properties;
+    NSArray *properties = [self properties];
+    NSMutableArray *filteredProperties = [NSMutableArray arrayWithCapacity:properties.count];
+    for (JKVProperty *property in properties) {
+        if (property.ivarName.length > 0) {
+            [filteredProperties addObject:property];
+        }
+    }
+    return filteredProperties;
+}
+
+- (NSArray *)allPropertiesBackedByInstanceVariables
+{
+    NSArray *classProperties = [self propertiesBackedByInstanceVariables];
     NSSet *classPropertyNames = [NSSet setWithArray:[classProperties valueForKey:@"name"]];
     NSMutableArray *properties = [NSMutableArray new];
     Class parentClass = class_getSuperclass(self.aClass);
     if (parentClass && parentClass != [NSObject class]) {
-        for (JKVProperty *property in [[JKVClassInspector inspectorForClass:parentClass] allProperties]) {
+        NSArray *parentClassProperties = [[JKVClassInspector inspectorForClass:parentClass] allPropertiesBackedByInstanceVariables];
+        for (JKVProperty *property in parentClassProperties) {
             if (![classPropertyNames containsObject:property.name]) {
                 [properties addObject:property];
             }

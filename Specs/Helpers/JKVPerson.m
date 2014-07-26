@@ -57,4 +57,9 @@
     return [JKVMutablePerson class];
 }
 
+- (id)propertyWithoutIVar
+{
+    return @1;
+}
+
 @end

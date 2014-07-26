@@ -2,7 +2,7 @@
 
 @interface JKVClassInspector : NSObject
 
-@property (strong, nonatomic, readonly) NSArray *allProperties;
+@property (strong, nonatomic, readonly) NSArray *allPropertiesBackedByInstanceVariables;
 @property (strong, nonatomic, readonly) NSArray *weakProperties;
 @property (strong, nonatomic, readonly) NSArray *nonWeakProperties;
 

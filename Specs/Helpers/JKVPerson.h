@@ -12,6 +12,8 @@
 @property (nonatomic, weak) id parent;
 @property (nonatomic, strong) id child;
 
+@property (readonly) id propertyWithoutIVar;
+
 - (id)initWithFixtureData;
 - (id)initWithFirstName:(NSString *)firstName
                lastName:(NSString *)lastName

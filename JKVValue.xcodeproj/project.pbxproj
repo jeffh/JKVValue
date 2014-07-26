@@ -17,7 +17,33 @@
 		1F5CF03718D7F00400E874B9 /* JKVObjectPrinter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F5CF03518D7F00400E874B9 /* JKVObjectPrinter.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		1F5CF03818D7F00400E874B9 /* JKVObjectPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5CF03618D7F00400E874B9 /* JKVObjectPrinter.m */; };
 		1F5CF03918D7F00400E874B9 /* JKVObjectPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5CF03618D7F00400E874B9 /* JKVObjectPrinter.m */; };
-		1F5CF04518D7F87600E874B9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5CF04418D7F87600E874B9 /* SenTestingKit.framework */; };
+		1F8561D51983705D00912381 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB745D217FE5FFC00572B60 /* UIKit.framework */; };
+		1F8561D61983705D00912381 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8417FCE3D700A382AB /* Foundation.framework */; };
+		1F8561D71983705D00912381 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4322A817FE2DFD001293C1 /* CoreGraphics.framework */; };
+		1F8561DD1983705D00912381 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F8561DB1983705D00912381 /* InfoPlist.strings */; };
+		1F8561DF1983705D00912381 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8561DE1983705D00912381 /* main.m */; };
+		1F8561E51983705E00912381 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F8561E41983705E00912381 /* Default-568h@2x.png */; };
+		1F8561F51983706E00912381 /* JKVClassInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADE17FD0C4400A382AB /* JKVClassInspector.m */; };
+		1F8561F61983706E00912381 /* JKVKeyedDecoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD617FD080F00A382AB /* JKVKeyedDecoderVisitor.m */; };
+		1F8561F71983706E00912381 /* JKVKeyedEncoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADA17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m */; };
+		1F8561F81983706E00912381 /* JKVNonZeroSetterVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D34C18473BFF00789483 /* JKVNonZeroSetterVisitor.m */; };
+		1F8561F91983706E00912381 /* JKVProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCACE17FCFAA700A382AB /* JKVProperty.m */; };
+		1F8561FA1983706E00912381 /* JKVObjectPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5CF03618D7F00400E874B9 /* JKVObjectPrinter.m */; };
+		1F8561FB1983707300912381 /* JKVMutableValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAC917FCE78700A382AB /* JKVMutableValue.m */; };
+		1F8561FC1983707300912381 /* JKVValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE717FD11ED00A382AB /* JKVValue.m */; };
+		1F8561FD1983707300912381 /* JKVFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3391847382F00789483 /* JKVFactory.m */; };
+		1F8561FE1983708400912381 /* JKVMutablePerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD317FCFFD900A382AB /* JKVMutablePerson.m */; };
+		1F8561FF1983708400912381 /* JKVPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE217FD10F600A382AB /* JKVPerson.m */; };
+		1F8562001983708400912381 /* JKVTypeContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAEB17FD180500A382AB /* JKVTypeContainer.m */; };
+		1F8562011983708400912381 /* JKVCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FCE761801B8E400A929F5 /* JKVCollections.m */; };
+		1F8562021983708400912381 /* JKVMutableCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FCE7A1801B91E00A929F5 /* JKVMutableCollections.m */; };
+		1F8562031983708400912381 /* JKVRestrictedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F04B9A418025C2600FFEA7A /* JKVRestrictedObject.m */; };
+		1F8562041983708400912381 /* JKVBasicValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1E3FD318080D7400801509 /* JKVBasicValue.m */; };
+		1F8562051983708400912381 /* JKVPersonFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3481847386D00789483 /* JKVPersonFactory.m */; };
+		1F8562061983708800912381 /* JKVMutableValueSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAC517FCE4D800A382AB /* JKVMutableValueSpec.mm */; };
+		1F8562071983708800912381 /* JKVValueSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE417FD112100A382AB /* JKVValueSpec.mm */; };
+		1F8562081983708800912381 /* JKVFactorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3441847384500789483 /* JKVFactorySpec.mm */; };
+		1F856209198370A900912381 /* libCedar-StaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F956B49180CFF1700E603A9 /* libCedar-StaticLib.a */; };
 		1FA39D0918D5402E0066061C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8417FCE3D700A382AB /* Foundation.framework */; };
 		1FA39D1918D540360066061C /* libCedar-StaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F956B49180CFF1700E603A9 /* libCedar-StaticLib.a */; };
 		1FA39D1C18D540880066061C /* JKVMutablePerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD317FCFFD900A382AB /* JKVMutablePerson.m */; };
@@ -68,6 +94,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1F2EB4EA197F537700B86EF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F2CCA7917FCE3D700A382AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F2CCA8017FCE3D700A382AB;
+			remoteInfo = JKVValue;
+		};
+		1F2EB4F6197F537700B86EF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F2CCA7917FCE3D700A382AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F2CCA8017FCE3D700A382AB;
+			remoteInfo = JKVValue;
+		};
+		1F2EB4F8197F537B00B86EF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F2CCA7917FCE3D700A382AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1FA39D5218D544AD0066061C;
+			remoteInfo = JKVValueOSX;
+		};
 		1F956B42180CFF1700E603A9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1F956B36180CFF1600E603A9 /* Cedar.xcodeproj */;
@@ -209,9 +256,14 @@
 		1F498DB017FE4808000CEA03 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1F5CF03518D7F00400E874B9 /* JKVObjectPrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVObjectPrinter.h; sourceTree = "<group>"; };
 		1F5CF03618D7F00400E874B9 /* JKVObjectPrinter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVObjectPrinter.m; sourceTree = "<group>"; };
-		1F5CF04418D7F87600E874B9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		1F8561D41983705D00912381 /* SpecSuite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpecSuite.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F8561DA1983705D00912381 /* SpecSuite-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SpecSuite-Info.plist"; sourceTree = "<group>"; };
+		1F8561DC1983705D00912381 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1F8561DE1983705D00912381 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1F8561E01983705D00912381 /* SpecSuite-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SpecSuite-Prefix.pch"; sourceTree = "<group>"; };
+		1F8561E41983705E00912381 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1F956B36180CFF1600E603A9 /* Cedar.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cedar.xcodeproj; path = cedar/Cedar.xcodeproj; sourceTree = "<group>"; };
-		1FA39D0618D5402E0066061C /* Specs.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Specs.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FA39D0618D5402E0066061C /* Specs.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Specs.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA39D0718D5402E0066061C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		1FA39D2C18D541ED0066061C /* OSXSpecs.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSXSpecs.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA39D5318D544AD0066061C /* JKVValue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JKVValue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,11 +291,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1F8561D11983705D00912381 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F856209198370A900912381 /* libCedar-StaticLib.a in Frameworks */,
+				1F8561D71983705D00912381 /* CoreGraphics.framework in Frameworks */,
+				1F8561D51983705D00912381 /* UIKit.framework in Frameworks */,
+				1F8561D61983705D00912381 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1FA39D0318D5402E0066061C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F5CF04518D7F87600E874B9 /* SenTestingKit.framework in Frameworks */,
 				1FA39D2718D5410D0066061C /* libJKVValue.a in Frameworks */,
 				1FA39D1918D540360066061C /* libCedar-StaticLib.a in Frameworks */,
 				1FA39D0918D5402E0066061C /* Foundation.framework in Frameworks */,
@@ -279,6 +341,7 @@
 				1F2CCAB317FCE48E00A382AB /* Specs */,
 				1F43229117FE2C94001293C1 /* OSXSpecs */,
 				1F956B35180CFEF700E603A9 /* Externals */,
+				1F8561D81983705D00912381 /* SpecSuite */,
 				1F2CCA8317FCE3D700A382AB /* Frameworks */,
 				1F2CCA8217FCE3D700A382AB /* Products */,
 			);
@@ -288,9 +351,10 @@
 			isa = PBXGroup;
 			children = (
 				1F2CCA8117FCE3D700A382AB /* libJKVValue.a */,
-				1FA39D0618D5402E0066061C /* Specs.octest */,
+				1FA39D0618D5402E0066061C /* Specs.xctest */,
 				1FA39D2C18D541ED0066061C /* OSXSpecs.xctest */,
 				1FA39D5318D544AD0066061C /* JKVValue.framework */,
+				1F8561D41983705D00912381 /* SpecSuite.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -298,7 +362,6 @@
 		1F2CCA8317FCE3D700A382AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1F5CF04418D7F87600E874B9 /* SenTestingKit.framework */,
 				1FB745D217FE5FFC00572B60 /* UIKit.framework */,
 				1F4322A817FE2DFD001293C1 /* CoreGraphics.framework */,
 				1F2CCA8417FCE3D700A382AB /* Foundation.framework */,
@@ -432,6 +495,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		1F8561D81983705D00912381 /* SpecSuite */ = {
+			isa = PBXGroup;
+			children = (
+				1F8561E41983705E00912381 /* Default-568h@2x.png */,
+				1F8561D91983705D00912381 /* Supporting Files */,
+			);
+			path = SpecSuite;
+			sourceTree = "<group>";
+		};
+		1F8561D91983705D00912381 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1F8561DA1983705D00912381 /* SpecSuite-Info.plist */,
+				1F8561DB1983705D00912381 /* InfoPlist.strings */,
+				1F8561DE1983705D00912381 /* main.m */,
+				1F8561E01983705D00912381 /* SpecSuite-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		1F956B35180CFEF700E603A9 /* Externals */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,6 +589,23 @@
 			productReference = 1F2CCA8117FCE3D700A382AB /* libJKVValue.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		1F8561D31983705D00912381 /* SpecSuite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F8561F41983705E00912381 /* Build configuration list for PBXNativeTarget "SpecSuite" */;
+			buildPhases = (
+				1F8561D01983705D00912381 /* Sources */,
+				1F8561D11983705D00912381 /* Frameworks */,
+				1F8561D21983705D00912381 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpecSuite;
+			productName = SpecSuite;
+			productReference = 1F8561D41983705D00912381 /* SpecSuite.app */;
+			productType = "com.apple.product-type.application";
+		};
 		1FA39D0518D5402E0066061C /* Specs */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1FA39D1618D5402E0066061C /* Build configuration list for PBXNativeTarget "Specs" */;
@@ -519,10 +619,12 @@
 			dependencies = (
 				1FA39D1B18D5403C0066061C /* PBXTargetDependency */,
 				1FA39D1518D5402E0066061C /* PBXTargetDependency */,
+				1F2EB4EB197F537700B86EF6 /* PBXTargetDependency */,
+				1F2EB4F7197F537700B86EF6 /* PBXTargetDependency */,
 			);
 			name = Specs;
 			productName = Specs;
-			productReference = 1FA39D0618D5402E0066061C /* Specs.octest */;
+			productReference = 1FA39D0618D5402E0066061C /* Specs.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		1FA39D2B18D541ED0066061C /* OSXSpecs */ = {
@@ -536,6 +638,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1F2EB4F9197F537B00B86EF6 /* PBXTargetDependency */,
 			);
 			name = OSXSpecs;
 			productName = OSXSpecs;
@@ -565,12 +668,12 @@
 		1F2CCA7917FCE3D700A382AB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastTestingUpgradeCheck = 0510;
-				LastUpgradeCheck = 0510;
+				LastTestingUpgradeCheck = 0600;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Jeff Hui";
 				TargetAttributes = {
 					1FA39D0518D5402E0066061C = {
-						TestTargetID = 1F2CCA8017FCE3D700A382AB;
+						TestTargetID = 1FA39D5218D544AD0066061C;
 					};
 					1FA39D2B18D541ED0066061C = {
 						TestTargetID = 1FA39D5218D544AD0066061C;
@@ -599,6 +702,7 @@
 				1FA39D5218D544AD0066061C /* JKVValueOSX */,
 				1FA39D0518D5402E0066061C /* Specs */,
 				1FA39D2B18D541ED0066061C /* OSXSpecs */,
+				1F8561D31983705D00912381 /* SpecSuite */,
 			);
 		};
 /* End PBXProject section */
@@ -677,6 +781,15 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1F8561D21983705D00912381 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F8561DD1983705D00912381 /* InfoPlist.strings in Resources */,
+				1F8561E51983705E00912381 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1FA39D0418D5402E0066061C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -707,6 +820,34 @@
 				1F2CCACF17FCFAA700A382AB /* JKVProperty.m in Sources */,
 				1F5CF03818D7F00400E874B9 /* JKVObjectPrinter.m in Sources */,
 				1F2CCADF17FD0C4400A382AB /* JKVClassInspector.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F8561D01983705D00912381 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F8561DF1983705D00912381 /* main.m in Sources */,
+				1F8562071983708800912381 /* JKVValueSpec.mm in Sources */,
+				1F8561FE1983708400912381 /* JKVMutablePerson.m in Sources */,
+				1F8561F81983706E00912381 /* JKVNonZeroSetterVisitor.m in Sources */,
+				1F8561F71983706E00912381 /* JKVKeyedEncoderVisitor.m in Sources */,
+				1F8561FA1983706E00912381 /* JKVObjectPrinter.m in Sources */,
+				1F8562001983708400912381 /* JKVTypeContainer.m in Sources */,
+				1F8562021983708400912381 /* JKVMutableCollections.m in Sources */,
+				1F8562061983708800912381 /* JKVMutableValueSpec.mm in Sources */,
+				1F8562011983708400912381 /* JKVCollections.m in Sources */,
+				1F8561FD1983707300912381 /* JKVFactory.m in Sources */,
+				1F8561F61983706E00912381 /* JKVKeyedDecoderVisitor.m in Sources */,
+				1F8561FB1983707300912381 /* JKVMutableValue.m in Sources */,
+				1F8561FC1983707300912381 /* JKVValue.m in Sources */,
+				1F8561F51983706E00912381 /* JKVClassInspector.m in Sources */,
+				1F8562031983708400912381 /* JKVRestrictedObject.m in Sources */,
+				1F8561FF1983708400912381 /* JKVPerson.m in Sources */,
+				1F8562041983708400912381 /* JKVBasicValue.m in Sources */,
+				1F8562081983708800912381 /* JKVFactorySpec.mm in Sources */,
+				1F8562051983708400912381 /* JKVPersonFactory.m in Sources */,
+				1F8561F91983706E00912381 /* JKVProperty.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,6 +906,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1F2EB4EB197F537700B86EF6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1F2CCA8017FCE3D700A382AB /* JKVValue */;
+			targetProxy = 1F2EB4EA197F537700B86EF6 /* PBXContainerItemProxy */;
+		};
+		1F2EB4F7197F537700B86EF6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1F2CCA8017FCE3D700A382AB /* JKVValue */;
+			targetProxy = 1F2EB4F6197F537700B86EF6 /* PBXContainerItemProxy */;
+		};
+		1F2EB4F9197F537B00B86EF6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1FA39D5218D544AD0066061C /* JKVValueOSX */;
+			targetProxy = 1F2EB4F8197F537B00B86EF6 /* PBXContainerItemProxy */;
+		};
 		1FA39D1518D5402E0066061C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1F2CCA8017FCE3D700A382AB /* JKVValue */;
@@ -782,6 +938,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				1F2CCAB717FCE48E00A382AB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1F8561DB1983705D00912381 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F8561DC1983705D00912381 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -891,9 +1055,75 @@
 			};
 			name = Release;
 		};
+		1F8561E81983705E00912381 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SpecSuite/SpecSuite-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/Externals/Cedar/Source/Headers/**",
+				);
+				INFOPLIST_FILE = "SpecSuite/SpecSuite-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-all_load",
+					"-lstdc++",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1F8561E91983705E00912381 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SpecSuite/SpecSuite-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/Externals/Cedar/Source/Headers/**",
+				);
+				INFOPLIST_FILE = "SpecSuite/SpecSuite-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-all_load",
+					"-lstdc++",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		1FA39D1718D5402E0066061C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JKVValue.framework/Versions/A/JKVValue";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -915,13 +1145,14 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
+				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Debug;
 		};
 		1FA39D1818D5402E0066061C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JKVValue.framework/Versions/A/JKVValue";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -939,7 +1170,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
+				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;
 		};
@@ -947,6 +1178,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JKVValue.framework/Versions/A/JKVValue";
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
@@ -982,6 +1214,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JKVValue.framework/Versions/A/JKVValue";
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1078,6 +1311,15 @@
 			buildConfigurations = (
 				1F2CCAA517FCE3D700A382AB /* Debug */,
 				1F2CCAA617FCE3D700A382AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1F8561F41983705E00912381 /* Build configuration list for PBXNativeTarget "SpecSuite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F8561E81983705E00912381 /* Debug */,
+				1F8561E91983705E00912381 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

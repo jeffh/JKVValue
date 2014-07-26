@@ -34,7 +34,7 @@
     self = [super init];
     if (self) {
         JKVKeyedDecoderVisitor *visitor = [[JKVKeyedDecoderVisitor alloc] initWithCoder:aDecoder forObject:self];
-        for (JKVProperty *property in self.JKV_inspector.allProperties) {
+        for (JKVProperty *property in self.JKV_inspector.allPropertiesBackedByInstanceVariables) {
             [property visitEncodingType:visitor];
         }
     }
@@ -53,7 +53,7 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     JKVKeyedEncoderVisitor *visitor = [[JKVKeyedEncoderVisitor alloc] initWithCoder:aCoder forObject:self];
-    for (JKVProperty *property in self.JKV_inspector.allProperties) {
+    for (JKVProperty *property in self.JKV_inspector.allPropertiesBackedByInstanceVariables) {
         [property visitEncodingType:visitor];
     }
 }
@@ -96,7 +96,8 @@
 
 - (NSString *)debugDescription
 {
-    return [[JKVObjectPrinter sharedInstance] descriptionForObject:self withProperties:self.JKV_inspector.allProperties];
+    return [[JKVObjectPrinter sharedInstance] descriptionForObject:self
+                                                    withProperties:self.JKV_inspector.allPropertiesBackedByInstanceVariables];
 }
 
 - (BOOL)isEqual:(id)object
@@ -168,7 +169,8 @@
 {
     if (!_JKV_propertiesForIdentity){
         NSSet *whitelist = [NSSet setWithArray:[self JKV_propertyNamesForIdentity]];
-        NSArray *properties = [self.JKV_inspector.allProperties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name in %@", whitelist]];
+        NSPredicate *whitelistedNamePredicate = [NSPredicate predicateWithFormat:@"name in %@", whitelist];
+        NSArray *properties = [self.JKV_inspector.allPropertiesBackedByInstanceVariables filteredArrayUsingPredicate:whitelistedNamePredicate];
         _JKV_propertiesForIdentity = [properties valueForKey:@"name"];
     }
     return _JKV_propertiesForIdentity;
@@ -178,7 +180,8 @@
 {
     if (!_JKV_propertiesToAssignCopy){
         NSSet *whitelist = [NSSet setWithArray:[self JKV_propertyNamesToAssignCopy]];
-        NSArray *properties = [self.JKV_inspector.allProperties filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name in %@", whitelist]];
+        NSPredicate *whitelistedNamePredicate = [NSPredicate predicateWithFormat:@"name in %@", whitelist];
+        NSArray *properties = [self.JKV_inspector.allPropertiesBackedByInstanceVariables filteredArrayUsingPredicate:whitelistedNamePredicate];
         _JKV_propertiesToAssignCopy = [properties valueForKey:@"name"];
     }
     return _JKV_propertiesToAssignCopy;
