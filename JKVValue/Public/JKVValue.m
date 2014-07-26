@@ -3,7 +3,7 @@
 #import "JKVKeyedDecoderVisitor.h"
 #import "JKVKeyedEncoderVisitor.h"
 #import "JKVClassInspector.h"
-#import "JKVObjectPrinter.h"
+#import "JKVObjectPrinter-Protected.h"
 
 // We need ivars to avoid "picking" ourselves up from the runtime introspection
 // Namespaced to avoid getting clobbered by subclasses
@@ -96,8 +96,8 @@
 
 - (NSString *)debugDescription
 {
-    return [[JKVObjectPrinter sharedInstance] descriptionForObject:self
-                                                    withProperties:self.JKV_inspector.allPropertiesBackedByInstanceVariables];
+    return [JKVObjectPrinter descriptionForObject:self
+                                   withProperties:self.JKV_inspector.allPropertiesBackedByInstanceVariables];
 }
 
 - (BOOL)isEqual:(id)object

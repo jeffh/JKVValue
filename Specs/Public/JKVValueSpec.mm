@@ -6,6 +6,7 @@
 #import "JKVCollections.h"
 #import "JKVRestrictedObject.h"
 #import "JKVBasicValue.h"
+#import "JKVObjectPrinter.h"
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;

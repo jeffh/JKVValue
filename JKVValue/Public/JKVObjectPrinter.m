@@ -1,5 +1,7 @@
 #import "JKVObjectPrinter.h"
 #import "JKVProperty.h"
+#import "JKVClassInspector.h"
+#import <objc/runtime.h>
 
 NSComparisonResult (^JKVGenericSorter)(id, id) = ^NSComparisonResult(id obj1, id obj2){
     if ((__bridge void *)obj1 > (__bridge void *)obj2) {
@@ -11,7 +13,78 @@ NSComparisonResult (^JKVGenericSorter)(id, id) = ^NSComparisonResult(id obj1, id
     }
 };
 
+
+@interface NSObject (JKVValueSwizzle)
+- (NSString *)JKV_originalDescriptionWithLocale:(id)locale indent:(NSUInteger)indentation;
+@end
+
+
 @implementation JKVObjectPrinter
+
+#pragma mark - Public
+
++ (void)swizzleContainers
+{
+    [[self sharedInstance] swizzleDescriptionOfClass:[[NSArray array] class] withBlock:^NSString *(id obj) {
+        return [[self sharedInstance] stringForArray:obj];
+    }];
+    [[self sharedInstance] swizzleDescriptionOfClass:[[NSMutableArray array] class] withBlock:^NSString *(id obj) {
+        return [[self sharedInstance] stringForArray:obj];
+    }];
+    [[self sharedInstance] swizzleDescriptionOfClass:[[NSDictionary dictionary] class] withBlock:^NSString *(id obj) {
+        return [[self sharedInstance] stringForDictionary:obj];
+    }];
+    [[self sharedInstance] swizzleDescriptionOfClass:[[NSMutableDictionary dictionary] class] withBlock:^NSString *(id obj) {
+        return [[self sharedInstance] stringForDictionary:obj];
+    }];
+    [[self sharedInstance] swizzleDescriptionOfClass:[[NSSet set] class] withBlock:^NSString *(id obj) {
+        return [[self sharedInstance] stringForSet:obj];
+    }];
+    [[self sharedInstance] swizzleDescriptionOfClass:[[NSMutableSet set] class] withBlock:^NSString *(id obj) {
+        return [[self sharedInstance] stringForSet:obj];
+    }];
+}
+
++ (void)unswizzleContainers
+{
+    [[self sharedInstance] unswizzleDescriptionOfClass:[[NSArray array] class]];
+    [[self sharedInstance] unswizzleDescriptionOfClass:[[NSMutableArray array] class]];
+    [[self sharedInstance] unswizzleDescriptionOfClass:[[NSDictionary dictionary] class]];
+    [[self sharedInstance] unswizzleDescriptionOfClass:[[NSMutableDictionary dictionary] class]];
+    [[self sharedInstance] unswizzleDescriptionOfClass:[[NSSet set] class]];
+    [[self sharedInstance] unswizzleDescriptionOfClass:[[NSMutableSet set] class]];
+}
+
+- (void)swizzleDescriptionOfClass:(Class)aClass withBlock:(NSString *(^)(id obj))block
+{
+    IMP descriptionIMP = [aClass instanceMethodForSelector:@selector(descriptionWithLocale:indent:)];
+    Method method = class_getInstanceMethod(aClass, @selector(descriptionWithLocale:indent:));
+    const char *typeEncoding = method_getTypeEncoding(method);
+    class_addMethod(aClass, @selector(JKV_originalDescriptionWithLocale:indent:), descriptionIMP, typeEncoding);
+
+    IMP newIMP = imp_implementationWithBlock(^id(id that) {
+        return block(that);
+    });
+    class_replaceMethod(aClass, @selector(descriptionWithLocale:indent:), newIMP, typeEncoding);
+}
+
+- (void)unswizzleDescriptionOfClass:(Class)aClass
+{
+    if ([aClass instancesRespondToSelector:@selector(JKV_originalDescriptionWithLocale:indent:)]) {
+        IMP descriptionIMP = [aClass instanceMethodForSelector:@selector(JKV_originalDescriptionWithLocale:indent:)];
+        Method method = class_getInstanceMethod(aClass, @selector(JKV_originalDescriptionWithLocale:indent:));
+        const char *typeEncoding = method_getTypeEncoding(method);
+
+        class_replaceMethod(aClass, @selector(descriptionWithLocale:indent:), descriptionIMP, typeEncoding);
+    }
+}
+
++ (NSString *)descriptionForObject:(id)object withProperties:(NSArray *)properties
+{
+    return [[self sharedInstance] descriptionForObject:object withProperties:properties];
+}
+
+#pragma mark - Private
 
 + (instancetype)sharedInstance
 {
@@ -21,11 +94,6 @@ NSComparisonResult (^JKVGenericSorter)(id, id) = ^NSComparisonResult(id obj1, id
         JKVObjectPrinterInstance__ = [self new];
     });
     return JKVObjectPrinterInstance__;
-}
-
-+ (NSString *)descriptionForObject:(id)object withProperties:(NSArray *)properties
-{
-    return [[self sharedInstance] descriptionForObject:object withProperties:properties];
 }
 
 - (NSString *)descriptionForObject:(id)object withProperties:(NSArray *)properties
@@ -69,13 +137,16 @@ NSComparisonResult (^JKVGenericSorter)(id, id) = ^NSComparisonResult(id obj1, id
         return @"[NSNull null]";
     } else if ([object isKindOfClass:[NSURL class]]) {
         return [NSString stringWithFormat:@"[NSURL URLWithString:%@]",
-                                          [self stringForObject:[object absoluteString] withProperties:properties]];
+                [self stringForObject:[object absoluteString] withProperties:properties]];
     } else if ([object isKindOfClass:[NSString class]]) {
         return [NSString stringWithFormat:@"@\"%@\"",
                 [object stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];
     } else if (!object) {
         return @"nil";
+    } else if ([object respondsToSelector:@selector(descriptionWithLocale:indent:)]) {
+        return [object descriptionWithLocale:[NSLocale currentLocale] indent:0];
     }
+
     return [object description];
 }
 
@@ -113,7 +184,7 @@ NSComparisonResult (^JKVGenericSorter)(id, id) = ^NSComparisonResult(id obj1, id
     NSMutableArray *itemStrings = [NSMutableArray arrayWithCapacity:[array count]];
     BOOL prefixLinePrefix = NO;
     for (id item in array) {
-        NSString *string = [NSString stringWithFormat:@"%@", [self stringForObject:item withProperties:nil ]];
+        NSString *string = [NSString stringWithFormat:@"%@", [self stringForObject:item withProperties:nil]];
         [itemStrings addObject:[self stringWithMultilineString:string withLinePrefix:@"  " prefixFirstLine:prefixLinePrefix]];
         prefixLinePrefix = YES;
     }

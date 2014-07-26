@@ -139,24 +139,25 @@ Want `-[mutableCopy]` to use a different, actual, mutable class? Not a problem!
 
     @end
 
-Now you can switch between mutable and immutable variants like NSArray or NSDictionary:
+Now you can switch between mutable and immutable variants like NSArray or
+NSDictionary:
 
     // assuming MyPerson *person from above
     MyMutablePerson *mutablePerson = [person mutableCopy];
     MyPerson *immutablePerson = [mutablePerson copy];
 
-If you prefer to use use only mutable objects, `JKVMutableValue` is provided as a
-convinence, it simply overrides JKVValue's `-[JVK_isMutable]` to be `YES` instead of its
-default of `NO`.
+If you prefer to use use only mutable objects, `JKVMutableValue` is provided as
+a convinence, it simply overrides JKVValue's `-[JVK_isMutable]` to be `YES`
+instead of its default of `NO`.
 
-It's worth noting that copy/mutableCopy is called on all properties if they support
-NSCopying or NSMutableCopying correspondingly.
+It's worth noting that copy/mutableCopy is called on all properties if they
+support NSCopying or NSMutableCopying correspondingly.
 
 Basic Diffing
 -------------
 
-You have a lot of fields for two value objects and you want to know why `-[isEqual:]` is failing?
-Use `-[differenceToObject:]`:
+You have a lot of fields for two value objects and you want to know why
+`-[isEqual:]` is failing?  Use `-[differenceToObject:]`:
 
     MyPerson *person1 = [MyPerson new];
     person1.firstName = @"John";
@@ -168,17 +169,19 @@ Use `-[differenceToObject:]`:
 Testing
 -------
 
-This library comes with a factory class, `JKVFactory`, to produce pre-built value objects easily.
-It's not explicitly tied to `JKVValue` or `JKVMutableValue`, but is useful pattern for drying
-up the boilerplate of generating pre-populated value objects.
+This library comes with a factory class, `JKVFactory`, to produce pre-built
+value objects easily.  It's not explicitly tied to `JKVValue` or
+`JKVMutableValue`, but is useful pattern for drying up the boilerplate of
+generating pre-populated value objects.
 
-For the simpliest case of having a value object where non of its properties are zero:
+For the simpliest case of having a value object where non of its properties are
+zero:
 
     JKVFactory *personFactory = [JKVFactory factoryForClass:[MyPerson class]]
     MyPerson *person = [personFactory object];
 
-If you want more customization, it's recommended to inherit from `JKVFactory` with a
-custom `-[init]` method:
+If you want more customization, it's recommended to inherit from `JKVFactory`
+with a custom `-[init]` method:
 
     @interface MyPersonFactory : JKVFactory
     @end
@@ -203,6 +206,16 @@ Need to nil out a property? Use `[NSNull null]`:
 
     [MyPersonFactory buildObjectWithProperties:@{@"lastName": [NSNull null]}];
 
+
+Descriptions for Objective-C Containers
+=======================================
+
+JKVValue provides nice descriptions to ``NSArrays``, ``NSDictionaries``, and
+``NSSets`` properties. It doesn't override the default implementations on those
+classes by default. You can tell JKVValue to override them:
+
+    [JKVObjectPrinter swizzleContainers];
+    // you can undo the swizzling using [JKVObjectPrinter unswizzleContainers].
 
 Gotchas
 =======
