@@ -209,10 +209,11 @@ Gotchas
 
 Potential strangeness due to implementation details:
 
+ - Properties that are not backed by an instance variable are ignored.
  - Property assignment is done using KVC, which allows mutation of properties despite being marked as readonly. A private `-[init]` constructor is used by JKVValue to create the initial object.
  - weak properties are not used for equality (or hashing) since their life can be lost to a value object at any time.
  - weak properties are assigned through copying, and are not copied (a copied weak would just be released immediately).
  - weak properties are correctly encoded and decoded as conditional objects.
  - Due to the Objective-C Runtime, weak readonly properties behave like strong properties for JKVValues.
- - If you use the immutable/mutable pattern, you cannot have your constructor use the ivars directly, since the mutable version is overwriting them with its own.
+ - If you use the immutable-mutable pattern, you cannot have your constructor use the ivars directly, since the mutable version is overwriting them with its own.
 
