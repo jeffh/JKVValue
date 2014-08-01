@@ -8,6 +8,7 @@
 #import "JKVBasicValue.h"
 #import "JKVObjectPrinter.h"
 
+
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
 
@@ -184,7 +185,7 @@ describe(@"JKVValue", ^{
                                                  siblings:person.siblings
                                                     child:person.child];
         });
-        
+
         itShouldNotEqualWhen(@"age", @"age", ^{
             otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
                                                       lastName:person.lastName
@@ -225,7 +226,7 @@ describe(@"JKVValue", ^{
                                                       siblings:person.siblings
                                                          child:person.child];
         });
-        
+
         itShouldNotEqualWhen(@"height", @"height", ^{
             otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
                                                       lastName:person.lastName
@@ -236,7 +237,7 @@ describe(@"JKVValue", ^{
                                                       siblings:person.siblings
                                                          child:person.child];
         });
-        
+
         itShouldNotEqualWhen(@"child", @"child", ^{
             otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
                                                       lastName:person.lastName
@@ -249,12 +250,12 @@ describe(@"JKVValue", ^{
             otherPerson.child = @"FOO";
         });
     });
-    
+
     describe(@"NSSecureCoding", ^{
         __block JKVBasicValue *deserializedValue;
         __block NSMutableData *data;
         __block NSKeyedUnarchiver *unarchiver;
-        
+
         beforeEach(^{
             data = [NSMutableData data];
             NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
@@ -577,6 +578,59 @@ describe(@"JKVValue", ^{
                 clonedObject.lastWriter should be_same_instance_as(lastWriter);
             });
         });
+    });
+});
+
+describe(@"JKVValue (Concurrency)", ^{
+    __block dispatch_queue_t queue;
+    __block dispatch_group_t group;
+
+    beforeEach(^{
+        [JKVClassInspector clearInstanceCache];
+        queue = dispatch_queue_create("net.jeffhui.jkvvalue", DISPATCH_QUEUE_CONCURRENT);
+        group = dispatch_group_create();
+    });
+
+    it(@"should not crash when used independently across threads", ^{
+        NSUInteger numberOfTasks = 1000;
+        for (NSUInteger i = 0; i < numberOfTasks; i++) {
+            dispatch_group_enter(group);
+            dispatch_group_async(group, queue, ^{
+                [NSThread sleepForTimeInterval:(numberOfTasks - i) / (double)numberOfTasks];
+                JKVPerson *person = [[JKVPerson alloc] initWithFirstName:@"John"
+                                                                lastName:@"Doe"
+                                                                     age:28
+                                                                 married:YES
+                                                                  height:60.8
+                                                                  parent:nil
+                                                                siblings:@[[[JKVMutablePerson alloc] initWithFixtureData]]
+                                                                   child:@{[NSMutableString stringWithFormat:@"hi"]: [NSMutableString stringWithFormat:@"lo"]}];
+                JKVPerson *otherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
+                                                                     lastName:person.lastName
+                                                                          age:person.age
+                                                                      married:person.married
+                                                                       height:person.height
+                                                                       parent:nil
+                                                                     siblings:@[[[JKVMutablePerson alloc] initWithFixtureData]]
+                                                                        child:@{[NSMutableString stringWithFormat:@"hi"]: [NSMutableString stringWithFormat:@"lo"]}];
+                JKVPerson *anotherPerson = [[JKVPerson alloc] initWithFirstName:person.firstName
+                                                                       lastName:person.lastName
+                                                                            age:person.age
+                                                                        married:person.married
+                                                                         height:0
+                                                                         parent:nil
+                                                                       siblings:@[[[JKVMutablePerson alloc] initWithFixtureData]]
+                                                                          child:@{[NSMutableString stringWithFormat:@"hi"]: [NSMutableString stringWithFormat:@"lo"]}];
+
+                person should equal(otherPerson);
+                [person hash] should equal([otherPerson hash]);
+                person should_not equal(anotherPerson);
+                dispatch_group_leave(group);
+            });
+        }
+
+        BOOL timedOut = dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+        timedOut should_not be_truthy;
     });
 });
 

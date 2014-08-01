@@ -68,13 +68,13 @@
 
 /*! For subclasses to override to specify which properties are used for equality and hashing.
  *
- *  To increase performance. Each object will call this only once and memoize its results aftwards.
+ *  To increase performance. Each object will call this only once and memoize its results afterwards.
  */
 - (NSArray *)JKV_propertyNamesForIdentity;
 
 /*! For subclasses to override which weak properties to check for assignment and do weak encoding.
  *
- *  To increase performance. Each object will call this only once and memoize its results aftwards.
+ *  To increase performance. Each object will call this only once and memoize its results afterwards.
  */
 - (NSArray *)JKV_propertyNamesToAssignCopy;
 

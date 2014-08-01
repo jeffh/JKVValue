@@ -5,10 +5,13 @@
 
 @interface JKVClassInspector ()
 
-@property (strong, nonatomic) Class aClass;
+@property (strong, atomic) Class aClass;
 @property (strong, nonatomic, readwrite) NSArray *properties;
+@property (strong, nonatomic, readwrite) NSArray *propertiesBackedByInstanceVariables;
 @property (strong, nonatomic, readwrite) NSArray *weakProperties;
 @property (strong, nonatomic, readwrite) NSArray *nonWeakProperties;
+@property (strong, nonatomic, readwrite) NSArray *weakPropertyNames;
+@property (strong, nonatomic, readwrite) NSArray *nonWeakPropertyNames;
 
 @end
 
@@ -17,20 +20,28 @@
 
 static NSMutableDictionary *inspectors__;
 
++ (void)clearInstanceCache
+{
+    inspectors__ = [NSMutableDictionary new];
+}
+
++ (void)initialize
+{
+    [super initialize];
+    [self clearInstanceCache];
+}
+
 + (instancetype)inspectorForClass:(Class)aClass
 {
     NSString *key = NSStringFromClass(aClass);
-    __block JKVClassInspector *inspector = nil;
-    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if (!inspectors__) {
-            inspectors__ = [NSMutableDictionary new];
+    @synchronized (inspectors__) {
+        JKVClassInspector *instance = [inspectors__ objectForKey:key];
+        if (!instance) {
+            instance = [[self alloc] initWithClass:aClass];
+            [inspectors__ setObject:instance forKey:key];
         }
-        if (!inspectors__[key]) {
-            inspectors__[key] = [[self alloc] initWithClass:aClass];
-        }
-        inspector = inspectors__[key];
-    });
-    return inspector;
+        return instance;
+    }
 }
 
 - (id)initWithClass:(Class)aClass
@@ -123,54 +134,60 @@ static NSMutableDictionary *inspectors__;
 
 - (NSArray *)nonWeakProperties
 {
-    if (!_nonWeakProperties) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isWeak = NO"];
-        _nonWeakProperties = [self.allPropertiesBackedByInstanceVariables filteredArrayUsingPredicate:predicate];
+    @synchronized (self) {
+        if (!_nonWeakProperties) {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isWeak = NO"];
+            _nonWeakProperties = [self.propertiesBackedByInstanceVariables filteredArrayUsingPredicate:predicate];
+        }
+        return _nonWeakProperties;
     }
-    return _nonWeakProperties;
 }
 
 - (NSArray *)weakProperties
 {
-    if (!_weakProperties) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isWeak = YES"];
-        _weakProperties = [self.allPropertiesBackedByInstanceVariables filteredArrayUsingPredicate:predicate];
+    @synchronized (self) {
+        if (!_weakProperties) {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isWeak = YES"];
+            _weakProperties = [self.propertiesBackedByInstanceVariables filteredArrayUsingPredicate:predicate];
+        }
+        return _weakProperties;
     }
-    return _weakProperties;
 }
 
 - (NSArray *)properties
 {
-    if (!_properties) {
-        NSMutableArray *properties = [NSMutableArray new];
-        unsigned int numProperties = 0;
-        objc_property_t *objc_properties = class_copyPropertyList(self.aClass, &numProperties);
-        for (NSUInteger i=0; i<numProperties; i++) {
-            objc_property_t objc_property = objc_properties[i];
+    @synchronized (self) {
+        if (!_properties) {
+            NSMutableArray *properties = [NSMutableArray new];
+            unsigned int numProperties = 0;
+            objc_property_t *objc_properties = class_copyPropertyList(self.aClass, &numProperties);
+            for (NSUInteger i=0; i<numProperties; i++) {
+                objc_property_t objc_property = objc_properties[i];
 
-            unsigned int numAttributes = 0;
-            objc_property_attribute_t *objc_attributes = property_copyAttributeList(objc_property, &numAttributes);
-            NSMutableDictionary *attributesDict = [NSMutableDictionary new];
-            for (NSUInteger j=0; j<numAttributes; j++) {
-                objc_property_attribute_t attribute = objc_attributes[j];
-                NSString *key = [NSString stringWithCString:attribute.name encoding:NSUTF8StringEncoding];
-                NSString *value = [NSString stringWithCString:attribute.value encoding:NSUTF8StringEncoding];
-                attributesDict[key] = value;
+                unsigned int numAttributes = 0;
+                objc_property_attribute_t *objc_attributes = property_copyAttributeList(objc_property, &numAttributes);
+                NSMutableDictionary *attributesDict = [NSMutableDictionary new];
+                for (NSUInteger j=0; j<numAttributes; j++) {
+                    objc_property_attribute_t attribute = objc_attributes[j];
+                    NSString *key = [NSString stringWithCString:attribute.name encoding:NSUTF8StringEncoding];
+                    NSString *value = [NSString stringWithCString:attribute.value encoding:NSUTF8StringEncoding];
+                    attributesDict[key] = value;
+                }
+                free(objc_attributes);
+
+                NSString *propertyName = [NSString stringWithUTF8String:property_getName(objc_property)];
+
+                [properties addObject:[[JKVProperty alloc] initWithName:propertyName
+                                                             attributes:attributesDict]];
             }
-            free(objc_attributes);
-
-            NSString *propertyName = [NSString stringWithUTF8String:property_getName(objc_property)];
-
-            [properties addObject:[[JKVProperty alloc] initWithName:propertyName
-                                                         attributes:attributesDict]];
+            free(objc_properties);
+            _properties = properties;
         }
-        free(objc_properties);
-        _properties = properties;
+        return _properties;
     }
-    return _properties;
 }
 
-- (NSArray *)propertiesBackedByInstanceVariables
+- (NSArray *)_propertiesBackedByInstanceVariables
 {
     NSArray *properties = [self properties];
     NSMutableArray *filteredProperties = [NSMutableArray arrayWithCapacity:properties.count];
@@ -182,22 +199,48 @@ static NSMutableDictionary *inspectors__;
     return filteredProperties;
 }
 
-- (NSArray *)allPropertiesBackedByInstanceVariables
+- (NSArray *)propertiesBackedByInstanceVariables
 {
-    NSArray *classProperties = [self propertiesBackedByInstanceVariables];
-    NSSet *classPropertyNames = [NSSet setWithArray:[classProperties valueForKey:@"name"]];
-    NSMutableArray *properties = [NSMutableArray new];
-    Class parentClass = class_getSuperclass(self.aClass);
-    if (parentClass && parentClass != [NSObject class]) {
-        NSArray *parentClassProperties = [[JKVClassInspector inspectorForClass:parentClass] allPropertiesBackedByInstanceVariables];
-        for (JKVProperty *property in parentClassProperties) {
-            if (![classPropertyNames containsObject:property.name]) {
-                [properties addObject:property];
+    @synchronized (self) {
+        if (!_propertiesBackedByInstanceVariables) {
+            NSArray *classProperties = [self _propertiesBackedByInstanceVariables];
+            NSSet *classPropertyNames = [NSSet setWithArray:[classProperties valueForKey:@"name"]];
+            NSMutableArray *properties = [NSMutableArray new];
+            Class parentClass = class_getSuperclass(self.aClass);
+            if (parentClass && parentClass != [NSObject class]) {
+                NSArray *parentClassProperties = [[JKVClassInspector inspectorForClass:parentClass] _propertiesBackedByInstanceVariables];
+                for (JKVProperty *property in parentClassProperties) {
+                    if (![classPropertyNames containsObject:property.name]) {
+                        [properties addObject:property];
+                    }
+                }
             }
+            [properties addObjectsFromArray:classProperties];
+            [properties removeObjectsInArray:[[JKVClassInspector inspectorForClass:[NSObject class]] _propertiesBackedByInstanceVariables]];
+            _propertiesBackedByInstanceVariables = properties;
         }
+        return _propertiesBackedByInstanceVariables;
     }
-    [properties addObjectsFromArray:classProperties];
-    return properties;
+}
+
+- (NSArray *)weakPropertyNames
+{
+    @synchronized (self) {
+        if (!_weakPropertyNames) {
+            _weakPropertyNames = [self.weakProperties valueForKey:@"name"];
+        }
+        return _weakPropertyNames;
+    }
+}
+
+- (NSArray *)nonWeakPropertyNames
+{
+    @synchronized (self) {
+        if (!_nonWeakPropertyNames) {
+            _nonWeakPropertyNames = [self.nonWeakProperties valueForKey:@"name"];
+        }
+        return _nonWeakPropertyNames;
+    }
 }
 
 @end

@@ -14,20 +14,13 @@
 		1F2CCADB17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADA17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m */; };
 		1F2CCADF17FD0C4400A382AB /* JKVClassInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADE17FD0C4400A382AB /* JKVClassInspector.m */; };
 		1F2CCAE817FD11ED00A382AB /* JKVValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE717FD11ED00A382AB /* JKVValue.m */; };
+		1F5AC6F8198B595200A1E8F5 /* libJKVValue.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8117FCE3D700A382AB /* libJKVValue.a */; };
 		1F8561D51983705D00912381 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB745D217FE5FFC00572B60 /* UIKit.framework */; };
 		1F8561D61983705D00912381 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8417FCE3D700A382AB /* Foundation.framework */; };
 		1F8561D71983705D00912381 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4322A817FE2DFD001293C1 /* CoreGraphics.framework */; };
 		1F8561DD1983705D00912381 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F8561DB1983705D00912381 /* InfoPlist.strings */; };
 		1F8561DF1983705D00912381 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8561DE1983705D00912381 /* main.m */; };
 		1F8561E51983705E00912381 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F8561E41983705E00912381 /* Default-568h@2x.png */; };
-		1F8561F51983706E00912381 /* JKVClassInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADE17FD0C4400A382AB /* JKVClassInspector.m */; };
-		1F8561F61983706E00912381 /* JKVKeyedDecoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD617FD080F00A382AB /* JKVKeyedDecoderVisitor.m */; };
-		1F8561F71983706E00912381 /* JKVKeyedEncoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADA17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m */; };
-		1F8561F81983706E00912381 /* JKVNonZeroSetterVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D34C18473BFF00789483 /* JKVNonZeroSetterVisitor.m */; };
-		1F8561F91983706E00912381 /* JKVProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCACE17FCFAA700A382AB /* JKVProperty.m */; };
-		1F8561FB1983707300912381 /* JKVMutableValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAC917FCE78700A382AB /* JKVMutableValue.m */; };
-		1F8561FC1983707300912381 /* JKVValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE717FD11ED00A382AB /* JKVValue.m */; };
-		1F8561FD1983707300912381 /* JKVFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3391847382F00789483 /* JKVFactory.m */; };
 		1F8561FE1983708400912381 /* JKVMutablePerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD317FCFFD900A382AB /* JKVMutablePerson.m */; };
 		1F8561FF1983708400912381 /* JKVPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE217FD10F600A382AB /* JKVPerson.m */; };
 		1F8562001983708400912381 /* JKVTypeContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAEB17FD180500A382AB /* JKVTypeContainer.m */; };
@@ -91,7 +84,6 @@
 		1FAFA9CA1983A43800E464E1 /* JKVObjectPrinter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FAFA9C81983A43800E464E1 /* JKVObjectPrinter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FAFA9CB1983A43800E464E1 /* JKVObjectPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FAFA9C91983A43800E464E1 /* JKVObjectPrinter.m */; };
 		1FAFA9CC1983A43800E464E1 /* JKVObjectPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FAFA9C91983A43800E464E1 /* JKVObjectPrinter.m */; };
-		1FAFA9CD1983A43800E464E1 /* JKVObjectPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FAFA9C91983A43800E464E1 /* JKVObjectPrinter.m */; };
 		1FB5D33A1847382F00789483 /* JKVFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3391847382F00789483 /* JKVFactory.m */; };
 		1FB5D34D18473BFF00789483 /* JKVNonZeroSetterVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D34C18473BFF00789483 /* JKVNonZeroSetterVisitor.m */; };
 /* End PBXBuildFile section */
@@ -117,6 +109,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1FA39D5218D544AD0066061C;
 			remoteInfo = JKVValueOSX;
+		};
+		1F5AC6F6198B594D00A1E8F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F2CCA7917FCE3D700A382AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F2CCA8017FCE3D700A382AB;
+			remoteInfo = JKVValue;
 		};
 		1F956B42180CFF1700E603A9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -300,6 +299,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F5AC6F8198B595200A1E8F5 /* libJKVValue.a in Frameworks */,
 				1F856209198370A900912381 /* libCedar-StaticLib.a in Frameworks */,
 				1F8561D71983705D00912381 /* CoreGraphics.framework in Frameworks */,
 				1F8561D51983705D00912381 /* UIKit.framework in Frameworks */,
@@ -607,6 +607,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1F5AC6F7198B594D00A1E8F5 /* PBXTargetDependency */,
 			);
 			name = SpecSuite;
 			productName = SpecSuite;
@@ -680,7 +681,7 @@
 				ORGANIZATIONNAME = "Jeff Hui";
 				TargetAttributes = {
 					1FA39D0518D5402E0066061C = {
-						TestTargetID = 1FA39D5218D544AD0066061C;
+						TestTargetID = 1F2CCA8017FCE3D700A382AB;
 					};
 					1FA39D2B18D541ED0066061C = {
 						TestTargetID = 1FA39D5218D544AD0066061C;
@@ -837,25 +838,16 @@
 				1F8561DF1983705D00912381 /* main.m in Sources */,
 				1F8562071983708800912381 /* JKVValueSpec.mm in Sources */,
 				1F8561FE1983708400912381 /* JKVMutablePerson.m in Sources */,
-				1FAFA9CD1983A43800E464E1 /* JKVObjectPrinter.m in Sources */,
-				1F8561F81983706E00912381 /* JKVNonZeroSetterVisitor.m in Sources */,
 				1FAFA9BD19839C7800E464E1 /* JKVObjectPrinterSpec.mm in Sources */,
-				1F8561F71983706E00912381 /* JKVKeyedEncoderVisitor.m in Sources */,
 				1F8562001983708400912381 /* JKVTypeContainer.m in Sources */,
 				1F8562021983708400912381 /* JKVMutableCollections.m in Sources */,
 				1F8562061983708800912381 /* JKVMutableValueSpec.mm in Sources */,
 				1F8562011983708400912381 /* JKVCollections.m in Sources */,
-				1F8561FD1983707300912381 /* JKVFactory.m in Sources */,
-				1F8561F61983706E00912381 /* JKVKeyedDecoderVisitor.m in Sources */,
-				1F8561FB1983707300912381 /* JKVMutableValue.m in Sources */,
-				1F8561FC1983707300912381 /* JKVValue.m in Sources */,
-				1F8561F51983706E00912381 /* JKVClassInspector.m in Sources */,
 				1F8562031983708400912381 /* JKVRestrictedObject.m in Sources */,
 				1F8561FF1983708400912381 /* JKVPerson.m in Sources */,
 				1F8562041983708400912381 /* JKVBasicValue.m in Sources */,
 				1F8562081983708800912381 /* JKVFactorySpec.mm in Sources */,
 				1F8562051983708400912381 /* JKVPersonFactory.m in Sources */,
-				1F8561F91983706E00912381 /* JKVProperty.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -930,6 +922,11 @@
 			isa = PBXTargetDependency;
 			target = 1FA39D5218D544AD0066061C /* JKVValueOSX */;
 			targetProxy = 1F2EB4F8197F537B00B86EF6 /* PBXContainerItemProxy */;
+		};
+		1F5AC6F7198B594D00A1E8F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1F2CCA8017FCE3D700A382AB /* JKVValue */;
+			targetProxy = 1F5AC6F6198B594D00A1E8F5 /* PBXContainerItemProxy */;
 		};
 		1FA39D1518D5402E0066061C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1068,6 +1065,7 @@
 		1F8561E81983705E00912381 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1102,6 +1100,7 @@
 		1F8561E91983705E00912381 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1133,7 +1132,7 @@
 		1FA39D1718D5402E0066061C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JKVValue.framework/Versions/A/JKVValue";
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1155,14 +1154,13 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Debug;
 		};
 		1FA39D1818D5402E0066061C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JKVValue.framework/Versions/A/JKVValue";
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1180,7 +1178,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;
 		};
@@ -1188,6 +1185,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JKVValue.framework/Versions/A/JKVValue";
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1224,6 +1222,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JKVValue.framework/Versions/A/JKVValue";
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (

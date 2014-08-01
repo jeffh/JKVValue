@@ -9,6 +9,10 @@
 @property (nonatomic, weak, readwrite) id parent;
 @property (nonatomic, strong, readwrite) NSArray *siblings;
 
+// SDK 8.0+ makes hashes properties.
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
 @property (readonly) NSUInteger hash;
+#endif
+
 @end
 
