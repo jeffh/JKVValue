@@ -1,5 +1,6 @@
 language: objective-c
-before_install:
+before_install: brew update
+install:
   - brew install ios-sim
   - gem install cocoapods
 script: rake ci

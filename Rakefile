@@ -24,7 +24,7 @@ end
 
 class Simulator
   def self.quit
-    system("osascript -e 'tell app \"iPhone Simulator\" to quit' > /dev/null")
+    system("osascript -e 'tell app \"iOS Simulator\" to quit' > /dev/null")
     sleep(1)
   end
 
@@ -53,25 +53,16 @@ task :specs71_suite do
   Simulator.launch("#{BUILD_DIR}/Debug-iphonesimulator/SpecSuite.app", '7.1')
 end
 
-task :specs70_suite do
+task :specs81_suite do
   xcbuild("clean build -scheme SpecSuite -sdk iphonesimulator#{SDK_BUILD_VERSION} SYMROOT=#{BUILD_DIR.inspect}")
-  Simulator.launch("#{BUILD_DIR}/Debug-iphonesimulator/SpecSuite.app", '7.0')
-end
-
-task :specs61_suite do
-  xcbuild("clean build -scheme SpecSuite -sdk iphonesimulator#{SDK_BUILD_VERSION} SYMROOT=#{BUILD_DIR.inspect}")
-  Simulator.launch("#{BUILD_DIR}/Debug-iphonesimulator/SpecSuite.app", '6.1')
+  Simulator.launch("#{BUILD_DIR}/Debug-iphonesimulator/SpecSuite.app", '8.1')
 end
 
 task :specs71_bundle do
   xcbuild("clean test -scheme JKVValue -sdk iphonesimulator#{SDK_BUILD_VERSION} -destination 'name=iPhone Retina (4-inch),OS=7.1' SYMROOT=#{BUILD_DIR.inspect}")
 end
 
-task :specs70_bundle do
-  xcbuild("clean test -scheme JKVValue -sdk iphonesimulator#{SDK_BUILD_VERSION} -destination 'name=iPhone Retina (4-inch),OS=7.0' SYMROOT=#{BUILD_DIR.inspect}")
-end
-
-task :specs61_bundle do
+task :specs81_bundle do
   xcbuild("clean test -scheme JKVValue -sdk iphonesimulator#{SDK_BUILD_VERSION} -destination 'name=iPhone Retina (4-inch),OS=6.1' SYMROOT=#{BUILD_DIR.inspect}")
 end
 
@@ -83,16 +74,12 @@ task :default => [
   :clean,
   :osx_specs,
   :specs71_suite,
-  :specs61_suite,
-  # :specs71_bundle,
-  # :specs61_bundle
+  :specs81_suite,
 ]
 task :ci => [
   :clean,
   :osx_specs,
   :specs71_suite,
-  :specs61_suite,
-  # :specs70_bundle,
-  # :specs61_bundle, 
-  :lint
+  :specs81_suite,
+  :lint,
 ]
