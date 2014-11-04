@@ -36,7 +36,7 @@ end
 
 def xcbuild(cmd)
   Simulator.quit
-  unless system_or_exit("xcodebuild #{cmd}", "build.txt")
+  unless system_or_exit("xcodebuild -project JKVValue.xcodeproj #{cmd}", "build.txt")
   end
 end
 

@@ -22,7 +22,7 @@
 		<key>8BBDFE6AD417A21738CEF1A18F65FB8C11C2D6F2</key>
 		<string>../..</string>
 		<key>9C17E6AC4A93E78FE05F88AE0011DD4EAD50139D</key>
-		<string>../..Externals/cedar/</string>
+		<string>../..Externals/cedar</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/jeffh/JKVValue.git</string>
