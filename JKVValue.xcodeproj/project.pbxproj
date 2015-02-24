@@ -16,7 +16,6 @@
 		1F2CCAE817FD11ED00A382AB /* JKVValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE717FD11ED00A382AB /* JKVValue.m */; };
 		1F5AC6F8198B595200A1E8F5 /* libJKVValue.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8117FCE3D700A382AB /* libJKVValue.a */; };
 		1F67EFE61A09F27900C18230 /* Cedar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F956B43180CFF1700E603A9 /* Cedar.framework */; };
-		1F67EFEA1A09F35B00C18230 /* Cedar.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1F956B43180CFF1700E603A9 /* Cedar.framework */; };
 		1F8561D51983705D00912381 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB745D217FE5FFC00572B60 /* UIKit.framework */; };
 		1F8561D61983705D00912381 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2CCA8417FCE3D700A382AB /* Foundation.framework */; };
 		1F8561D71983705D00912381 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F4322A817FE2DFD001293C1 /* CoreGraphics.framework */; };
@@ -241,7 +240,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				1F67EFEA1A09F35B00C18230 /* Cedar.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
