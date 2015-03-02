@@ -10,6 +10,8 @@
 @synthesize parent;
 @synthesize siblings;
 
+@dynamic hash;
+
 - (BOOL)JKV_isMutable
 {
     return YES;
