@@ -40,32 +40,39 @@ def xcbuild(cmd)
   end
 end
 
+desc 'Cleans build directory'
 task :clean do
   system_or_exit("rm -rf #{BUILD_DIR.inspect} 2>&1 > '#{BUILD_DIR}/clean.txt' || true")
 end
 
+desc 'Cleans build directory for OS X'
 task :osx_specs do
   xcbuild("clean test -scheme JKVValueOSX -sdk macosx -destination 'platform=OS X' SYMROOT=#{BUILD_DIR.inspect}")
 end
 
+desc 'Runs the iOS 7.1 spec suite'
 task :specs71_suite do
   xcbuild("clean build -scheme SpecSuite -sdk iphonesimulator#{SDK_BUILD_VERSION} SYMROOT=#{BUILD_DIR.inspect}")
   Simulator.launch("#{BUILD_DIR}/Debug-iphonesimulator/SpecSuite.app", '7.1')
 end
 
+desc 'Runs the iOS 8.1 spec suite'
 task :specs81_suite do
   xcbuild("clean build -scheme SpecSuite -sdk iphonesimulator#{SDK_BUILD_VERSION} SYMROOT=#{BUILD_DIR.inspect}")
   Simulator.launch("#{BUILD_DIR}/Debug-iphonesimulator/SpecSuite.app", '8.1')
 end
 
+desc 'Runs the iOS 7.1 spec bundle'
 task :specs71_bundle do
   xcbuild("clean test -scheme JKVValue -sdk iphonesimulator#{SDK_BUILD_VERSION} -destination 'name=iPhone Retina (4-inch),OS=7.1' SYMROOT=#{BUILD_DIR.inspect}")
 end
 
+desc 'Runs the iOS 8.1 spec bundle'
 task :specs81_bundle do
   xcbuild("clean test -scheme JKVValue -sdk iphonesimulator#{SDK_BUILD_VERSION} -destination 'name=iPhone Retina (4-inch),OS=6.1' SYMROOT=#{BUILD_DIR.inspect}")
 end
 
+desc 'Runs the cocoapod spec linter'
 task :lint do
   system_or_exit('pod spec lint JKVValue.podspec')
 end
@@ -76,6 +83,7 @@ task :default => [
   :specs71_suite,
   :specs81_suite,
 ]
+desc 'Runs what CI would run'
 task :ci => [
   :clean,
   :osx_specs,
