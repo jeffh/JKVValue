@@ -59,92 +59,100 @@ Any properties you declare will automatically be detected and have their
 corresponding methods in NSCopying, NSMutableCopying, NSCoding, NSObject
 protocols supported automatically:
 
-    #import "JKVValue.h"
+```objc
+#import "JKVValue.h"
 
-    @interface MyPerson : JKVValue
-    @property (strong, nonatomic, readonly) NSString *firstName;
-    @property (strong, nonatomic, readonly) NSString *lastName;
+@interface MyPerson : JKVValue
+@property (strong, nonatomic, readonly) NSString *firstName;
+@property (strong, nonatomic, readonly) NSString *lastName;
 
-    - (id)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName;
-    @end
+- (id)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName;
+@end
 
-    @interface MyPerson ()
-    @property (strong, nonatomic, readwrite) NSString *firstName;
-    @property (strong, nonatomic, readwrite) NSString *lastName;
-    @end
+@interface MyPerson ()
+@property (strong, nonatomic, readwrite) NSString *firstName;
+@property (strong, nonatomic, readwrite) NSString *lastName;
+@end
 
-    @implementation MyPerson
+@implementation MyPerson
 
-    - (id)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName
-    {
-        if (self = [super init]) {
-            self.firstName = firstName;
-            self.lastName = lastName;
-        }
-        return self;
+- (id)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName
+{
+    if (self = [super init]) {
+        self.firstName = firstName;
+        self.lastName = lastName;
     }
+    return self;
+}
 
-    @end
+@end
+```
 
 That's it! All the cool methods are supported now:
 
-    MyPerson *person = [[MyPerson alloc] initWithFirstName:@"John" lastName:"Doe"];
+```objc
+MyPerson *person = [[MyPerson alloc] initWithFirstName:@"John" lastName:"Doe"];
 
-    // Copy returns same instance here, since it assumes immutability.
-    MyPerson *cloned = [person copy];
+// Copy returns same instance here, since it assumes immutability.
+MyPerson *cloned = [person copy];
 
-    // this creates a new MyPerson instance, but still read only. We'll see how to change that later.
-    MyPerson *mutableClone = [person mutableCopy];
+// this creates a new MyPerson instance, but still read only. We'll see how to change that later.
+MyPerson *mutableClone = [person mutableCopy];
 
-    [person isEqual:mutableClone]; // => true
-    [NSSet setWithArray:@[person, mutableClone]]; // => set of 1 person
+[person isEqual:mutableClone]; // => true
+[NSSet setWithArray:@[person, mutableClone]]; // => set of 1 person
 
-    // get a nice description for free
-    [person description]; // => <MyPerson 0xdeadbeef firstName=John lastName=Doe>
-    // even in LLDB:
-    // > po person => <MyPerson 0xdeadbeef firstName=John lastName=Doe>
+// get a nice description for free
+[person description]; // => <MyPerson 0xdeadbeef firstName=John lastName=Doe>
+// even in LLDB:
+// > po person => <MyPerson 0xdeadbeef firstName=John lastName=Doe>
+```
 
 Want `-[mutableCopy]` to use a different, actual, mutable class? Not a problem!
 
-    @class MyMutablePerson;
+```objc
+@class MyMutablePerson;
 
-    @implementation MyPerson
+@implementation MyPerson
 
-    - (Class)JKV_mutableClass
-    {
-        return [MyMutablePerson class];
-    }
+- (Class)JKV_mutableClass
+{
+    return [MyMutablePerson class];
+}
 
-    @end
+@end
 
-    @interface MyMutablePerson : MyPerson
-    @property (strong, nonatomic, readwrite) NSString *firstName;
-    @property (strong, nonatomic, readwrite) NSString *lastName;
-    @end
+@interface MyMutablePerson : MyPerson
+@property (strong, nonatomic, readwrite) NSString *firstName;
+@property (strong, nonatomic, readwrite) NSString *lastName;
+@end
 
-    @implementation MyMutablePerson
+@implementation MyMutablePerson
 
-    @synthesize firstName;
-    @synthesize lastName;
+@synthesize firstName;
+@synthesize lastName;
 
-    - (BOOL)JKV_isMutable
-    {
-        return YES; // to hint to JKVValue that this concrete class is mutable.
-    }
+- (BOOL)JKV_isMutable
+{
+    return YES; // to hint to JKVValue that this concrete class is mutable.
+}
 
-    - (Class)JKV_immutableClass
-    {
-        return [MyPerson class]; // tells JKVValue which class to create for the immutable variant
-    }
+- (Class)JKV_immutableClass
+{
+    return [MyPerson class]; // tells JKVValue which class to create for the immutable variant
+}
 
-    @end
+@end
+```
 
 Now you can switch between mutable and immutable variants like NSArray or
 NSDictionary:
 
-    // assuming MyPerson *person from above
-    MyMutablePerson *mutablePerson = [person mutableCopy];
-    MyPerson *immutablePerson = [mutablePerson copy];
+```objc
+// assuming MyPerson *person from above
+MyMutablePerson *mutablePerson = [person mutableCopy];
+MyPerson *immutablePerson = [mutablePerson copy];
+```
 
 If you prefer to use use only mutable objects, `JKVMutableValue` is provided as
 a convinence, it simply overrides JKVValue's `-[JVK_isMutable]` to be `YES`
@@ -159,12 +167,14 @@ Basic Diffing
 You have a lot of fields for two value objects and you want to know why
 `-[isEqual:]` is failing?  Use `-[differenceToObject:]`:
 
-    MyPerson *person1 = [MyPerson new];
-    person1.firstName = @"John";
-    MyPerson *person2 = [MyPerson new];
-    person2.firstName = @"James";
-    [person1 differenceToObject:person2]; // => @{@"firstName": @[@"John", @"James"};
-    [person1 differenceToObject:@1]; // => @{@"class": @[[MyPerson class], NSClassFromString(@"__CFNSNumber")}
+```objc
+MyPerson *person1 = [MyPerson new];
+person1.firstName = @"John";
+MyPerson *person2 = [MyPerson new];
+person2.firstName = @"James";
+[person1 differenceToObject:person2]; // => @{@"firstName": @[@"John", @"James"};
+[person1 differenceToObject:@1]; // => @{@"class": @[[MyPerson class], NSClassFromString(@"__CFNSNumber")}
+```
 
 Testing
 -------
@@ -177,34 +187,42 @@ generating pre-populated value objects.
 For the simpliest case of having a value object where non of its properties are
 zero:
 
-    JKVFactory *personFactory = [JKVFactory factoryForClass:[MyPerson class]]
-    MyPerson *person = [personFactory object];
+```objc
+JKVFactory *personFactory = [JKVFactory factoryForClass:[MyPerson class]]
+MyPerson *person = [personFactory object];
+```
 
 If you want more customization, it's recommended to inherit from `JKVFactory`
 with a custom `-[init]` method:
 
-    @interface MyPersonFactory : JKVFactory
-    @end
+```objc
+@interface MyPersonFactory : JKVFactory
+@end
 
-    @implementation MyPersonFactory
+@implementation MyPersonFactory
 
-    - (id)init
-    {
-        return [super initWithClass:[MyPerson class] properties:@{@"firstName": @"John"}];
-    }
+- (id)init
+{
+    return [super initWithClass:[MyPerson class] properties:@{@"firstName": @"John"}];
+}
 
-    @end
+@end
 
-    // shortcut to [[MyPersonFactory new] object]
-    MyPerson *person = [MyPersonFactory buildObject];
+// shortcut to [[MyPersonFactory new] object]
+MyPerson *person = [MyPersonFactory buildObject];
+```
 
 Want a special object with custom properties?
 
-    [MyPersonFactory buildObjectWithProperties:@{@"firstName": @"James"}];
+```objc
+[MyPersonFactory buildObjectWithProperties:@{@"firstName": @"James"}];
+```
 
 Need to nil out a property? Use `[NSNull null]`:
 
-    [MyPersonFactory buildObjectWithProperties:@{@"lastName": [NSNull null]}];
+```objc
+[MyPersonFactory buildObjectWithProperties:@{@"lastName": [NSNull null]}];
+```
 
 
 Descriptions for Objective-C Containers
@@ -214,8 +232,10 @@ JKVValue provides nice descriptions to ``NSArrays``, ``NSDictionaries``, and
 ``NSSets`` properties. It doesn't override the default implementations on those
 classes by default. You can tell JKVValue to override them:
 
-    [JKVObjectPrinter swizzleContainers];
-    // you can undo the swizzling using [JKVObjectPrinter unswizzleContainers].
+```objc
+[JKVObjectPrinter swizzleContainers];
+// you can undo the swizzling using [JKVObjectPrinter unswizzleContainers].
+```
 
 Gotchas
 =======
