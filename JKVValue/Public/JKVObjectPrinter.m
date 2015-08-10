@@ -16,6 +16,7 @@ NSComparisonResult (^JKVGenericSorter)(id, id) = ^NSComparisonResult(id obj1, id
 
 @interface NSObject (JKVValueSwizzle)
 - (NSString *)JKV_originalDescriptionWithLocale:(id)locale indent:(NSUInteger)indentation;
+- (NSString *)JKV_originalDescription;
 @end
 
 
@@ -25,34 +26,34 @@ NSComparisonResult (^JKVGenericSorter)(id, id) = ^NSComparisonResult(id obj1, id
 
 + (void)swizzleContainers
 {
-    [[self sharedInstance] swizzleDescriptionOfClass:[[NSArray array] class] withBlock:^NSString *(id obj) {
+    [[self sharedInstance] swizzleDescriptionOfClass:[NSArray class] withBlock:^NSString *(id obj) {
         return [[self sharedInstance] stringForArray:obj];
     }];
-    [[self sharedInstance] swizzleDescriptionOfClass:[[NSMutableArray array] class] withBlock:^NSString *(id obj) {
+    [[self sharedInstance] swizzleDescriptionOfClass:[NSMutableArray class] withBlock:^NSString *(id obj) {
         return [[self sharedInstance] stringForArray:obj];
     }];
-    [[self sharedInstance] swizzleDescriptionOfClass:[[NSDictionary dictionary] class] withBlock:^NSString *(id obj) {
+    [[self sharedInstance] swizzleDescriptionOfClass:[NSDictionary class] withBlock:^NSString *(id obj) {
         return [[self sharedInstance] stringForDictionary:obj];
     }];
-    [[self sharedInstance] swizzleDescriptionOfClass:[[NSMutableDictionary dictionary] class] withBlock:^NSString *(id obj) {
+    [[self sharedInstance] swizzleDescriptionOfClass:[NSMutableDictionary class] withBlock:^NSString *(id obj) {
         return [[self sharedInstance] stringForDictionary:obj];
     }];
-    [[self sharedInstance] swizzleDescriptionOfClass:[[NSSet set] class] withBlock:^NSString *(id obj) {
+    [[self sharedInstance] swizzleDescriptionOfClass:[NSSet class] withBlock:^NSString *(id obj) {
         return [[self sharedInstance] stringForSet:obj];
     }];
-    [[self sharedInstance] swizzleDescriptionOfClass:[[NSMutableSet set] class] withBlock:^NSString *(id obj) {
+    [[self sharedInstance] swizzleDescriptionOfClass:[NSMutableSet class] withBlock:^NSString *(id obj) {
         return [[self sharedInstance] stringForSet:obj];
     }];
 }
 
 + (void)unswizzleContainers
 {
-    [[self sharedInstance] unswizzleDescriptionOfClass:[[NSArray array] class]];
-    [[self sharedInstance] unswizzleDescriptionOfClass:[[NSMutableArray array] class]];
-    [[self sharedInstance] unswizzleDescriptionOfClass:[[NSDictionary dictionary] class]];
-    [[self sharedInstance] unswizzleDescriptionOfClass:[[NSMutableDictionary dictionary] class]];
-    [[self sharedInstance] unswizzleDescriptionOfClass:[[NSSet set] class]];
-    [[self sharedInstance] unswizzleDescriptionOfClass:[[NSMutableSet set] class]];
+    [[self sharedInstance] unswizzleDescriptionOfClass:[NSArray class]];
+    [[self sharedInstance] unswizzleDescriptionOfClass:[NSMutableArray class]];
+    [[self sharedInstance] unswizzleDescriptionOfClass:[NSDictionary class]];
+    [[self sharedInstance] unswizzleDescriptionOfClass:[NSMutableDictionary class]];
+    [[self sharedInstance] unswizzleDescriptionOfClass:[NSSet class]];
+    [[self sharedInstance] unswizzleDescriptionOfClass:[NSMutableSet class]];
 }
 
 - (void)swizzleDescriptionOfClass:(Class)aClass withBlock:(NSString *(^)(id obj))block
@@ -66,6 +67,12 @@ NSComparisonResult (^JKVGenericSorter)(id, id) = ^NSComparisonResult(id obj1, id
         return block(that);
     });
     class_replaceMethod(aClass, @selector(descriptionWithLocale:indent:), newIMP, typeEncoding);
+
+    descriptionIMP = [aClass instanceMethodForSelector:@selector(description)];
+    method = class_getInstanceMethod(aClass, @selector(description));
+    typeEncoding = method_getTypeEncoding(method);
+    class_addMethod(aClass, @selector(JKV_originalDescription), descriptionIMP, typeEncoding);
+    class_replaceMethod(aClass, @selector(description), newIMP, typeEncoding);
 }
 
 - (void)unswizzleDescriptionOfClass:(Class)aClass
@@ -76,6 +83,13 @@ NSComparisonResult (^JKVGenericSorter)(id, id) = ^NSComparisonResult(id obj1, id
         const char *typeEncoding = method_getTypeEncoding(method);
 
         class_replaceMethod(aClass, @selector(descriptionWithLocale:indent:), descriptionIMP, typeEncoding);
+    }
+    if ([aClass instancesRespondToSelector:@selector(JKV_originalDescription)]) {
+        IMP descriptionIMP = [aClass instanceMethodForSelector:@selector(JKV_originalDescription)];
+        Method method = class_getInstanceMethod(aClass, @selector(JKV_originalDescription));
+        const char *typeEncoding = method_getTypeEncoding(method);
+
+        class_replaceMethod(aClass, @selector(description), descriptionIMP, typeEncoding);
     }
 }
 
