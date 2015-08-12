@@ -1,4 +1,4 @@
-#import "JKVValue.h"
+#import "JKVValueImpl.h"
 
 /*! JKVMutableValue represents an Immutable Value Object class that should be subclassed to use.
  *

@@ -1,10 +1,9 @@
-#import "JKVObjectPrinter.h"
+@import Quick;
+@import Nimble;
+@import JKVValue;
 #import "JKVPerson.h"
 
-using namespace Cedar::Matchers;
-using namespace Cedar::Doubles;
-
-SPEC_BEGIN(JKVObjectPrinterSpec)
+QuickSpecBegin(JKVObjectPrinterSpec)
 
 describe(@"JKVObjectPrinter", ^{
     __block NSArray *array;
@@ -23,9 +22,9 @@ describe(@"JKVObjectPrinter", ^{
         });
 
         it(@"should display the default 'escaped' description", ^{
-            [array description] should contain(@"\\n");
-            [dictionary description] should contain(@"\\n");
-            [set description] should contain(@"{(");
+            expect([array description]).to(contain(@"\\n"));
+            expect([dictionary description]).to(contain(@"\\n"));
+            expect([set description]).to(contain(@"{("));
         });
     });
 
@@ -39,11 +38,11 @@ describe(@"JKVObjectPrinter", ^{
         });
 
         it(@"should display the custom description", ^{
-            [array description] should_not contain(@"\\n");
-            [dictionary description] should_not contain(@"\\n");
-            [set description] should_not contain(@"{(");
+            expect([array description]).toNot(contain(@"\\n"));
+            expect([dictionary description]).toNot(contain(@"\\n"));
+            expect([set description]).toNot(contain(@"{("));
         });
     });
 });
 
-SPEC_END
+QuickSpecEnd

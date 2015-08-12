@@ -1,6 +1,11 @@
 #import <Foundation/Foundation.h>
 #import "JKVMutableValue.h"
 #import <TargetConditionals.h>
+#import <CoreGraphics/CoreGraphics.h>
+
+#if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+#endif
 
 @interface JKVTypeContainer : JKVMutableValue
 

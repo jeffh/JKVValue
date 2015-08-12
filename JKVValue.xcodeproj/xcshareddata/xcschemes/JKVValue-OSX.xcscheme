@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1FA39D5218D544AD0066061C"
                BuildableName = "JKVValue.framework"
-               BlueprintName = "JKVValueOSX"
+               BlueprintName = "JKVValue-OSX"
                ReferencedContainer = "container:JKVValue.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1FA39D2B18D541ED0066061C"
-               BuildableName = "OSXSpecs.xctest"
-               BlueprintName = "OSXSpecs"
+               BuildableName = "JKVValue-OSXTests.xctest"
+               BlueprintName = "JKVValue-OSXTests"
                ReferencedContainer = "container:JKVValue.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -61,8 +61,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1FA39D2B18D541ED0066061C"
-               BuildableName = "OSXSpecs.xctest"
-               BlueprintName = "OSXSpecs"
+               BuildableName = "JKVValue-OSXTests.xctest"
+               BlueprintName = "JKVValue-OSXTests"
                ReferencedContainer = "container:JKVValue.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -72,7 +72,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1FA39D5218D544AD0066061C"
             BuildableName = "JKVValue.framework"
-            BlueprintName = "JKVValueOSX"
+            BlueprintName = "JKVValue-OSX"
             ReferencedContainer = "container:JKVValue.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -94,7 +94,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1FA39D5218D544AD0066061C"
             BuildableName = "JKVValue.framework"
-            BlueprintName = "JKVValueOSX"
+            BlueprintName = "JKVValue-OSX"
             ReferencedContainer = "container:JKVValue.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -112,7 +112,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1FA39D5218D544AD0066061C"
             BuildableName = "JKVValue.framework"
-            BlueprintName = "JKVValueOSX"
+            BlueprintName = "JKVValue-OSX"
             ReferencedContainer = "container:JKVValue.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -1,11 +1,11 @@
+@import Quick;
+@import Nimble;
 #import "JKVMutablePerson.h"
 #import "JKVPerson.h"
 #import "JKVMutableCollections.h"
 
-using namespace Cedar::Matchers;
-using namespace Cedar::Doubles;
 
-SPEC_BEGIN(JKVMutableValueSpec)
+QuickSpecBegin(JKVMutableValueSpec)
 
 describe(@"JKVMutableValue", ^{
     __block JKVMutablePerson *person, *otherPerson;
@@ -42,40 +42,40 @@ describe(@"JKVMutableValue", ^{
                                          @"    height = 60.8\n"
                                          @"    parent = <NSObject: %p>\n"
                                          @"  siblings = @[@\"yolo\"]>", person, parent];
-        person.description should contain(expectedDescription);
+        expect(person.description).to(contain(expectedDescription));
     });
 
     describe(@"equality", ^{
         context(@"when all properties are equivalent in value", ^{
             it(@"should be equal", ^{
-                person should equal(otherPerson);
+                expect(person).to(equal(otherPerson));
             });
 
             it(@"should have the same hash code", ^{
-                person.hash should equal(otherPerson.hash);
+                expect(@(person.hash)).to(equal(@(otherPerson.hash)));
             });
 
             it(@"should be equal to the immutable variant", ^{
-                person should equal([person copy]);
+                expect(person).to(equal([person copy]));
             });
         });
 
         context(@"when the (weak) parent property is not equivalent in value", ^{
             it(@"should be equal", ^{
                 otherPerson.parent = nil;
-                person should equal(otherPerson);
+                expect(person).to(equal(otherPerson));
             });
         });
 
         it(@"should not equal another object", ^{
-            person should_not equal((id)@1);
+            expect(person).toNot(equal((id)@1));
         });
 
         void (^itShouldNotEqualWhen)(NSString *, void(^)()) = ^(NSString *name, void(^mutator)()) {
             context([NSString stringWithFormat:@"when the %@ is not equivalent in value", name], ^{
                 it(@"should not be equal", ^{
                     mutator();
-                    person should_not equal(otherPerson);
+                    expect(person).toNot(equal(otherPerson));
                 });
             });
         };
@@ -101,7 +101,7 @@ describe(@"JKVMutableValue", ^{
         });
 
         it(@"should support serialization", ^{
-            deserializedPerson should equal(person);
+            expect(deserializedPerson).to(equal(person));
         });
     });
 
@@ -113,19 +113,19 @@ describe(@"JKVMutableValue", ^{
         });
 
         it(@"should support copying", ^{
-            clonedPerson should_not be_same_instance_as(person);
-            clonedPerson should equal((JKVPerson *)person);
+            expect(@(clonedPerson != person)).to(beTruthy());
+            expect(clonedPerson).to(equal(person));
         });
 
         void (^itShouldRecursivelyCopy)(NSString *, id (^)(id)) = ^(NSString *name, id (^getter)(id obj)) {
             it([NSString stringWithFormat:@"should recursively copy %@", name], ^{
-                getter(person) should_not be_same_instance_as(getter(clonedPerson));
-                getter(person) should equal(getter(clonedPerson));
+                expect(@(getter(person) != getter(clonedPerson))).to(beTruthy());
+                expect(getter(person)).to(equal(getter(clonedPerson)));
             });
         };
 
         it(@"should preserve the weak properties", ^{
-            clonedPerson.parent should be_same_instance_as(parent);
+            expect(@(clonedPerson.parent == parent)).to(beTruthy());
         });
 
         itShouldRecursivelyCopy(@"firstName", ^id(JKVPerson *p){ return p.firstName; });
@@ -140,19 +140,19 @@ describe(@"JKVMutableValue", ^{
         });
 
         it(@"should support copying", ^{
-            clonedPerson should_not be_same_instance_as(person);
-            clonedPerson should equal(person);
+            expect(@(clonedPerson != person)).to(beTruthy());
+            expect(clonedPerson).to(equal(person));
         });
 
         void (^itShouldRecursivelyCopy)(NSString *, id (^)(id)) = ^(NSString *name, id (^getter)(id obj)) {
             it([NSString stringWithFormat:@"should recursively copy %@", name], ^{
-                getter(person) should_not be_same_instance_as(getter(clonedPerson));
-                getter(person) should equal(getter(clonedPerson));
+                expect(@(getter(person) != getter(clonedPerson))).to(beTruthy());
+                expect(getter(person)).to(equal(getter(clonedPerson)));
             });
         };
 
         it(@"should preserve the weak properties", ^{
-            clonedPerson.parent should be_same_instance_as(parent);
+            expect(@(clonedPerson.parent == parent)).to(beTruthy());
         });
 
         itShouldRecursivelyCopy(@"firstName", ^id(JKVMutablePerson *p){ return p.firstName; });
@@ -169,21 +169,21 @@ describe(@"JKVMutableValue", ^{
 
         describe(@"copying", ^{
             it(@"should support equality for cloned objects", ^{
-                collections should equal([collections copy]);
+                expect(collections).to(equal([collections copy]));
             });
         });
 
         describe(@"mutableCopying", ^{
             it(@"should copy all values in collections", ^{
-                [collections.items firstObject] should_not be_same_instance_as([[[collections mutableCopy] items] firstObject]);
-                [[collections.pairs allValues] firstObject] should_not be_same_instance_as([[[[collections mutableCopy] pairs] allValues] firstObject]);
+                expect(@([collections.items firstObject] != [[[collections mutableCopy] items] firstObject])).to(beTruthy());
+                expect(@([[collections.pairs allValues] firstObject] != [[[[collections mutableCopy] pairs] allValues] firstObject])).to(beTruthy());
             });
             
             it(@"should support equality for mutable cloned objects", ^{
-                collections should equal([collections mutableCopy]);
+                expect(collections).to(equal([collections mutableCopy]));
             });
         });
     });
 });
 
-SPEC_END
+QuickSpecEnd

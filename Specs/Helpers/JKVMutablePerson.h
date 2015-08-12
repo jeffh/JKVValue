@@ -11,7 +11,7 @@
 
 // SDK 8.0+ makes hashes properties.
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
-@property (readonly) NSUInteger hash;
+@property (atomic, readonly) NSUInteger hash;
 #endif
 
 @end

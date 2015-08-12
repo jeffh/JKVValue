@@ -30,7 +30,7 @@ class Simulator
 
   def self.launch(app, sdk)
     quit
-    system_or_exit("ios-sim launch #{app.inspect} --tall --retina --sdk #{sdk.inspect} 2>&1 | tee -a /dev/stdout /dev/stderr | grep -q ', 0 failures'")
+    system_or_exit("ios-sim launch #{app.inspect} --devicetypeid 'iPhone-5s, #{sdk}' 2>&1 | tee -a /dev/stdout /dev/stderr | grep -q ', 0 failures'")
   end
 end
 
@@ -47,29 +47,12 @@ end
 
 desc 'Cleans build directory for OS X'
 task :osx_specs do
-  xcbuild("clean test -scheme JKVValueOSX -sdk macosx -destination 'platform=OS X' SYMROOT=#{BUILD_DIR.inspect}")
+  xcbuild("clean test -scheme JKVValue-OSX -sdk macosx -destination 'platform=OS X' SYMROOT=#{BUILD_DIR.inspect}")
 end
 
-desc 'Runs the iOS 7.1 spec suite'
-task :specs71_suite do
-  xcbuild("clean build -scheme SpecSuite -sdk iphonesimulator#{SDK_BUILD_VERSION} SYMROOT=#{BUILD_DIR.inspect}")
-  Simulator.launch("#{BUILD_DIR}/Debug-iphonesimulator/SpecSuite.app", '7.1')
-end
-
-desc 'Runs the iOS 8.1 spec suite'
-task :specs81_suite do
-  xcbuild("clean build -scheme SpecSuite -sdk iphonesimulator#{SDK_BUILD_VERSION} SYMROOT=#{BUILD_DIR.inspect}")
-  Simulator.launch("#{BUILD_DIR}/Debug-iphonesimulator/SpecSuite.app", '8.1')
-end
-
-desc 'Runs the iOS 7.1 spec bundle'
-task :specs71_bundle do
-  xcbuild("clean test -scheme JKVValue -sdk iphonesimulator#{SDK_BUILD_VERSION} -destination 'name=iPhone Retina (4-inch),OS=7.1' SYMROOT=#{BUILD_DIR.inspect}")
-end
-
-desc 'Runs the iOS 8.1 spec bundle'
-task :specs81_bundle do
-  xcbuild("clean test -scheme JKVValue -sdk iphonesimulator#{SDK_BUILD_VERSION} -destination 'name=iPhone Retina (4-inch),OS=6.1' SYMROOT=#{BUILD_DIR.inspect}")
+desc 'Runs the iOS spec bundle'
+task :ios_specs do
+  xcbuild("clean test -scheme JKVValue-iOS -sdk iphonesimulator#{SDK_BUILD_VERSION} SYMROOT=#{BUILD_DIR.inspect}")
 end
 
 desc 'Runs the cocoapod spec linter'
@@ -80,14 +63,12 @@ end
 task :default => [
   :clean,
   :osx_specs,
-  :specs71_suite,
-  :specs81_suite,
+  :ios_specs,
 ]
 desc 'Runs what CI would run'
 task :ci => [
   :clean,
   :osx_specs,
-  :specs71_suite,
-  :specs81_suite,
+  :ios_specs,
   :lint,
 ]

@@ -2,7 +2,7 @@
 #import "JKVClassInspector.h"
 #import "JKVProperty.h"
 #import "JKVNonZeroSetterVisitor.h"
-#import "JKVValue.h"
+#import "JKVValueImpl.h"
 
 @interface JKVValue ()
 - (id)initFromJKVValue;

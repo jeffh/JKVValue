@@ -1,3 +1,5 @@
+@import Quick;
+@import Nimble;
 #import "JKVPerson.h"
 #import "JKVMutablePerson.h"
 #import "JKVClassInspector.h"
@@ -7,12 +9,10 @@
 #import "JKVRestrictedObject.h"
 #import "JKVBasicValue.h"
 #import "JKVObjectPrinter.h"
+#import "KeyedArchiver.h"
+#import "KeyedUnarchiver.h"
 
-
-using namespace Cedar::Matchers;
-using namespace Cedar::Doubles;
-
-SPEC_BEGIN(JKVValueSpec)
+QuickSpecBegin(JKVValueSpec)
 
 describe(@"JKVValue", ^{
     __block JKVPerson *person, *otherPerson;
@@ -58,11 +58,11 @@ describe(@"JKVValue", ^{
                                              @"                 siblings = nil>]\n"
                                              @"    parent = <NSObject: %p>\n"
                                              @"     child = @{@\"hi\": @\"lo\"}>", person, [person.siblings firstObject], parent];
-            person.description should contain(expectedDescription);
+            expect(person.description).to(contain(expectedDescription));
         });
 
         it(@"should have a debug description be the same as the description", ^{
-            person.debugDescription should contain(person.description);
+            expect(person.debugDescription).to(contain(person.description));
         });
 
         it(@"should pretty print objective-c containers", ^{
@@ -80,40 +80,40 @@ describe(@"JKVValue", ^{
                                              @"           @'items': @[@{@'good': @'eats'},\n"
                                              @"                       1]}>", container];
             expectedDescription = [expectedDescription stringByReplacingOccurrencesOfString:@"'" withString:@"\""];
-            container.description should equal(expectedDescription);
+            expect(container.description).to(equal(expectedDescription));
         });
     });
 
     describe(@"equality", ^{
         context(@"when all properties are equivalent in value", ^{
             it(@"should be equal", ^{
-                person should equal(otherPerson);
+                expect(person).to(equal(otherPerson));
             });
 
             it(@"should have the same hash code", ^{
-                person.hash should equal(otherPerson.hash);
+                expect(@(person.hash)).to(equal(@(otherPerson.hash)));
             });
 
             it(@"should behave as the same value in a set", ^{
-                [[NSSet setWithArray:@[person, otherPerson]] count] should equal(1);
+                expect(@([[NSSet setWithArray:@[person, otherPerson]] count])).to(equal(@1));
             });
 
             it(@"should be equal to mutable variant", ^{
-                person should equal([person mutableCopy]);
+                expect(person).to(equal([person mutableCopy]));
             });
 
             it(@"should have no diff", ^{
-                [person differenceToObject:otherPerson] should be_empty;
+                expect([person differenceToObject:otherPerson]).to(beEmpty());
             });
         });
 
         context(@"when comparing to another class", ^{
             it(@"should not be equal", ^{
-                person should_not equal((id)@1);
+                expect(person).toNot(equal(@1));
             });
 
             it(@"should have class-type diff", ^{
-                [person differenceToObject:@1] should equal(@{@"class": @[[JKVPerson class], [@1 class]]});
+                expect([person differenceToObject:@1]).to(equal(@{@"class": @[[JKVPerson class], [@1 class]]}));
             });
         });
 
@@ -130,11 +130,11 @@ describe(@"JKVValue", ^{
             });
 
             it(@"should be equal", ^{
-                person should equal(otherPerson);
+                expect(person).to(equal(otherPerson));
             });
 
             it(@"should have no diff", ^{
-                [person differenceToObject:otherPerson] should be_empty;
+                expect([person differenceToObject:otherPerson]).to(beEmpty());
             });
         });
 
@@ -151,8 +151,8 @@ describe(@"JKVValue", ^{
             });
 
             it(@"should produce a diff of the properties that are different", ^{
-                [person differenceToObject:otherPerson] should equal(@{@"firstName": @[person.firstName, [NSNull null]],
-                                                                       @"lastName": @[person.lastName, @"Pizza"]});
+                expect([person differenceToObject:otherPerson]).to(equal(@{@"firstName": @[person.firstName, [NSNull null]],
+                                                                           @"lastName": @[person.lastName, @"Pizza"]}));
             });
         });
 
@@ -163,14 +163,14 @@ describe(@"JKVValue", ^{
                 });
 
                 it(@"should not be equal", ^{
-                    person should_not equal(otherPerson);
+                    expect(person).toNot(equal(otherPerson));
                 });
 
                 it(@"should produce a diff of that property that is different", ^{
                     id originalValue = [person valueForKey:fieldName];
                     id mutatedValue = [otherPerson valueForKey:fieldName];
-                    [person differenceToObject:otherPerson] should equal(@{fieldName: @[originalValue ?: [NSNull null],
-                                                                                        mutatedValue ?: [NSNull null]]});
+                    expect([person differenceToObject:otherPerson]).to(equal(@{fieldName: @[originalValue ?: [NSNull null],
+                                                                                            mutatedValue ?: [NSNull null]]}));
                 });
             });
         };
@@ -263,7 +263,6 @@ describe(@"JKVValue", ^{
             [archiver finishEncoding];
 
             unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-            spy_on(unarchiver);
         });
 
         afterEach(^{
@@ -271,32 +270,35 @@ describe(@"JKVValue", ^{
         });
 
         it(@"should support secure coding", ^{
-            [JKVPerson supportsSecureCoding] should be_truthy;
+            expect(@([JKVPerson supportsSecureCoding])).to(beTruthy());
         });
 
         context(@"when secure coding is required", ^{
             beforeEach(^{
-                // OSX doesn't support setter of requiresSecureCoding
-                unarchiver stub_method(@selector(requiresSecureCoding)).and_return(YES);
+                unarchiver.requiresSecureCoding = YES;
             });
 
             it(@"should raise exception if decoding a bad value", ^{
-                ^{
+                BOOL raisedException = NO;
+                @try {
                     deserializedValue = [[JKVBasicValue alloc] initWithCoder:unarchiver];
-                } should raise_exception([NSException exceptionWithName:NSInvalidUnarchiveOperationException reason:@"Failed to unarchive 'number' as 'NSNumber'" userInfo:nil]);
+                } @catch (NSException *exception) {
+                    raisedException = YES;
+                    expect(exception).to(equal([NSException exceptionWithName:NSInvalidUnarchiveOperationException reason:@"Failed to unarchive 'number' as 'NSNumber'" userInfo:nil]));
+                }
+                expect(@(raisedException)).to(beTruthy());
             });
         });
 
         context(@"when secure coding is not required", ^{
             beforeEach(^{
-                // OSX doesn't support setter of requiresSecureCoding
-                unarchiver stub_method(@selector(requiresSecureCoding)).and_return(NO);
+                unarchiver.requiresSecureCoding = NO;
             });
 
             it(@"should not raise exception if decoding a bad value", ^{
-                ^{
+                expectAction(^{
                     deserializedValue = [[JKVBasicValue alloc] initWithCoder:unarchiver];
-                } should_not raise_exception();
+                }).toNot(raiseException());
             });
         });
     });
@@ -325,9 +327,9 @@ describe(@"JKVValue", ^{
             });
 
             it(@"should have its child.parent encoded", ^{
-                deserializedPerson should equal(parentPerson);
-                deserializedPerson.child should equal(person);
-                (JKVPerson *)[deserializedPerson.child parent] should be_same_instance_as(deserializedPerson);
+                expect(deserializedPerson).to(equal(parentPerson));
+                expect(deserializedPerson.child).to(equal(person));
+                expect(@([deserializedPerson.child parent] == deserializedPerson)).to(beTruthy());
             });
         });
 
@@ -342,19 +344,18 @@ describe(@"JKVValue", ^{
             });
 
             it(@"should support serialization", ^{
-                deserializedPerson should equal(person);
+                expect(deserializedPerson).to(equal(person));
             });
         });
 
         context(@"Non-Keyed Coding", ^{
             // iOS doesn't support NSArchiver
             context(@"with an archiver", ^{
-                __block NSKeyedArchiver *archiver;
+                __block KeyedArchiver *archiver;
 
                 beforeEach(^{
-                    archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-                    spy_on(archiver);
-                    archiver stub_method(@selector(allowsKeyedCoding)).and_return(NO);
+                    archiver = [[KeyedArchiver alloc] initForWritingWithMutableData:data];
+                    archiver.allowsKeyedCoding = NO;
                 });
 
                 afterEach(^{
@@ -362,24 +363,28 @@ describe(@"JKVValue", ^{
                 });
 
                 it(@"should raise an exception", ^{
-                    ^{
+                    @try {
                         [person encodeWithCoder:archiver];
-                    } should raise_exception([NSException exceptionWithName:NSInvalidArchiveOperationException reason:@"Only Keyed-Archivers are supported" userInfo:nil]);
+                        expect(@NO).to(beTruthy()); // always fail
+                    } @catch (NSException *exception) {
+                        expect(exception).to(equal([NSException exceptionWithName:NSInvalidArchiveOperationException reason:@"Only Keyed-Archivers are supported" userInfo:nil]));
+                    }
                 });
             });
 
             // iOS doesn't support NSUnarchiver
             context(@"with an unarchiver", ^{
-                __block NSKeyedUnarchiver *unarchiver;
+                __block KeyedUnarchiver *unarchiver;
 
                 beforeEach(^{
                     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
                     [archiver encodeObject:person];
                     [archiver finishEncoding];
 
-                    unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-                    spy_on(unarchiver);
-                    unarchiver stub_method(@selector(allowsKeyedCoding)).and_return(NO);
+                    unarchiver = [[KeyedUnarchiver alloc] initForReadingWithData:data];
+                    unarchiver.allowsKeyedCoding = NO;
+//                    spy_on(unarchiver);
+//                    unarchiver stub_method(@selector(allowsKeyedCoding)).and_return(NO);
                 });
 
                 afterEach(^{
@@ -387,9 +392,12 @@ describe(@"JKVValue", ^{
                 });
 
                 it(@"should raise an exception", ^{
-                    ^{
+                    @try {
                         deserializedPerson = [[JKVPerson alloc] initWithCoder:unarchiver];
-                    } should raise_exception([NSException exceptionWithName:NSInvalidUnarchiveOperationException reason:@"Only Keyed-Unarchivers are supported" userInfo:nil]);
+                        expect(@NO).to(beTruthy()); // always fails
+                    } @catch (NSException *exception) {
+                        expect(exception).to(equal([NSException exceptionWithName:NSInvalidUnarchiveOperationException reason:@"Only Keyed-Unarchivers are supported" userInfo:nil]));
+                    }
                 });
             });
         });
@@ -402,7 +410,7 @@ describe(@"JKVValue", ^{
         });
 
         it(@"should return the same instance", ^{
-            clonedPerson should be_same_instance_as(person);
+            expect(@(clonedPerson == person)).to(beTruthy());
         });
     });
 
@@ -414,33 +422,33 @@ describe(@"JKVValue", ^{
         });
 
         it(@"should support copying", ^{
-            clonedPerson should_not be_same_instance_as(person);
-            clonedPerson should equal(person);
+            expect(@(clonedPerson != person)).to(beTruthy());
+            expect(clonedPerson).to(equal(person));
         });
 
         it(@"should be a mutable class variant", ^{
-            clonedPerson should be_instance_of([JKVMutablePerson class]);
+            expect(clonedPerson).to(beAnInstanceOf([JKVMutablePerson class]));
         });
 
         void (^itShouldRecursivelyCopy)(NSString *, id (^)(id)) = ^(NSString *name, id (^getter)(id obj)) {
             it([NSString stringWithFormat:@"should recursively copy %@", name], ^{
-                getter(person) should_not be_same_instance_as(getter(clonedPerson));
-                getter(person) should equal(getter(clonedPerson));
+                expect(@(getter(person) == getter(clonedPerson))).to(beFalsy());
+                expect(getter(person)).to(equal(getter(clonedPerson)));
             });
         };
 
         it(@"should preserve the weak properties", ^{
-            clonedPerson.parent should be_same_instance_as(parent);
+            expect(@(clonedPerson.parent == parent)).to(beTruthy());
         });
 
         it(@"should copy items in arrays", ^{
-            [clonedPerson.siblings firstObject] should_not be_same_instance_as([person.siblings firstObject]);
+            expect(@([clonedPerson.siblings firstObject] != [person.siblings firstObject])).to(beTruthy());
         });
 
         it(@"should copy values in dictionaries", ^{
-            clonedPerson.child should_not be_nil;
+            expect(clonedPerson.child).toNot(beNil());
             for (NSInteger i=0; i<[clonedPerson.child count]; i++) {
-                [clonedPerson.child allValues][i] should_not be_same_instance_as([person.child allValues][i]);
+                expect(@([clonedPerson.child allValues][i] != [person.child allValues][i])).to(beTruthy());
             }
         });
 
@@ -457,7 +465,7 @@ describe(@"JKVValue", ^{
         });
 
         it(@"should support various types for encoding", ^{
-            box should equal(otherBox);
+            expect(box).to(equal(otherBox));
         });
 
         describe(@"NSCoding", ^{
@@ -474,7 +482,7 @@ describe(@"JKVValue", ^{
             });
 
             it(@"should support serialization", ^{
-                deserializedBox should equal(box);
+                expect(deserializedBox).to(equal(box));
             });
         });
     });
@@ -486,7 +494,7 @@ describe(@"JKVValue", ^{
         });
 
         it(@"should support equality for cloned objects", ^{
-            collections should equal([collections copy]);
+            expect(collections).to(equal([collections copy]));
         });
 
         describe(@"mutable clone", ^{
@@ -498,12 +506,12 @@ describe(@"JKVValue", ^{
             it(@"should support mutation on the properties", ^{
                 [mutableCollections.items addObject:@2];
                 mutableCollections.pairs[@"C"] = @"D";
-                mutableCollections.items should equal(@[@1, @2]);
-                mutableCollections.pairs should equal(@{@"A": @"B", @"C": @"D"});
+                expect(mutableCollections.items).to(equal(@[@1, @2]));
+                expect(mutableCollections.pairs).to(equal(@{@"A": @"B", @"C": @"D"}));
             });
 
             it(@"should support equality for mutable cloned objects", ^{
-                collections should equal(mutableCollections);
+                expect(collections).to(equal(mutableCollections));
             });
         });
     });
@@ -527,7 +535,7 @@ describe(@"JKVValue", ^{
                 context([NSString stringWithFormat:@"when the %@ is not equivalent in value", name], ^{
                     it(@"should not be equal", ^{
                         mutator();
-                        restrictedObject should_not equal(otherObject);
+                        expect(restrictedObject).toNot(equal(otherObject));
                     });
                 });
             };
@@ -536,7 +544,7 @@ describe(@"JKVValue", ^{
                 context([NSString stringWithFormat:@"when the %@ is not equivalent in value", name], ^{
                     it(@"should be equal", ^{
                         mutator();
-                        restrictedObject should equal(otherObject);
+                        expect(restrictedObject).to(equal(otherObject));
                     });
                 });
             };
@@ -556,11 +564,11 @@ describe(@"JKVValue", ^{
             });
 
             it(@"should only clone the identity properties and the assign properties specified", ^{
-                clonedObject should equal(restrictedObject);
-                clonedObject.accessCount should be_nil;
-                clonedObject.source should be_nil;
-                clonedObject.lastReader should be_nil;
-                clonedObject.lastWriter should be_same_instance_as(lastWriter);
+                expect(clonedObject).to(equal(restrictedObject));
+                expect(clonedObject.accessCount).to(beNil());
+                expect(clonedObject.source).to(beNil());
+                expect(clonedObject.lastReader).to(beNil());
+                expect(@(clonedObject.lastWriter == lastWriter)).to(beTruthy());
             });
         });
 
@@ -571,11 +579,11 @@ describe(@"JKVValue", ^{
             });
 
             it(@"should only clone the identity properties and the assign properties specified", ^{
-                clonedObject should equal(restrictedObject);
-                clonedObject.accessCount should be_nil;
-                clonedObject.source should be_nil;
-                clonedObject.lastReader should be_nil;
-                clonedObject.lastWriter should be_same_instance_as(lastWriter);
+                expect(clonedObject).to(equal(restrictedObject));
+                expect(clonedObject.accessCount).to(beNil());
+                expect(clonedObject.source).to(beNil());
+                expect(clonedObject.lastReader).to(beNil());
+                expect(@(clonedObject.lastWriter == lastWriter)).to(beTruthy());
             });
         });
     });
@@ -622,16 +630,16 @@ describe(@"JKVValue (Concurrency)", ^{
                                                                        siblings:@[[[JKVMutablePerson alloc] initWithFixtureData]]
                                                                           child:@{[NSMutableString stringWithFormat:@"hi"]: [NSMutableString stringWithFormat:@"lo"]}];
 
-                person should equal(otherPerson);
-                [person hash] should equal([otherPerson hash]);
-                person should_not equal(anotherPerson);
+                expect(person).to(equal(otherPerson));
+                expect(@([person hash])).to(equal(@([otherPerson hash])));
+                expect(person).toNot(equal(anotherPerson));
                 dispatch_group_leave(group);
             });
         }
 
         BOOL timedOut = dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
-        timedOut should_not be_truthy;
+        expect(@(timedOut)).to(beFalsy());
     });
 });
 
-SPEC_END
+QuickSpecEnd

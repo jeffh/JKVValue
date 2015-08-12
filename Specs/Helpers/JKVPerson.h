@@ -1,4 +1,5 @@
 #import "JKVValue.h"
+#import <CoreGraphics/CoreGraphics.h>
 
 @interface JKVPerson : JKVValue
 @property (nonatomic, strong, readonly) NSString<NSCopying> *firstName;

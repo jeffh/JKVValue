@@ -1,11 +1,10 @@
+@import Quick;
+@import Nimble;
 #import "JKVFactory.h"
 #import "JKVPersonFactory.h"
 #import "JKVPerson.h"
 
-using namespace Cedar::Matchers;
-using namespace Cedar::Doubles;
-
-SPEC_BEGIN(JKVFactorySpec)
+QuickSpecBegin(JKVFactorySpec)
 
 describe(@"JKVFactory", ^{
     __block JKVFactory *factory;
@@ -14,20 +13,20 @@ describe(@"JKVFactory", ^{
     void (^itShouldBeAPersonObjectWithNonNilValues)() = ^{
         context(@"(behaves like a person object with non-nil values)", ^{
             it(@"should return an instance of the given object", ^{
-                person should be_instance_of([JKVPerson class]);
+                expect(person).to(beAnInstanceOf([JKVPerson class]));
             });
 
             it(@"should generate a person with non-nil values for strong properties", ^{
-                person.firstName should equal(@"firstName");
-                person.lastName should_not be_nil;
-                person.age should equal(1);
-                person.married should be_truthy;
-                person.height should equal(1.0);
-                person.child should_not be_nil;
+                expect(person.firstName).to(equal(@"firstName"));
+                expect(person.lastName).toNot(beNil());
+                expect(@(person.age)).to(equal(@1));
+                expect(@(person.married)).to(beTruthy());
+                expect(@(person.height)).to(equal(@1.0));
+                expect(person.child).toNot(beNil());
             });
 
             it(@"should leave weak properties nil", ^{
-                person.parent should be_nil;
+                expect(person.parent).to(beNil());
             });
         });
     };
@@ -35,18 +34,18 @@ describe(@"JKVFactory", ^{
     void (^itShouldBehaveLikeAPersonObjectWithModifiedDefaults)() = ^{
         context(@"(behaves like a person object with modified defaults)", ^{
             it(@"should return an instance of the given object", ^{
-                person should be_instance_of([JKVPerson class]);
+                expect(person).to(beAnInstanceOf([JKVPerson class]));
             });
 
             it(@"should use the provided values, falling back to defaults", ^{
-                person.firstName should equal(@"John");
-                person.age should equal(42);
+                expect(person.firstName).to(equal(@"John"));
+                expect(@(person.age)).to(equal(@42));
 
-                person.lastName should equal(@"lastName");
-                person.married should be_truthy;
-                person.height should equal(1.0);
-                person.child should be_nil;
-                person.parent should be_nil;
+                expect(person.lastName).to(equal(@"lastName"));
+                expect(@(person.married)).to(beTruthy());
+                expect(@(person.height)).to(equal(@1.0));
+                expect(person.child).to(beNil());
+                expect(person.parent).to(beNil());
             });
         });
     };
@@ -91,8 +90,8 @@ describe(@"JKVFactory", ^{
                 });
 
                 it(@"should have the latest factory properties", ^{
-                    person.firstName should equal(@"James");
-                    person.age should equal(42);
+                    expect(person.firstName).to(equal(@"James"));
+                    expect(@(person.age)).to(equal(@42));
                 });
             });
 
@@ -108,13 +107,13 @@ describe(@"JKVFactory", ^{
 
         describe(@"+buildObject", ^{
             it(@"should raise an exception", ^{
-                ^{ [JKVFactory buildObject]; } should raise_exception;
+                expectAction(^{ [JKVFactory buildObject]; }).to(raiseException());
             });
         });
 
         describe(@"+buildObjectWithProperties", ^{
             it(@"should raise an exception", ^{
-                ^{ [JKVFactory buildObjectWithProperties:@{}]; } should raise_exception;
+                expectAction(^{ [JKVFactory buildObjectWithProperties:@{}]; }).to(raiseException());
             });
         });
     });
@@ -144,4 +143,4 @@ describe(@"JKVFactory", ^{
     });
 });
 
-SPEC_END
+QuickSpecEnd
