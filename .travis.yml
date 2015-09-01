@@ -2,5 +2,6 @@ osx_image: xcode6.4
 language: objective-c
 before_install: 'brew update || brew update'
 install:
+  - brew install carthage
   - carthage checkout
 script: rake ci
