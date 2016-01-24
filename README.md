@@ -39,6 +39,13 @@ If you like pod'n it up:
 
     pod "JKVValue", "~> 1.3.0"
 
+Carthage
+--------
+
+Add to your `Cartfile`:
+
+    github "jeffh/JKVValue" ~> 1.3
+
 Submodule
 ---------
 
