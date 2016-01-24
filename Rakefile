@@ -45,14 +45,18 @@ task :clean do
   system_or_exit("rm -rf #{BUILD_DIR.inspect} 2>&1 > '#{BUILD_DIR}/clean.txt' || true")
 end
 
+task :deps do
+  # system_or_exit("carthage build --no-use-binaries --platform mac,ios")
+end
+
 desc 'Cleans build directory for OS X'
-task :osx_specs do
+task osx_specs: :deps do
   xcbuild("clean test -scheme JKVValue-OSX -sdk macosx -destination 'platform=OS X' SYMROOT=#{BUILD_DIR.inspect}")
 end
 
 desc 'Runs the iOS spec bundle'
-task :ios_specs do
-  xcbuild("clean test -scheme JKVValue-iOS -sdk iphonesimulator#{SDK_BUILD_VERSION} SYMROOT=#{BUILD_DIR.inspect}")
+task ios_specs: :deps do
+  xcbuild("clean test -scheme JKVValue-iOS -sdk iphonesimulator#{SDK_BUILD_VERSION} SYMROOT=#{BUILD_DIR.inspect} -destination 'name=iPhone 6s'")
 end
 
 desc 'Runs the cocoapod spec linter'
