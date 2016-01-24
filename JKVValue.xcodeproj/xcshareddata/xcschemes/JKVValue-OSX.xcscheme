@@ -22,30 +22,16 @@
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
             buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1FA39D2B18D541ED0066061C"
                BuildableName = "JKVValue-OSXTests.xctest"
                BlueprintName = "JKVValue-OSXTests"
                ReferencedContainer = "container:JKVValue.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AEEE1FB511DC271300029872"
-               BuildableName = "Cedar.framework"
-               BlueprintName = "Cedar"
-               ReferencedContainer = "container:Externals/cedar/Cedar.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

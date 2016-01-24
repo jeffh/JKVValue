@@ -20,20 +20,6 @@
                ReferencedContainer = "container:JKVValue.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1FA39D0518D5402E0066061C"
-               BuildableName = "Specs.xctest"
-               BlueprintName = "Specs"
-               ReferencedContainer = "container:JKVValue.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

@@ -601,7 +601,6 @@
 					};
 					1F8A37091B79CDD6001C8357 = {
 						CreatedOnToolsVersion = 7.0;
-						TestTargetID = 1F8561D31983705D00912381;
 					};
 					1F8A37991B7B24F9001C8357 = {
 						CreatedOnToolsVersion = 7.0;
@@ -951,7 +950,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.jeffhui.JKVValueTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpecSuite.app/SpecSuite";
 			};
 			name = Debug;
 		};
@@ -976,7 +974,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.jeffhui.JKVValueTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpecSuite.app/SpecSuite";
 			};
 			name = Release;
 		};
@@ -1175,6 +1172,7 @@
 				1F8A371A1B79CDD6001C8357 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1F8A371C1B79CDD6001C8357 /* Build configuration list for PBXNativeTarget "JKVValue-iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1183,6 +1181,7 @@
 				1F8A371E1B79CDD6001C8357 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1F8A37A01B7B24F9001C8357 /* Build configuration list for PBXNativeTarget "JKVValue" */ = {
 			isa = XCConfigurationList;
@@ -1191,6 +1190,7 @@
 				1F8A37A21B7B24F9001C8357 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1FA39D3918D541ED0066061C /* Build configuration list for PBXNativeTarget "JKVValue-OSXTests" */ = {
 			isa = XCConfigurationList;
