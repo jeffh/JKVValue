@@ -27,11 +27,6 @@ class Simulator
     system("osascript -e 'tell app \"iOS Simulator\" to quit' > /dev/null")
     sleep(1)
   end
-
-  def self.launch(app, sdk)
-    quit
-    system_or_exit("ios-sim launch #{app.inspect} --devicetypeid 'iPhone-5s, #{sdk}' 2>&1 | tee -a /dev/stdout /dev/stderr | grep -q ', 0 failures'")
-  end
 end
 
 def xcbuild(cmd)
@@ -46,7 +41,7 @@ task :clean do
 end
 
 task :deps do
-  # system_or_exit("carthage build --no-use-binaries --platform mac,ios")
+  system_or_exit("carthage build --platform mac,ios")
 end
 
 desc 'Cleans build directory for OS X'
