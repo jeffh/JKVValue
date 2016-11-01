@@ -2,6 +2,9 @@
 REMOTE_BRANCH=master
 POD_NAME=JKVValue
 PODSPEC=JKVValue.podspec
+GITHUB_ORG=jeffh
+GITHUB_PROJ=${POD_NAME}
+
 
 POD=${COCOAPODS:-pod}
 
@@ -205,6 +208,6 @@ echo " - Opening GitHub to mark this as a release..."
 echo "   - Paste the contents of $RELEASE_NOTES into the release notes. Tweak for GitHub styling."
 echo " - Announce!"
 
-open "https://github.com/Quick/Nimble/releases/new?tag=$VERSION_TAG"
+open "https://github.com/${GITHUB_ORG}/${GITHUB_PROJ}/releases/new?tag=$VERSION_TAG"
 
 rm ${PODSPEC}.backup
