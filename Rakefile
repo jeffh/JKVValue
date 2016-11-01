@@ -59,6 +59,11 @@ task :lint do
   system_or_exit('pod spec lint JKVValue.podspec')
 end
 
+desc 'Cuts a new release of JKVValue'
+task :release, [:version] => [:default] do |t, args|
+  system_or_exit("scripts/release #{args[:version]}")
+end
+
 task :default => [
   :clean,
   :osx_specs,
