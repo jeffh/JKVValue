@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "JKVValue"
-  s.version      = "1.3.1"
+  s.version      = "1.3.2"
   s.summary      = "A simple Value Object library."
 
   s.description  = <<-DESC
