@@ -3,5 +3,5 @@ language: objective-c
 before_install: 'brew update || brew update'
 install:
   - brew install carthage; true
-  - carthage bootstrap --verbose
+  - carthage bootstrap --verbose --platform osx,ios
 script: rake ci
