@@ -6,14 +6,15 @@ PODSPEC=JKVValue.podspec
 POD=${COCOAPODS:-pod}
 
 function help {
-    echo "Usage: release VERSION RELEASE_NOTES [-f]"
+    echo "Usage: release VERSION [RELEASE_NOTES] [-f,--force] [--skip-lint]"
     echo
     echo "VERSION should be the version to release, should not include the 'v' prefix"
     echo "RELEASE_NOTES should be a file that lists all the release notes for this version"
     echo "              if file does not exist, creates a git-style commit with a diff as a comment"
     echo
     echo "FLAGS"
-    echo "  -f  Forces override of tag"
+    echo "  -f,--force   Forces override of tag"
+    echo "  --skip-lint  Skips podspec lint validation"
     echo
     echo "  Example: ./release 1.0.0-rc.2 ./release-notes.txt"
     echo
@@ -28,13 +29,22 @@ function die {
     exit 1
 }
 
+args=()
+for i in "$@"
+do
+    case $i in
+        --skip-lint) SKIP_LINT=1; shift;;
+        -f|--force) FORCE_TAG=1; shift;;
+        *) args+=($i);;
+    esac
+done
+
 if [ $# -lt 2 ]; then
     help
 fi
 
-VERSION=$1
-RELEASE_NOTES=$2
-FORCE_TAG=$3
+VERSION=args[0]
+RELEASE_NOTES=args[1]
 
 VERSION_TAG="v$VERSION"
 
@@ -67,6 +77,18 @@ if [ $? -eq 0 ]; then
     fi
 else
     echo " > Yes, tag is unique"
+fi
+
+echo " > Valid podspec?"
+if [ -z "$SKIP_LINT" ]; then
+    echo " > Unknown, but skip was specified."
+else
+    pod lib lint "$PODSPEC"
+    if [ $? -eq 0 ]; then
+        echo " > Yes, podspec lint passed"
+    else
+        die " > NO, failed podspec lint. Aborting. Append '--skip-lint' to override"
+    fi
 fi
 
 if [ ! -f "$RELEASE_NOTES" ]; then
