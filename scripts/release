@@ -39,12 +39,12 @@ do
     esac
 done
 
-if [ $# -lt 2 ]; then
+if [ ${args[@]} -lt 2 ]; then
     help
 fi
 
-VERSION=args[0]
-RELEASE_NOTES=args[1]
+VERSION=${args[0]}
+RELEASE_NOTES=${args[1]}
 
 VERSION_TAG="v$VERSION"
 
