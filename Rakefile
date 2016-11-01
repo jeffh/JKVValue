@@ -56,7 +56,7 @@ end
 
 desc 'Runs the cocoapod spec linter'
 task :lint do
-  system_or_exit('pod spec lint JKVValue.podspec')
+  system_or_exit('pod lib lint JKVValue.podspec')
 end
 
 desc 'Cuts a new release of JKVValue'
