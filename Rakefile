@@ -74,5 +74,4 @@ task :ci => [
   :clean,
   :osx_specs,
   :ios_specs,
-  :lint,
 ]
