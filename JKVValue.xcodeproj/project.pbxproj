@@ -73,6 +73,26 @@
 		1FA1F8781EF7BD8700CB71B6 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FA1F8721EF7BD7100CB71B6 /* Quick.framework */; };
 		1FA1F87A1EF7BDA500CB71B6 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1FA1F8711EF7BD7100CB71B6 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1FA1F87B1EF7BDA500CB71B6 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1FA1F8721EF7BD7100CB71B6 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1FA1F8891EF7C04B00CB71B6 /* JKVClassInspector.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F2CCADD17FD0C4400A382AB /* JKVClassInspector.h */; };
+		1FA1F88A1EF7C04B00CB71B6 /* JKVKeyedDecoderVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F2CCAD517FD080F00A382AB /* JKVKeyedDecoderVisitor.h */; };
+		1FA1F88B1EF7C04B00CB71B6 /* JKVKeyedEncoderVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F2CCAD917FD0A8100A382AB /* JKVKeyedEncoderVisitor.h */; };
+		1FA1F88C1EF7C04B00CB71B6 /* JKVNonZeroSetterVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FB5D34B18473BFF00789483 /* JKVNonZeroSetterVisitor.h */; };
+		1FA1F88D1EF7C04B00CB71B6 /* JKVProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F2CCACD17FCFAA700A382AB /* JKVProperty.h */; };
+		1FA1F88E1EF7C04B00CB71B6 /* JKVObjectPrinter-Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FAFA9CE1983A65500E464E1 /* JKVObjectPrinter-Protected.h */; };
+		1FA1F88F1EF7C05000CB71B6 /* JKVClassInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADE17FD0C4400A382AB /* JKVClassInspector.m */; };
+		1FA1F8901EF7C05000CB71B6 /* JKVKeyedDecoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAD617FD080F00A382AB /* JKVKeyedDecoderVisitor.m */; };
+		1FA1F8911EF7C05000CB71B6 /* JKVKeyedEncoderVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCADA17FD0A8100A382AB /* JKVKeyedEncoderVisitor.m */; };
+		1FA1F8921EF7C05000CB71B6 /* JKVNonZeroSetterVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D34C18473BFF00789483 /* JKVNonZeroSetterVisitor.m */; };
+		1FA1F8931EF7C05000CB71B6 /* JKVProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCACE17FCFAA700A382AB /* JKVProperty.m */; };
+		1FA1F8941EF7C05500CB71B6 /* JKVObjectPrinter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FAFA9C81983A43800E464E1 /* JKVObjectPrinter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1FA1F8951EF7C05500CB71B6 /* JKVMutableValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F2CCAC817FCE78700A382AB /* JKVMutableValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1FA1F8961EF7C05500CB71B6 /* JKVValueImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F2CCAE617FD11ED00A382AB /* JKVValueImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1FA1F8971EF7C05500CB71B6 /* JKVFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FB5D3381847382F00789483 /* JKVFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1FA1F8981EF7C05500CB71B6 /* JKVValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F8A37771B79D321001C8357 /* JKVValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1FA1F8991EF7C05A00CB71B6 /* JKVObjectPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FAFA9C91983A43800E464E1 /* JKVObjectPrinter.m */; };
+		1FA1F89A1EF7C05A00CB71B6 /* JKVMutableValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAC917FCE78700A382AB /* JKVMutableValue.m */; };
+		1FA1F89B1EF7C05A00CB71B6 /* JKVValueImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE717FD11ED00A382AB /* JKVValueImpl.m */; };
+		1FA1F89C1EF7C05A00CB71B6 /* JKVFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3391847382F00789483 /* JKVFactory.m */; };
 		1FA39D4318D5427E0066061C /* JKVMutableValueSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAC517FCE4D800A382AB /* JKVMutableValueSpec.m */; };
 		1FA39D4418D5427E0066061C /* JKVValueSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2CCAE417FD112100A382AB /* JKVValueSpec.m */; };
 		1FA39D4518D5427E0066061C /* JKVFactorySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB5D3441847384500789483 /* JKVFactorySpec.m */; };
@@ -251,6 +271,7 @@
 		1F8A379A1B7B24F9001C8357 /* libJKVValue.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJKVValue.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA1F8711EF7BD7100CB71B6 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/tvOS/Nimble.framework; sourceTree = "<group>"; };
 		1FA1F8721EF7BD7100CB71B6 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/tvOS/Quick.framework; sourceTree = "<group>"; };
+		1FA1F8811EF7C03300CB71B6 /* JKVValue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JKVValue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA39D2C18D541ED0066061C /* JKVValue-OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "JKVValue-OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA39D5318D544AD0066061C /* JKVValue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JKVValue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA39D9518D545BF0066061C /* JKVValue-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JKVValue-Info.plist"; sourceTree = "<group>"; };
@@ -297,6 +318,13 @@
 				1F8A37AE1B7B266C001C8357 /* UIKit.framework in Frameworks */,
 				1F8A37AD1B7B2662001C8357 /* CoreGraphics.framework in Frameworks */,
 				1F8A37AC1B7B2527001C8357 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FA1F87D1EF7C03300CB71B6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +389,7 @@
 				1F8A379A1B7B24F9001C8357 /* libJKVValue.a */,
 				1FBE49CA1EF7BC0C00BFD1EE /* JKVValue.framework */,
 				1FBE49D21EF7BC0C00BFD1EE /* JKVValue-tvOSTests.xctest */,
+				1FA1F8811EF7C03300CB71B6 /* JKVValue.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -539,6 +568,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1FA1F87E1EF7C03300CB71B6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FA1F8981EF7C05500CB71B6 /* JKVValue.h in Headers */,
+				1FA1F88E1EF7C04B00CB71B6 /* JKVObjectPrinter-Protected.h in Headers */,
+				1FA1F8971EF7C05500CB71B6 /* JKVFactory.h in Headers */,
+				1FA1F88C1EF7C04B00CB71B6 /* JKVNonZeroSetterVisitor.h in Headers */,
+				1FA1F8951EF7C05500CB71B6 /* JKVMutableValue.h in Headers */,
+				1FA1F8961EF7C05500CB71B6 /* JKVValueImpl.h in Headers */,
+				1FA1F88A1EF7C04B00CB71B6 /* JKVKeyedDecoderVisitor.h in Headers */,
+				1FA1F88D1EF7C04B00CB71B6 /* JKVProperty.h in Headers */,
+				1FA1F8891EF7C04B00CB71B6 /* JKVClassInspector.h in Headers */,
+				1FA1F8941EF7C05500CB71B6 /* JKVObjectPrinter.h in Headers */,
+				1FA1F88B1EF7C04B00CB71B6 /* JKVKeyedEncoderVisitor.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1FA39D5018D544AD0066061C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -632,6 +679,24 @@
 			productReference = 1F8A379A1B7B24F9001C8357 /* libJKVValue.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		1FA1F8801EF7C03300CB71B6 /* JKVValue-watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FA1F8861EF7C03300CB71B6 /* Build configuration list for PBXNativeTarget "JKVValue-watchOS" */;
+			buildPhases = (
+				1FA1F87C1EF7C03300CB71B6 /* Sources */,
+				1FA1F87D1EF7C03300CB71B6 /* Frameworks */,
+				1FA1F87E1EF7C03300CB71B6 /* Headers */,
+				1FA1F87F1EF7C03300CB71B6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "JKVValue-watchOS";
+			productName = "JKVValue-watchOS";
+			productReference = 1FA1F8811EF7C03300CB71B6 /* JKVValue.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		1FA39D2B18D541ED0066061C /* JKVValue-OSXTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1FA39D3918D541ED0066061C /* Build configuration list for PBXNativeTarget "JKVValue-OSXTests" */;
@@ -722,6 +787,10 @@
 					1F8A37991B7B24F9001C8357 = {
 						CreatedOnToolsVersion = 7.0;
 					};
+					1FA1F8801EF7C03300CB71B6 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
 					1FBE49C91EF7BC0C00BFD1EE = {
 						CreatedOnToolsVersion = 8.3.3;
 						ProvisioningStyle = Automatic;
@@ -749,6 +818,7 @@
 				1FA39D5218D544AD0066061C /* JKVValue-OSX */,
 				1FA39D2B18D541ED0066061C /* JKVValue-OSXTests */,
 				1F8A37991B7B24F9001C8357 /* JKVValue */,
+				1FA1F8801EF7C03300CB71B6 /* JKVValue-watchOS */,
 				1FBE49C91EF7BC0C00BFD1EE /* JKVValue-tvOS */,
 				1FBE49D11EF7BC0C00BFD1EE /* JKVValue-tvOSTests */,
 			);
@@ -764,6 +834,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1F8A37081B79CDD6001C8357 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FA1F87F1EF7C03300CB71B6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -841,6 +918,22 @@
 				1F8A37A91B7B2516001C8357 /* JKVMutableValue.m in Sources */,
 				1F8A37AA1B7B2516001C8357 /* JKVValueImpl.m in Sources */,
 				1F8A37AB1B7B2516001C8357 /* JKVFactory.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FA1F87C1EF7C03300CB71B6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FA1F89A1EF7C05A00CB71B6 /* JKVMutableValue.m in Sources */,
+				1FA1F8931EF7C05000CB71B6 /* JKVProperty.m in Sources */,
+				1FA1F89C1EF7C05A00CB71B6 /* JKVFactory.m in Sources */,
+				1FA1F8991EF7C05A00CB71B6 /* JKVObjectPrinter.m in Sources */,
+				1FA1F89B1EF7C05A00CB71B6 /* JKVValueImpl.m in Sources */,
+				1FA1F8901EF7C05000CB71B6 /* JKVKeyedDecoderVisitor.m in Sources */,
+				1FA1F8921EF7C05000CB71B6 /* JKVNonZeroSetterVisitor.m in Sources */,
+				1FA1F8911EF7C05000CB71B6 /* JKVKeyedEncoderVisitor.m in Sources */,
+				1FA1F88F1EF7C05000CB71B6 /* JKVClassInspector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1188,6 +1281,67 @@
 			};
 			name = Release;
 		};
+		1FA1F8871EF7C03300CB71B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "JKVValue/JKVValue-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = net.jeffhui.JKVValue;
+				PRODUCT_NAME = JKVValue;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		1FA1F8881EF7C03300CB71B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "JKVValue/JKVValue-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.jeffhui.JKVValue;
+				PRODUCT_NAME = JKVValue;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Release;
+		};
 		1FA39D3A18D541ED0066061C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1479,6 +1633,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		1FA1F8861EF7C03300CB71B6 /* Build configuration list for PBXNativeTarget "JKVValue-watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FA1F8871EF7C03300CB71B6 /* Debug */,
+				1FA1F8881EF7C03300CB71B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		1FA39D3918D541ED0066061C /* Build configuration list for PBXNativeTarget "JKVValue-OSXTests" */ = {
 			isa = XCConfigurationList;
