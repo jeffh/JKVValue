@@ -1,7 +1,10 @@
 osx_image: xcode8.3
 language: objective-c
-before_install: 'brew update || brew update'
+before_install: brew update || brew update
 install:
-  - brew install carthage; true
-  - carthage bootstrap --verbose
+- brew install carthage; true
+- carthage bootstrap --verbose
 script: rake ci
+env:
+  global:
+    secure: ZFDjfxRXaVlycjzyshzhb9RvXRM/rXs5pkexlwqaxiBVx7DN7PilGp86Q4oFMdWgsxTgZvcgJx9ndP33mh+59S+z6tEQ+jr77luTzTFmnz6nJO1IKeR7SCc/V7X/Wad7p+Su+I+ynwZxn3ZXUNhhUjmIUA0mfKGDdbIqLecXX5M=
