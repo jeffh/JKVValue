@@ -41,7 +41,7 @@ task :clean do
 end
 
 task :deps do
-  system_or_exit("carthage build --platform mac,ios")
+  system_or_exit("carthage build")
 end
 
 desc 'Cleans build directory for OS X'
@@ -52,6 +52,11 @@ end
 desc 'Runs the iOS spec bundle'
 task ios_specs: :deps do
   xcbuild("clean test -scheme JKVValue-iOS -sdk iphonesimulator#{SDK_BUILD_VERSION} SYMROOT=#{BUILD_DIR.inspect} -destination 'name=iPhone 6s'")
+end
+
+desc 'Runs the tvOS spec bundle'
+task tvos_specs: :deps do
+  xcbuild("clean test -scheme JKVValue-tvOS -sdk appletvsimulator#{SDK_BUILD_VERSION} SYMROOT=#{BUILD_DIR.inspect} -destination 'name=Apple TV 1080p'")
 end
 
 desc 'Runs the cocoapod spec linter'
@@ -68,10 +73,12 @@ task :default => [
   :clean,
   :osx_specs,
   :ios_specs,
+  :tvos_specs,
 ]
 desc 'Runs what CI would run'
 task :ci => [
   :clean,
   :osx_specs,
   :ios_specs,
+  :tvos_specs,
 ]
