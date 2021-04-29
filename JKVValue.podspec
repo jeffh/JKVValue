@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '6.0'
   s.osx.deployment_target = '10.8'
   s.source       = { :git => "https://github.com/jeffh/JKVValue.git", :tag => "v#{s.version}" }
-  s.source_files  = 'JKVValue/**/*.{h,m}'
-  s.public_header_files = 'JKVValue/Public/**/*.h'
+  s.source_files  = 'JKVValue/Source/**/*.{h,m}'
+  s.public_header_files = 'JKVValue/Source/Public/**/*.h'
   s.requires_arc = true
 end

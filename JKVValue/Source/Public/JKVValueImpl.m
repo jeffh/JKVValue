@@ -1,4 +1,8 @@
-#import "JKVValue.h"
+#import "JKVValueImpl.h"
+#import "JKVMutableValue.h"
+#import "JKVObjectPrinter.h"
+#import "JKVFactory.h"
+
 #import "JKVProperty.h"
 #import "JKVKeyedDecoderVisitor.h"
 #import "JKVKeyedEncoderVisitor.h"
