@@ -3,11 +3,11 @@
 import PackageDescription
 
 let package = Package(
-    name: "JKVValue",
+    name: "JKVValueLib",
     platforms: [.iOS(.v9), .macOS(.v10_10), .tvOS(.v9)],
     products: [
         .library(
-            name: "JKVValue",
+            name: "JKVValueLib",
             targets: ["JKVValue"])
     ],
     targets: [
