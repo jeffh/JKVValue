@@ -3,11 +3,11 @@
 import PackageDescription
 
 let package = Package(
-    name: "JKVValueLib",
+    name: "JKVValue",
     platforms: [.iOS(.v9), .macOS(.v10_10), .tvOS(.v9)],
     products: [
         .library(
-            name: "JKVValueLib",
+            name: "JKVValue",
             targets: ["JKVValue"])
     ],
     targets: [
@@ -16,8 +16,8 @@ let package = Package(
 //            dependencies: [
 //                .target(name: "JKVValuePrivate")
 //            ],
-            path: "JKVValue",
-            exclude: ["JKVValue.h", "Public/JKVValue.h"],
+            path: "JKVValue/Source",
+//            exclude: ["JKVValue.h", "Public/JKVValue.h"],
 //            sources:["Public", "Private"],
 //            sources: ["Public/JKVFactory.h",
 //                      "Public/JKVMutableValue.h",
@@ -31,8 +31,9 @@ let package = Package(
 //                      "Private/JKVProperty.h"],
             publicHeadersPath: "Public",
             cSettings: [
-//                .headerSearchPath("Public"),
+                .headerSearchPath("Public"),
                 .headerSearchPath("Private")
-            ])
+            ]
+        )
     ]
 )
