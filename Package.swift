@@ -13,22 +13,7 @@ let package = Package(
     targets: [
         .target(
             name: "JKVValue",
-//            dependencies: [
-//                .target(name: "JKVValuePrivate")
-//            ],
             path: "JKVValue/Source",
-//            exclude: ["JKVValue.h", "Public/JKVValue.h"],
-//            sources:["Public", "Private"],
-//            sources: ["Public/JKVFactory.h",
-//                      "Public/JKVMutableValue.h",
-//                      "Public/JKVObjectPrinter.h",
-//                      "Public/JKVValueImpl.h",
-//                      "Private/JKVClassInspector.h",
-//                      "Private/JKVKeyedDecoderVisitor.h",
-//                      "Private/JKVKeyedEncoderVisitor.h",
-//                      "Private/JKVNonZeroSetterVisitor.h",
-//                      "Private/JKVObjectPrinter-Protected.h",
-//                      "Private/JKVProperty.h"],
             publicHeadersPath: "Public",
             cSettings: [
                 .headerSearchPath("Public"),
