@@ -17,7 +17,7 @@ let package = Package(
 //                .target(name: "JKVValuePrivate")
 //            ],
             path: "JKVValue",
-//            exclude: ["JKVValue.h"],
+            exclude: ["JKVValue.h", "Public/JKVValue.h"],
             sources:["Public", "Private"],
 //            sources: ["JKVValue/Public/JKVValue.h",
 //                      "JKVValue/Public/JKVFactory.h",
